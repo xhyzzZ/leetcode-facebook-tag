@@ -3,7 +3,7 @@
 
 /*
 time: O(n)
-space: O()
+space: O(n)
 */
 public class Solution {
     public int maxSubArrayLen(int[] nums, int k) {
