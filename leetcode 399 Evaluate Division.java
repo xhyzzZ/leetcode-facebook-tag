@@ -6,30 +6,29 @@ time: O(e + q*e)
 space: O(e)
 */
 public class Solution {
-    public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
+    public double[] calcEquation(String[][] eq, double[] vals, String[][] q) {
         Map<String, Map<String, Double>> map = new HashMap<>();
-        for(int i = 0; i < values.length; i++) {
-        	map.putIfAbsent(equations[i][0], new HashMap<>());
-        	map.putIfAbsent(equations[i][1], new HashMap<>());
-        	map.get(equations[i][0]).put(equations[i][1], values[i]);
-        	map.get(equations[i][1]).put(equations[i][0], 1 / values[i]);
+        for (int i = 0; i < values.length; i++) {
+            map.putIfAbsent(equations[i][0], new HashMap<>());
+            map.putIfAbsent(equations[i][1], new HashMap<>());
+            map.get(equations[i][0]).put(equations[i][1], values[i]);
+            map.get(equations[i][1]).put(equations[i][0], 1 / values[i]);
         }
         double[] r = new double[queries.length];
-        for(int i = 0; i < queries.length; i++) {
-        	r[i] = dfs(queries[i][0], queries[i][1], 1, map, new HashSet<>());
-        	return r;
+        for (int i = 0; i < queries.length; i++) {
+            r[i] = dfs(queries[i][0], queries[i][1], 1, map, new HashSet<>());
         }
-
-        double dfs(String s, String t, double r, Map<String, Map<String, Double>> map, Set<String> seen) {
-        	if(!map.containsKey(s) || !seen.add(s)) return -1;
-        	if(s.equals(t)) return r;
-        	Map<String, Double> next = map.get(s);
-        	for(String c : next.keySet()) {
-        		double result = dfs(c, t, r * next.get(c), m, seen);
-        		if(result != -1) return result;
-        	}
-        	return -1;
+        return r;
+    }
+    private double dfs(String s, String t, double r, Map<String, Map<String, Double>> map, Set<String> seen) {
+        if (!map.containsKey(s) || !seen.add(s)) return -1;
+        if (s.equals(t)) return r;
+        Map<String, Double> next = map.get(s);
+        for (String c : next.keySet()) {
+            double result = dfs(c, t, r * next.get(c), map, seen);
+            if (result != -1) return result;
         }
+        return -1;
     }
 }
 
