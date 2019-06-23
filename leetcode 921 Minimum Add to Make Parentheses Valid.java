@@ -8,7 +8,7 @@ space: O(1)
 class Solution {
     public int minAddToMakeValid(String S) {
         int count = 0, stk = 0;
-        for (int i = 0; i < S.length(); ++i) {
+        for (int i = 0; i < S.length(); i++) {
             if (S.charAt(i) == '(') { 
             	++stk; 
             } else if (stk <= 0) { 

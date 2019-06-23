@@ -26,3 +26,24 @@ public class Vector2D implements Iterator<Integer> {
         return j != null && j.hasNext();
     }
 }
+
+
+class Vector2D implements Iterator<int[]>{
+
+    private Iterator<int[][]> i;
+    private Iterator<int[]> j;
+    public Vector2D(int[][] v) {
+        i = vec2d.iterator();
+    }
+    
+    public int next() {
+        hasNext();
+        return j.next();
+    }
+    
+    public boolean hasNext() {
+        while((j == null || !j.hasNext()) && i.hasNext())
+            j = i.next().iterator();
+        return j != null && j.hasNext();
+    }
+}
