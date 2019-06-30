@@ -5,45 +5,33 @@ time: O()
 space: O()
 */
 
-public class Vector2D implements Iterator<Integer> {
-
-	private Iterator<List<Integer>> i;
-	private Iterator<Iterator> j;
-    public Vector2D(List<List<Integer>> vec2d) {
-        i = vec2d.iterator();
-    }
-
-    @Override
-    public Integer next() {
-        hasNext();
-        return j.next();
-    }
-
-    @Override
-    public boolean hasNext() {
-        while((j == null || !j.hasNext()) && i.hasNext())
-        	j = i.next().iterator();
-        return j != null && j.hasNext();
-    }
-}
-
-
-class Vector2D implements Iterator<int[]>{
-
-    private Iterator<int[][]> i;
-    private Iterator<int[]> j;
+class Vector2D {
+    int data [][];
+    int rows, row, col;
     public Vector2D(int[][] v) {
-        i = vec2d.iterator();
+        data = v;
+        rows = v.length;
+        row = 0;
+        col = 0;
     }
     
     public int next() {
-        hasNext();
-        return j.next();
+        if(hasNext()) {
+            //store next to support peek 
+            int next = data[row][col++];
+            return next;
+        }
+        throw new UnsupportedOperationException();
     }
     
     public boolean hasNext() {
-        while((j == null || !j.hasNext()) && i.hasNext())
-            j = i.next().iterator();
-        return j != null && j.hasNext();
+       while(row < rows){
+           if(col < data[row].length) {
+               return true;
+           }
+           row++;
+           col = 0;    
+       }
+       return false;
     }
 }

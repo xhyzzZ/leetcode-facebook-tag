@@ -1,8 +1,8 @@
 //leetcode 307 Range Sum Query - Mutable
 
 /*
-time: O()
-space: O()
+time: O(logn)
+space: O(logn)
 */
 
 public class NumArray {
@@ -24,7 +24,7 @@ public class NumArray {
     SegmentTreeNode root = null;
    
     public NumArray(int[] nums) {
-        root = buildTree(nums, 0, nums.length-1);
+        root = buildTree(nums, 0, nums.length - 1);
     }
 
     private SegmentTreeNode buildTree(int[] nums, int start, int end) {
@@ -73,10 +73,10 @@ public class NumArray {
             int mid = root.start + (root.end - root.start) / 2;
             if (end <= mid) {
                 return sumRange(root.left, start, end);
-            } else if (start >= mid+1) {
+            } else if (start >= mid + 1) {
                 return sumRange(root.right, start, end);
             }  else {    
-                return sumRange(root.right, mid+1, end) + sumRange(root.left, start, mid);
+                return sumRange(root.right, mid + 1, end) + sumRange(root.left, start, mid);
             }
         }
     }
