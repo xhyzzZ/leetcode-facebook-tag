@@ -4,6 +4,14 @@
 /*
 time: O()
 space: O()
+Step 1: Divide:
+We divide tree into three parts: left subtree, root node, right subtree.
+Convert left subtree into a circular doubly linked list as well as the right subtree.
+Be careful. You have to make the root node become a circular doubly linked list.
+
+Step 2: Conquer:
+Firstly, connect left circular doubly linked list with the root circular doubly linked list.
+Secondly, connect them with the right circular doubly linked list. Here we go!
 */
 public class Solution {
     public Node treeToDoublyList(Node root) {
@@ -17,8 +25,8 @@ public class Solution {
         root.right = root;
         return connect(connect(leftHead, root), rightHead);
     }
-
-    // Used to connect two circular doubly linked lists. n1 is the head as well as n2.
+    
+    // Used to connect two circular doubly linked lists. n1 is the head of circular DLL as well as n2.
     private Node connect(Node n1, Node n2) {
         if (n1 == null) {
             return n2;
