@@ -1,6 +1,5 @@
 //leetcode 432 All O`one Data Structure
 
-
 /*
 time: O()
 space: O()
