@@ -22,27 +22,27 @@ class Node {
 class Solution {
     public Node insert(Node head, int insertVal) {
         // if start is null, create a node pointing to itself and return
-        if (start == null) {
-            Node node = new Node(x, null);
+        if (head == null) {
+            Node node = new Node(insertVal, null);
             node.next = node;
             return node;
         }
         // if start is not null, try to insert it into correct position
         // 1st pass to find max node
-        Node cur = start;
-        while (cur.val <= cur.next.val && cur.next != start) 
+        Node cur = head;
+        while (cur.val <= cur.next.val && cur.next != head) 
             cur = cur.next;
         // 2nd pass to insert the node in to correct position
         Node max = cur;
         Node dummy = new Node(0, max.next); // use a dummy head to make insertion process simpler
         max.next = null; // break the cycle
         cur = dummy;
-        while (cur.next != null && cur.next.val < x) {
+        while (cur.next != null && cur.next.val < insertVal) {
             cur = cur.next;
         }
-        cur.next = new Node(x, cur.next); // insert
+        cur.next = new Node(insertVal, cur.next); // insert
         Node newMax = max.next == null ? max : max.next; // reconnect to cycle
         newMax.next = dummy.next;
-        return start;
+        return head;
     }
 }
