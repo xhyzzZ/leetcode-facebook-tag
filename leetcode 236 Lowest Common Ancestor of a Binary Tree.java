@@ -3,18 +3,20 @@
 
 /*
 time: O(n)
-space: O(n)
+space: O(h)
 */
+dfs
 public class Solution {
 	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null || root == p || root == q)  return root;
+        if (root == null || root == p || root == q) return root;
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
-        if(left != null && right != null) return root;
+        if (left != null && right != null) return root;
         return left != null ? left : right;
     }
 }
 
+bfs
 public class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         Map<TreeNode, TreeNode> parent = new HashMap<>();
@@ -38,8 +40,9 @@ public class Solution {
             ancestors.add(p);
             p = parent.get(p);
         }
-        while (!ancestors.contains(q))
+        while (!ancestors.contains(q)) {
             q = parent.get(q);
+        }
         return q;
     }
 }
