@@ -2,8 +2,8 @@
 
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(logn)
 Step 1: Divide:
 We divide tree into three parts: left subtree, root node, right subtree.
 Convert left subtree into a circular doubly linked list as well as the right subtree.
