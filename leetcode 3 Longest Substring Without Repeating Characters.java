@@ -8,11 +8,11 @@ space: O(1)
 public class Solution {
 	//Hashmap
     public int lengthOfLongestSubstring(String s) {
-        if(s.length() == 0 || s == null) return 0;
+        if (s.length() == 0 || s == null) return 0;
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         int max = 0;
-        for(int i = 0, j = 0; i < s.length(); i++) {
-        	if(map.containsKey(s.charAt(i))) {
+        for (int i = 0, j = 0; i < s.length(); i++) {
+        	if (map.containsKey(s.charAt(i))) {
         		j = Math.max(j, map.get(s.charAt(i)) + 1); 
         	}
         	map.put(s.charAt(i), i);
@@ -25,11 +25,11 @@ public class Solution {
     //a b c a b c d e
     // j = 0, i = 3 -> j = 1
     public int lengthOfLongestSubstring(String s) {
-    	if(s.length() == 0 || s == null) return 0;
+    	if (s.length() == 0 || s == null) return 0;
     	HashSet<Character> set = new HashSet<>();
     	int res = 0;
-    	for(int i = 0, j = 0; i < s.length(); i++) {
-    		if(set.contains(s.charAt(i))) {
+    	for (int i = 0, j = 0; i < s.length(); i++) {
+    		if (set.contains(s.charAt(i))) {
     			set.remove(s.charAt(j++));
     		} else {
     			set.add(s.charAt(i));
