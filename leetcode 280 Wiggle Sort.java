@@ -2,14 +2,14 @@
 
 /*
 time: O(n)
-space: O()
+space: O(1)
 */
 
 public class Solution {
     public void wiggleSort(int[] nums) {
-        for(int i = 0; i < nums.length; i++) {
-        	if(i % 2 == 1) {
-        		if(nums[i - 1] > nums[i]) swap(nums, i);
+        for (int i = 0; i < nums.length; i++) {
+        	if (i % 2 == 1) {
+        		if (nums[i - 1] > nums[i]) swap(nums, i);
         	} else if(i != 0 && nums[i - 1] < nums[i]) swap(nums, i);
         }
     }

@@ -7,14 +7,20 @@ space: O(1)
 
 public class Solution {
     public int minSubArrayLen(int s, int[] nums) {
-    	int i = 0, j = 0, sum = 0, min = Integer.MAX_VALUE;
-        while (j < nums.length) {
-            while (sum < s && j < nums.length) sum += nums[j++];
-            if(sum >= s) {
-                while (sum >= s && i < j) sum -= nums[i++];
-                min = Math.min(min, j - i + 1);
+    	if (s < 0 || nums == null || nums.length == 0) return 0;
+        int size = Integer.MAX_VALUE;
+        int sum = 0;
+        int j = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            while (j < nums.length && sum < s) {
+                sum += nums[j++];
             }
+            if (sum >= s) size = Math.min(j - i, size);
+            sum -= nums[i];
         }
-        return min == Integer.MAX_VALUE ? 0 : min;
+        if (size == Integer.MAX_VALUE) return 0;
+
+        return size;
     }
 }

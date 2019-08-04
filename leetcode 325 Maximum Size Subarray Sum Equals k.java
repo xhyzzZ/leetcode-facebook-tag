@@ -11,7 +11,7 @@ public class Solution {
 	    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 
 	    for (int i = 0; i < nums.length; i++) {
-	        sum = sum + nums[i];
+	        sum =+ nums[i];
 
 	        if (sum == k) {
 	            max = i + 1;

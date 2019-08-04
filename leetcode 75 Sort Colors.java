@@ -27,8 +27,10 @@ public class Solution {
     	nums[i] = nums[j];
     	nums[j] = temp;
     }
+}
 
 
+public class Solution {
     public void sortColors(int[] nums) {
     // 2-pass
     int count0 = 0, count1 = 0, count2 = 0;
@@ -43,4 +45,4 @@ public class Solution {
         else {nums[i] = 2;}
     }
 }
-}
+    

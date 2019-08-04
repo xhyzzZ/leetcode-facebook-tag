@@ -8,23 +8,27 @@ space: O(1)
 
 public class Solution {
     public String minWindow(String s, String t) {
-        int[] cnt = new int[128];
-        for(char c : t.toCharArray()) {
-        	cnt[c]++;
+        int[] map = new int[128];
+        for (char c : t.toCharArray()) {
+            map[c]++;
         }
-        int from = 0;
-        int total = t.length();
-        int min = Integer.MAX_VALUE;
-        for(int i = 0, j = 0; i < s.length(); i++) {
-        	if(cnt[s.charAt(i)]-- > 0) total--;
-        	while(total == 0) {
-        		if(i - j + 1 < min) {
-        			min = i - j + 1;
-        			from = j;
-        		} 
-        		if(++cnt[s.charAt(j++) > 0]) total++;
-        	}
+        int start = 0, end = 0, minStart = 0, minLen = Integer.MAX_VALUE, counter = t.length();
+        while (end < s.length()) {
+            char c1 = s.charAt(end);
+            if (map[c1] > 0) counter--;
+            map[c1]--;
+            end++;
+            while (counter == 0) {
+                if (minLen > end - start) {
+                    minLen = end - start;
+                    minStart = start;
+                }
+                char c2 = s.charAt(start);
+                map[c2]++;
+                if (map[c2] > 0) counter++;
+                start++;
+            }
         }
-        return (min == Integer.MAX_VALUE) ? "" : s.substring(from, from + min);
+        return minLen == Integer.MAX_VALUE ? "" : s.substring(minStart, minStart + minLen);
     }
 }
