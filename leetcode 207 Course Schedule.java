@@ -19,8 +19,9 @@ class Solution {
         }
         
         int[] visited = new int[numCourses];
-        for (int i = 0; i < numCourses; ++i)
+        for (int i = 0; i < numCourses; ++i) {
             if (dfs(i, graph, visited)) return false;
+        }
         
         return true;
     }
@@ -31,8 +32,9 @@ class Solution {
         
         visited[curr] = 1;
                 
-        for (int next : graph.get(curr))
+        for (int next : graph.get(curr)) {
             if (dfs(next, graph, visited)) return true;
+        }
         
         visited[curr] = 2;
         return false;
@@ -48,8 +50,8 @@ class Solution {
         for (int i = 0; i < prerequisites.length; i++) {
             int ready = prerequisites[i][0];
             int pre = prerequisites[i][1];
-            if (matrix[pre][ready] == 0)
-                indegree[ready]++; //duplicate case
+            //duplicate case
+            if (matrix[pre][ready] == 0) indegree[ready]++; 
             matrix[pre][ready] = 1;
         }
         
@@ -63,8 +65,7 @@ class Solution {
             count++;
             for (int i = 0; i < numCourses; i++) {
                 if (matrix[course][i] != 0) {
-                    if (--indegree[i] == 0)
-                        queue.offer(i);
+                    if (--indegree[i] == 0) queue.offer(i);
                 }
             }
         }
