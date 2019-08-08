@@ -18,15 +18,15 @@ public class Solution {
         Stack<Integer> stack = new Stack<>();
         int res = 0;
         int start = -1;   /* 防止一开始元素为空 */
-        for(int i = 0; i < s.length(); i++) {
-        	if(s.charAt(i) == '(') {
+        for (int i = 0; i < s.length(); i++) {
+        	if (s.charAt(i) == '(') {
         		stack.push(i);
         	} else {
-        		if(stack.isEmpty()) {
+        		if (stack.isEmpty()) {
         			start = i;
         		} else {
         			stack.pop();
-        			if(stack.isEmpty()) {
+        			if (stack.isEmpty()) {
         				res = Math.max(res, i - start);
         			} else {
         				res = Math.max(res, i - stack.peek());   /*   0 1 2 3 4 5    */
