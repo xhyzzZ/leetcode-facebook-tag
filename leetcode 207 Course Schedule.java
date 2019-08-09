@@ -44,31 +44,35 @@ class Solution {
 bfs
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        int[][] matrix = new int[numCourses][numCourses]; // i -> j
-        int[] indegree = new int[numCourses];
-        
+        if (numCourses == 0 || prerequisites.length == 0) return true;
+        // Convert graph presentation from edges to indegree of adjacent list.
+        int indegree[] = new int[numCourses];
+        // Indegree - how many prerequisites are needed.
         for (int i = 0; i < prerequisites.length; i++) {
-            int ready = prerequisites[i][0];
-            int pre = prerequisites[i][1];
-            //duplicate case
-            if (matrix[pre][ready] == 0) indegree[ready]++; 
-            matrix[pre][ready] = 1;
+            indegree[prerequisites[i][0]]++; 
+        } 
+               
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for (int i = 0; i < numCourses; i++) {
+            if (indegree[i] == 0) {
+                queue.add(i);
+            }
         }
-        
-        int count = 0;
-        Queue<Integer> queue = new LinkedList();
-        for (int i = 0; i < indegree.length; i++) {
-            if (indegree[i] == 0) queue.offer(i);
-        }
+
+        // How many courses don't need prerequisites.
+        int canFinishCount = queue.size();  
         while (!queue.isEmpty()) {
-            int course = queue.poll();
-            count++;
-            for (int i = 0; i < numCourses; i++) {
-                if (matrix[course][i] != 0) {
-                    if (--indegree[i] == 0) queue.offer(i);
+            int prerequisite = queue.remove(); // Already finished this prerequisite course.
+            for (int i = 0; i < prerequisites.length; i++)  {
+                if (prerequisites[i][1] == prerequisite) { 
+                    indegree[prerequisites[i][0]]--;
+                    if (indegree[prerequisites[i][0]] == 0) {
+                        canFinishCount++;
+                        queue.add(prerequisites[i][0]);
+                    }
                 }
             }
         }
-        return count == numCourses;
+        return (canFinishCount == numCourses); 
     }
 }

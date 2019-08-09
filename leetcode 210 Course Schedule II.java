@@ -10,17 +10,20 @@ public class Solution {
       	if (numCourses == 0) return null;
         // Convert graph presentation from edges to indegree of adjacent list.
         int indegree[] = new int[numCourses], order[] = new int[numCourses], index = 0;
-        for (int i = 0; i < prerequisites.length; i++) // Indegree - how many prerequisites are needed.
-            indegree[prerequisites[i][0]]++;    
+        // Indegree - how many prerequisites are needed.
+        for (int i = 0; i < prerequisites.length; i++) {
+            indegree[prerequisites[i][0]]++;  
+        } 
 
         Queue<Integer> queue = new LinkedList<Integer>();
-        for (int i = 0; i < numCourses; i++) 
+        for (int i = 0; i < numCourses; i++) {
             if (indegree[i] == 0) {
                 // Add the course to the order because it has no prerequisites.
                 order[index++] = i;
                 queue.offer(i);
             }
-
+        }
+            
         // How many courses don't need prerequisites. 
         while (!queue.isEmpty()) {
             int prerequisite = queue.poll(); 
