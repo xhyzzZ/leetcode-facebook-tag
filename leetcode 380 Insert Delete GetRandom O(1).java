@@ -17,9 +17,9 @@ public class RandomizedSet {
     
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
-        if(valToInd.containsKey(val)) return false;
+        if (valToInd.containsKey(val)) return false;
         list.add(val);
-        valToInd.put(val,list.size() - 1);
+        valToInd.put(val, list.size() - 1);
         return true;
  
     }
@@ -27,7 +27,7 @@ public class RandomizedSet {
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
         int ind = valToInd.getOrDefault(val, -1);
-        if(ind == -1) return false;
+        if (ind == -1) return false;
         Collections.swap(list, ind, list.size() - 1);
         int swappedWith = list.get(ind);
         valToInd.put(swappedWith, ind);
