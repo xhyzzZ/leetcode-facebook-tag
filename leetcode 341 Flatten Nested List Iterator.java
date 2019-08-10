@@ -26,13 +26,13 @@ public class NestedIterator implements Iterator<Integer> {
     private Stack<NestedInteger> stack;
     public NestedIterator(List<NestedInteger> nestedList) {
         stack = new Stack<>();
-        for(int i = nestedList.size() - 1; i >= 0; i--) {
+        for (int i = nestedList.size() - 1; i >= 0; i--) {
             stack.push(nestedList.get(i));
         }
     }
 
     public Integer next() {
-        if(hasNext()) {
+        if (hasNext()) {
             return stack.pop().getInteger();
         } else {
             return null;
@@ -42,11 +42,11 @@ public class NestedIterator implements Iterator<Integer> {
     public boolean hasNext() {
         while (!stack.isEmpty()) {
             NestedInteger cur = stack.peek();
-            if(cur.isInteger()) {
+            if (cur.isInteger()) {
                 return true;
             }
             stack.pop();
-            for(int i = cur.getList().size() - 1; i >= 0; i--) {
+            for (int i = cur.getList().size() - 1; i >= 0; i--) {
                 stack.push(cur.getList().get(i));
             }
         }    

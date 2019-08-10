@@ -9,10 +9,17 @@ public class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
       	if (numCourses == 0) return null;
         // Convert graph presentation from edges to indegree of adjacent list.
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            graph.add(new ArrayList<>());
+        }
         int indegree[] = new int[numCourses], order[] = new int[numCourses], index = 0;
         // Indegree - how many prerequisites are needed.
-        for (int i = 0; i < prerequisites.length; i++) {
-            indegree[prerequisites[i][0]]++;  
+        for (int[] pair : prerequisites) {
+            int prev = pair[1];
+            int next = pair[0];
+            graph.get(prev).add(next);
+            indegree[next]++;
         } 
 
         Queue<Integer> queue = new LinkedList<Integer>();
@@ -25,21 +32,20 @@ public class Solution {
         }
             
         // How many courses don't need prerequisites. 
+        int canFinishCount = 0;
         while (!queue.isEmpty()) {
-            int prerequisite = queue.poll(); 
+            int curr = queue.poll(); 
+            canFinishCount++;
             // Already finished this prerequisite course.
-            for (int i = 0; i < prerequisites.length; i++)  {
-                if (prerequisites[i][1] == prerequisite) {
-                    indegree[prerequisites[i][0]]--; 
-                    if (indegree[prerequisites[i][0]] == 0) {
-                        // If indegree is zero, then add the course to the order.
-                        order[index++] = prerequisites[i][0];
-                        queue.offer(prerequisites[i][0]);
-                    }
-                } 
+            for (int adj : graph.get(curr)) {
+                indegree[adj]--;
+                if (indegree[adj] == 0) {
+                    order[index++] = adj;
+                    queue.offer(adj);
+                }
             }
         }
-        return (index == numCourses) ? order : new int[0];
+        return (canFinishCount == numCourses) ? order : new int[0];
     }
 }
 

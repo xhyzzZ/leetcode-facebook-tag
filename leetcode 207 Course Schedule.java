@@ -1,7 +1,7 @@
 //leetcode 207 Course Schedule
 
 /*
-time: O(n)
+time: O(ve)
 space: O(n)
 */
 dfs
@@ -46,11 +46,19 @@ class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         if (numCourses == 0 || prerequisites.length == 0) return true;
         // Convert graph presentation from edges to indegree of adjacent list.
-        int indegree[] = new int[numCourses];
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        int[] indegree = new int[numCourses];
         // Indegree - how many prerequisites are needed.
-        for (int i = 0; i < prerequisites.length; i++) {
-            indegree[prerequisites[i][0]]++; 
-        } 
+        for (int[] pair : prerequisites) {
+            int prev = pair[1];
+            int next = pair[0];
+            graph.get(prev).add(next);
+            indegree[next]++;
+        }
                
         Queue<Integer> queue = new LinkedList<Integer>();
         for (int i = 0; i < numCourses; i++) {
@@ -60,19 +68,18 @@ class Solution {
         }
 
         // How many courses don't need prerequisites.
-        int canFinishCount = queue.size();  
+        int canFinishCount = 0;  
         while (!queue.isEmpty()) {
-            int prerequisite = queue.remove(); // Already finished this prerequisite course.
-            for (int i = 0; i < prerequisites.length; i++)  {
-                if (prerequisites[i][1] == prerequisite) { 
-                    indegree[prerequisites[i][0]]--;
-                    if (indegree[prerequisites[i][0]] == 0) {
-                        canFinishCount++;
-                        queue.add(prerequisites[i][0]);
-                    }
+            int curr = queue.poll(); // Already finished this prerequisite course.
+            canFinishCount++;
+            for (int adj : graph.get(curr)) {
+                indegree[adj]--;
+                if (indegree[adj] == 0) {
+                    queue.offer(adj);
+
                 }
             }
         }
-        return (canFinishCount == numCourses); 
+        return canFinishCount == numCourses; 
     }
 }
