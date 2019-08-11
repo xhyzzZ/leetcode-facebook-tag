@@ -2,7 +2,7 @@
 
 /*
 time: O(n)
-space: O(n)
+space: O(1)
 */
 
 // Shift non-zero values as far forward as possible
