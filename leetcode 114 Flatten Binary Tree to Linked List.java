@@ -8,17 +8,16 @@ space: O(h)h是高度
 */
 public class Solution {
 	public void flatten(TreeNode root) {
-		if(root == null) return;
-		flatten(root.left);
-		flatten(root.right);
-		TreeNode left = root.left;
-		TreeNode right = root.right;
-		root.left = null;
-		root.right = left;
-		while (root.right != null) {
-			root = root.right;
-		}
-		root.right = right;
+    	helper(root, null);
+	}	
+	private TreeNode helper(TreeNode root, TreeNode pre) {
+	    if (root == null) return pre;
+	    pre = helper(root.right, pre);    
+	    pre = helper(root.left, pre);
+	    root.right = pre;
+	    root.left = null;
+	    pre = root;
+	    return pre;
 	}
 }
 

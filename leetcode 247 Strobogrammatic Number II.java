@@ -7,28 +7,35 @@ space: O(n)
 
 public class Solution {
     public List<String> findStrobogrammatic(int n) {
-        return helper(n, n);
-}
+        findStrobogrammaticHelper(new char[n], 0, n - 1);
+        return res;
+    }
 
-    List<String> helper(int n, int m) {
-        if (n == 0) return new ArrayList<String>(Arrays.asList(""));
-        if (n == 1) return new ArrayList<String>(Arrays.asList("0", "1", "8"));
-        
-        List<String> list = helper(n - 2, m);
-        
-        List<String> res = new ArrayList<String>();
-        
-        for (int i = 0; i < list.size(); i++) {
-            String s = list.get(i);
-            
-            if (n != m) res.add("0" + s + "0");
-            
-            res.add("1" + s + "1");
-            res.add("6" + s + "9");
-            res.add("8" + s + "8");
-            res.add("9" + s + "6");
+    List<String> res = new ArrayList<String>();
+
+    public void findStrobogrammaticHelper(char[] a, int l, int r) {
+        if (l > r) {
+            res.add(new String(a));
+            return;
+        }
+        if (l == r) {
+            a[l] = '0'; res.add(new String(a));
+            a[l] = '1'; res.add(new String(a));
+            a[l] = '8'; res.add(new String(a));
+            return;
         }
         
-        return res;
+        if (l != 0) {
+            a[l] = '0'; a[r] = '0';
+            findStrobogrammaticHelper(a, l + 1, r - 1);
+        }
+        a[l] = '1'; a[r] = '1';
+        findStrobogrammaticHelper(a, l + 1, r - 1);
+        a[l] = '8'; a[r] = '8';
+        findStrobogrammaticHelper(a, l + 1, r - 1);
+        a[l] = '6'; a[r] = '9';
+        findStrobogrammaticHelper(a, l + 1, r - 1);
+        a[l] = '9'; a[r] = '6';
+        findStrobogrammaticHelper(a, l + 1, r - 1);
     }
 }

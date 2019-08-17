@@ -18,7 +18,7 @@ public class Solution {
             return; 
         }
         cur.add(root.val);
-        if (root.left == null && root.right == null && root.val == sum){
+        if (root.left == null && root.right == null && root.val == sum) {
             res.add(new ArrayList<>(cur));
         } else {
             pathSum(root.left, sum - root.val, cur, res);
