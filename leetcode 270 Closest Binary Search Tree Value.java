@@ -17,13 +17,13 @@ public class Solution {
 
 public class Solution {
 	public int closestValue(TreeNode root, double target) {
-	    int ret = root.val;   
+	    int res = root.val;   
 	    while (root != null) {
-	        if (Math.abs(target - root.val) < Math.abs(target - ret)) {
-	            ret = root.val;
+	        if (Math.abs(target - root.val) < Math.abs(target - res)) {
+	            res = root.val;
 	        }      
-	        root = root.val > target ? root.left: root.right;
+	        root = root.val > target ? root.left : root.right;
 	    }     
-	    return ret;
+	    return res;
 	}
 }
