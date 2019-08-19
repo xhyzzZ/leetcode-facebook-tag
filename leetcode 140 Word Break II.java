@@ -11,13 +11,13 @@ public class Solution {
     }
 
     public List<String> backtrack(String s, List<String> wordDict, Map<String, List<String>> mem) {
-    	if(mem.containsKey(s)) return mem.get(s);
+    	if (mem.containsKey(s)) return mem.get(s);
     	List<String> res = new ArrayList<>();
     	for(String word : wordDict) {
-    		if(s.startsWith(word)) {
+    		if (s.startsWith(word)) {
     			String next = s.substring(word.length());
-    			if(next.length() == 0) res.add(word);
-    			else for(String sub : backtrack(next, wordDict, mem)) res.add(word + " " + sub);
+    			if (next.length() == 0) res.add(word);
+    			else for (String sub : backtrack(next, wordDict, mem)) res.add(word + " " + sub);
     		}
     	}
     	mem.put(s, res);

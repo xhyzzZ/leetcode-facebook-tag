@@ -12,7 +12,7 @@ class Solution {
         int lowestBuyPrice1 = Integer.MAX_VALUE;
         int lowestBuyPrice2 = Integer.MAX_VALUE;
 
-        for(int p : prices) {
+        for (int p : prices) {
             maxProfit2 = Math.max(maxProfit2, p - lowestBuyPrice2);
             lowestBuyPrice2 = Math.min(lowestBuyPrice2, p - maxProfit1);
             maxProfit1 = Math.max(maxProfit1, p - lowestBuyPrice1);
