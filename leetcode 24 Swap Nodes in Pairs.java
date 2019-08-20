@@ -7,14 +7,14 @@ public class Solution {
     public ListNode swapPairs(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        ListNode current = dummy;
-        while (current.next != null && current.next.next != null) {
-            ListNode first = current.next;
-            ListNode second = current.next.next;
+        ListNode cur = dummy;
+        while (cur.next != null && cur.next.next != null) {
+            ListNode first = cur.next;
+            ListNode second = cur.next.next;
+            cur.next = second;
             first.next = second.next;
-            current.next = second;
-            current.next.next = first;
-            current = current.next.next;
+            second.next = first;
+            cur = first;
         }
         return dummy.next;
     }

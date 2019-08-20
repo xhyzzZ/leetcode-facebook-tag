@@ -8,7 +8,7 @@ space: O(1)
 public class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode prev = null;
-        while(head != null) {
+        while (head != null) {
             ListNode next = head.next;
             head.next = prev;
             prev = head;

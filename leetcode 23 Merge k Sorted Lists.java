@@ -2,7 +2,7 @@
 
 /*
 time: O(nlogk)k代表链表的个数
-space: O()
+space: O(1)
 */
 
 public class Solution {
@@ -29,29 +29,27 @@ public class Solution {
     	l2.next = merge(l1, l2.next);
     	return l2; 
     }
+}
 
-
-
-
+public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-    	if(lists == null || lists.length == 0) return null;
-    	PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, (a, b) -> a.val - b.val);
-    	ListNode dummy = new ListNode(0);
-    	ListNode cur = dummy;
-    	
-    	for(ListNode list : lists) {
-    		if(list != null) {
-    			queue.add(list);
-    		}
-    	}
-    	while(!queue.isEmpty()) {
-    		cur.next = queue.poll();
-    		cur = cur.next;
-    		if(cur.next != null) {
-    			queue.add(cur.next);
-    		}
-    	}
-    	return dummy.next;
+        if (lists == null || lists.length == 0) return null;
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, (a, b) -> a.val - b.val);
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        
+        for (ListNode list : lists) {
+            if (list != null) {
+                queue.add(list);
+            }
+        }
+        while (!queue.isEmpty()) {
+            cur.next = queue.poll();
+            cur = cur.next;
+            if (cur.next != null) {
+                queue.add(cur.next);
+            }
+        }
+        return dummy.next;
     }
-
 }
