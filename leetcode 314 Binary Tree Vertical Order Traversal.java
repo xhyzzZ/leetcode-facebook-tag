@@ -16,16 +16,16 @@ public class Solution {
 	    List<List<Integer>> res = new ArrayList<>();
 	    if (root == null) return res;
 	    Map<Integer, ArrayList<Integer>> map = new HashMap<>();
-	    Queue<TreeNode> q = new LinkedList<>();
+	    Queue<TreeNode> queue = new LinkedList<>();
 	    Queue<Integer> cols = new LinkedList<>();
 
-	    q.add(root); 
+	    queue.add(root); 
 	    cols.add(0);
 
 	    int min = 0;
 	    int max = 0;
-	    while (!q.isEmpty()) {
-	        TreeNode node = q.poll();
+	    while (!queue.isEmpty()) {
+	        TreeNode node = queue.poll();
 	        int col = cols.poll();
 	        
 	        if (!map.containsKey(col)) {
@@ -34,14 +34,14 @@ public class Solution {
 	        map.get(col).add(node.val);
 
 	        if (node.left != null) {
-	            q.add(node.left); 
+	            queue.add(node.left); 
 	            cols.add(col - 1);
 	            //记录左边界
 	            min = Math.min(min, col - 1);
 	        }
 	        
 	        if (node.right != null) {
-	            q.add(node.right);
+	            queue.add(node.right);
 	            cols.add(col + 1);
 	            //记录右边界
 	            max = Math.max(max, col + 1);

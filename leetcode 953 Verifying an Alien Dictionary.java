@@ -19,7 +19,7 @@ class Solution {
         return true;
     }
 
-    int compare(String s1, String s2) {
+    private int compare(String s1, String s2) {
         int n = s1.length(), m = s2.length(), cmp = 0;
         for (int i = 0, j = 0; i < n && j < m && cmp == 0; i++, j++) {
             cmp = mapping[s1.charAt(i) - 'a'] - mapping[s2.charAt(j) - 'a'];

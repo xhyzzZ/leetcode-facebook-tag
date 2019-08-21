@@ -40,7 +40,7 @@ public class Solution {
     	if (c == '(') {
     		dfs(s, i + 1, res, sb, rmL - 1, rmR, open);					// not use (
     		dfs(s, i + 1, res, sb.append(c), rmL, rmR, open + 1);		// use (
-    	} else if(c == ')') {
+    	} else if (c == ')') {
     		dfs(s, i + 1, res, sb, rmL, rmR - 1, open);					// not use  )
     		dfs(s, i + 1, res, sb.append(c), rmL, rmR, open - 1);		// use )
     	} else {
