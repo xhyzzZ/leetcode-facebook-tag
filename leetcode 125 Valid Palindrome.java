@@ -10,10 +10,10 @@ public class Solution {
         int i = 0; 
         int j = s.length - 1;
         char[] c = s.toCharArray();
-        while(i < j) {
-        	while(i < s.length() && !valid(c[i])) i++;
-        	while(j >= 0 && !valid(c[j])) j--;
-        	if(i < j && Character.toLowerCase(c[i]) != Character.toLowerCase(c[j])) {
+        while (i < j) {
+        	while (i < s.length() && !valid(c[i])) i++;
+        	while (j >= 0 && !valid(c[j])) j--;
+        	if (i < j && Character.toLowerCase(c[i]) != Character.toLowerCase(c[j])) {
         		return false;
         	}
         	i++;
