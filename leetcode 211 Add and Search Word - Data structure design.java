@@ -2,7 +2,7 @@
 
 /*
 time: O(n)
-space: O()
+space: O(1)
 */
 public class WordDictionary {
 
