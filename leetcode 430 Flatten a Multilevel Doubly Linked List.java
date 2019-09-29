@@ -23,11 +23,35 @@ class Node {
     }
 };
 */
+
+public class Solution {
+    public Node flatten(Node head) {
+        if (head == null) return head;
+        Node cur = head;
+        Stack<Node> stack = new Stack<>(); // store curt.next when curt.child is not null
+        
+        while (cur != null) {
+            if (cur.child != null) {
+                stack.push(cur.next); // might be null
+                cur.next = cur.child;
+                if (cur.next != null) cur.next.prev = cur;
+                cur.child = null;
+            } else if (cur.next == null && !stack.isEmpty()) { // reach of tail of child, reconnet the next of parent
+                cur.next = stack.pop();
+                if (cur.next != null) cur.next.prev = cur;
+            }
+            
+            cur = cur.next;
+        }
+        return head;
+    }
+}        
+
 public class Solution {
     public Node flatten(Node head) {
         if (head == null) return head;
 	    // Pointer
-        Node p = head; 
+        Node p = head;
         while (p != null) {
             if (p.child != null) {
                 /* CASE 2: got child, find the tail of the child and link it to p.next */
@@ -50,3 +74,4 @@ public class Solution {
         return head;
     }
 }
+

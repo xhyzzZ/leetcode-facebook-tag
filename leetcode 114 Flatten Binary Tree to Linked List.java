@@ -1,10 +1,11 @@
 //leetcode 114 Flatten Binary Tree to Linked List
     
-
-
 /*
 time: O(n)
 space: O(h)h是高度
+思路：1.对右边进行bfs到底，把右边的值赋给prev
+2. 把左边的值设为null
+3. 把prev的值设为root
 */
 public class Solution {
 	public void flatten(TreeNode root) {

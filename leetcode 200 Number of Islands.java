@@ -13,7 +13,7 @@ public class Solution {
             for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == '1') {
                     dfs(grid, i , j);
-                    count ++;
+                    count++;
                 }
             }
         }

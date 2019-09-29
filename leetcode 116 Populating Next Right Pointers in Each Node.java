@@ -7,16 +7,16 @@ space: O(1)
 */
 public class Solution {
     public void connect(TreeLinkNode root) {
-        TreeLinkNode level_start = root;
+        TreeLinkNode level = root;
         while (level_start != null) {
-        	TreeLinkNode cur = level_start;
+        	TreeLinkNode cur = level;
         	while (cur != null) {
-        		if(cur.left != null) cur.left.next = cur.right;
-        		if(cur.right != null && cur.next != null) cur.right.next = cur.next.left;
+        		if (cur.left != null) cur.left.next = cur.right;
+        		if (cur.right != null && cur.next != null) cur.right.next = cur.next.left;
 
         		cur = cur.next;
         	}
-        	level_start = level_start.left;
+        	level = level.left;
         }
     }
 }

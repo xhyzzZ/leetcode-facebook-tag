@@ -23,14 +23,14 @@ class Solution {
                 String str = result.pop();
                 StringBuilder sb = new StringBuilder();
                 int times = count.pop();
-                for (int j = 0; j < times; j += 1) {
+                for (int j = 0; j < times; j++) {
                     sb.append(str);
                 }
                 result.push(result.pop() + sb.toString());
             } else {
                 result.push(result.pop() + ch);
             }
-            i += 1;
+            i++;
         }
         return result.pop();
     }
