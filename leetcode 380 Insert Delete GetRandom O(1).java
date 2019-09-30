@@ -8,11 +8,12 @@ space: O(1)
 public class RandomizedSet {
 	HashMap<Integer, Integer> valToInd;
     List<Integer> list;
-    int ind = 0;
+    Random random;
     /** Initialize your data structure here. */
     public RandomizedSet() {
         valToInd = new HashMap<>();
         list = new ArrayList<>();
+        random = new Random();
     }
     
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
@@ -28,9 +29,10 @@ public class RandomizedSet {
     public boolean remove(int val) {
         int ind = valToInd.getOrDefault(val, -1);
         if (ind == -1) return false;
+        // 将将要移除的元素和list末尾元素进行置换
         Collections.swap(list, ind, list.size() - 1);
-        int swappedWith = list.get(ind);
-        valToInd.put(swappedWith, ind);
+        int lastVal = list.get(ind);
+        valToInd.put(lastVal, ind);
         list.remove(list.size() - 1);
         valToInd.remove(val);
         return true;
@@ -38,9 +40,7 @@ public class RandomizedSet {
     
     /** Get a random element from the set. */
     public int getRandom() {
-        int max = list.size();
-        int min = 0;
-        int ind = (int)(Math.random() * (max - min) + min);
+        int ind = random.nextInt(list.size());
         return list.get(ind);
     }
 }

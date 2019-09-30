@@ -6,47 +6,52 @@ space: O()
 */
 
 class Solution {
-    public List<List<Integer>> verticalTraversal(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
-        if(root == null) return res;
-        PriorityQueue<Point> pq = new PriorityQueue(new Comparator<Point>() {
-            public int compare(Point p1, Point p2) {
-                if(p1.x != p2.x)
-                    return p1.x - p2.x;
-                else if(p1.y != p2.y)
-                    return p2.y - p1.y;
-                else 
-                    return p1.val - p2.val;
-            }
-        });  
-        dfs(root, 0, 0, pq);
-        int prev_x = Integer.MIN_VALUE;
-        while(!pq.isEmpty()) {
-            Point p = pq.poll();
-            if(p.x > prev_x) {
-                List<Integer> list = new ArrayList<>();
-                list.add(p.val);
-                res.add(list);
-            } else {
-                List<Integer> list = res.get(res.size() - 1);
-                list.add(p.val);
-            }
-            prev_x = p.x;
-        }
-        return res;
-    }
-    private void dfs(TreeNode root, int x, int y, PriorityQueue<Point> pq) {
-        if(root == null) return;
-        pq.offer(new Point(x, y, root.val));
-        dfs(root.left, x - 1, y - 1, pq);
-        dfs(root.right, x + 1, y - 1, pq);
-    }
-    class Point {
-        int x, y, val;
-        Point(int x,int y,int val) {
+    class Pair {
+        TreeNode node;
+        int x;  //horizontal
+        int y;  //depth
+        Pair(TreeNode n, int x, int y) {
+            node = n;
             this.x = x;
             this.y = y;
-            this.val = val;
         }
+    }
+    
+    public List<List<Integer>> verticalTraversal(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        //x -> list (some nodes might have same y in the list)
+        Map<Integer, List<Pair>> map = new HashMap<>(); 
+        
+        Queue<Pair> queue = new LinkedList<>();
+        queue.add(new Pair(root, 0, 0));
+        int min = 0, max = 0;
+        while (!queue.isEmpty()) {
+            Pair p = queue.poll(); 
+            
+            min = Math.min(min, p.x);
+            max = Math.max(max, p.x);
+            
+            if (!map.containsKey(p.x)) map.put(p.x, new ArrayList<>());
+            map.get(p.x).add(p);
+            
+            if (p.node.left != null) queue.add(new Pair(p.node.left, p.x - 1, p.y + 1));
+            if (p.node.right != null) queue.add(new Pair(p.node.right, p.x + 1, p.y + 1));
+        }        
+
+        for (int i = min; i <= max; i++) {
+            Collections.sort(map.get(i), new Comparator<Pair>() {
+                public int compare(Pair a, Pair b) {
+                    if (a.y == b.y) //when y is equal, sort it by value
+                        return a.node.val - b.node.val;
+                    return 0; //otherwise don't change the order as BFS ganrantees that top nodes are visited first
+                }
+            });
+            List<Integer> list = new ArrayList<>();
+            for (int j = 0; j < map.get(i).size(); j++) {
+                list.add(map.get(i).get(j).node.val);
+            }
+            res.add(list);
+        }
+        return res;   
     }
 }

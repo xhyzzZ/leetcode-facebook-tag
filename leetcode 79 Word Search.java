@@ -2,8 +2,8 @@
 
 
 /*
-time: O()
-space: O()
+time: O(mn)
+space: O(1)
 */
 public class Solution {
     public boolean exist(char[][] board, String word) {
