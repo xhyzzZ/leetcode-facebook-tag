@@ -1,10 +1,8 @@
 //leetcode 42 Trapping Rain Water
 
-
 /*
 time: O(n)
 space; O(1)
-
 */
 
 public class Solution {
@@ -14,8 +12,10 @@ public class Solution {
         int res = 0;
         int leftMax = 0;
         int rightMax = 0;
-        while(left < right) {
-        	if(height[left] < height[right]) {
+        while (left < right) {
+            // leftmax is smaller than rightmax, so the (leftmax-A[a]) 
+            // water can be stored
+        	if (height[left] < height[right]) {
         		leftMax = Math.max(height[left], leftMax);
         		res += leftMax - height[left];
         		left++;
