@@ -20,9 +20,7 @@ public class Solution {
         return count;
     }
     private void dfs(char[][] grid, int x, int y) {
-        if (x < 0 || x >= grid.length) return;
-        if (y < 0 || y >= grid[0].length) return;
-        if (grid[x][y] == '0') return;
+        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] == '0') return;
         grid[x][y] = '0';
         dfs(grid, x + 1, y);
         dfs(grid, x - 1, y);

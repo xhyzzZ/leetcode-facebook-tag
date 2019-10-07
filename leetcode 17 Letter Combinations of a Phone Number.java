@@ -37,15 +37,15 @@ public class Solution {
         return res;
     }
 
-    private void combination(String prefix, String digits, int offset, List<String> res) {
-    	if (offset >= digits.length()) {
+    private void combination(String prefix, String digits, int index, List<String> res) {
+    	if (index >= digits.length()) {
     		res.add(prefix);
     		return;
     	}
 
-    	String letters = KEYS[(digits.charAt(offset) - '0')];
+    	String letters = KEYS[(digits.charAt(index) - '0')];
     	for (int i = 0; i < letters.length(); i++) {
-    		combination(prefix + letters.charAt(i), digits, offset + 1, res);
+    		combination(prefix + letters.charAt(i), digits, index + 1, res);
     	}
     }
 }
