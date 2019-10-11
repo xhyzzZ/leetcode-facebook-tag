@@ -22,10 +22,12 @@ public class Solution {
     }
     private double dfs(String s, String t, double r, Map<String, Map<String, Double>> map, Set<String> seen) {
         if (!map.containsKey(s) || !seen.add(s)) return -1;
+        // 结束条件
         if (s.equals(t)) return r;
         Map<String, Double> next = map.get(s);
         for (String c : next.keySet()) {
             double result = dfs(c, t, r * next.get(c), map, seen);
+            // 回溯部分剪枝
             if (result != -1) return result;
         }
         return -1;
