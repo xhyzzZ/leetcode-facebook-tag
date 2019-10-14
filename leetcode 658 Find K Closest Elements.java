@@ -7,16 +7,20 @@ space: O()
 
 class Solution {
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
-        int left = 0, right = arr.length - k;
-        while (left < right) {
-            int mid = (left + right) / 2;
-            if (x - arr[mid] > arr[mid + k] - x)
-                left = mid + 1;
-            else
-                right = mid;
+        int lo = 0, hi = arr.length - k - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (Math.abs(x - arr[mid]) > Math.abs(x - arr[mid + k])) {
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }                
+        }     
+        // return subarray
+        List<Integer> res = new ArrayList<>(k);
+        for (int i = 0; i < k; i++) {
+            res.add(arr[lo + i]);
         }
-        List<Integer> res = new ArrayList<>();
-        for (int i = 0; i < k; i++) res.add(arr[left + i]);
         return res;
     }
 }

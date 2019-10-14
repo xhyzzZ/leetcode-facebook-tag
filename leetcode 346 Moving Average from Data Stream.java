@@ -6,25 +6,25 @@ space: O()
 */
 
 public class MovingAverage {
-	Queue<Integer> q;
+	Queue<Integer> queue;
     int capacity;
     int currSum;
     /** Initialize your data structure here. */
     public MovingAverage(int size) {
-        q = new LinkedList<Integer>();
+        queue = new LinkedList<Integer>();
         capacity = size;
         currSum = 0;
     }
     
     public double next(int val) {
         currSum += val;
-        q.offer(val);
+        queue.offer(val);
         
-        if(q.size() > capacity) {
-            currSum -= q.poll();
+        if (q.size() > capacity) {
+            currSum -= queue.poll();
         }
        
-        return currSum * 1.0 / q.size();
+        return currSum * 1.0 / queue.size();
     }
 }
 
