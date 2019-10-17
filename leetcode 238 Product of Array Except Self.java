@@ -1,39 +1,31 @@
 //leetcode 238 Product of Array Except Self
 
-
 /*
 time: O(n)
-space: O(n)
+space: O(1)
 */
 
-
-/*
- * nums   = [1, 2, 3, 4]
- * output = product of nums[left of i] * product of nums[right of i]
- 
-output = [
-  24, // left: init=1     nums[i]=1  right: 2 * 3 * 4 
-  12, // left: 1          nums[i]=2  right: 3 * 4
-  8,  // left: 1 * 2      nums[i]=3  right: 4
-  6,  // left: 1 * 2 * 3  nums[i]=4  right: init=1 
-]
-*/
 public class Solution {
 	public int[] productExceptSelf(int[] nums) {
-	    int leng = nums.length;
-	    int[] ret = new int[leng];
-	    if(leng == 0)
-	        return ret;
-	    int runningprefix = 1;
-	    for(int i = 0; i < leng; i++){
-	        ret[i] = runningprefix;
-	        runningprefix *= nums[i];
-	    }
-	    int runningsufix = 1;
-	    for(int i = leng - 1; i >= 0; i--){
-	        ret[i] *= runningsufix;
-	        runningsufix *= nums[i];
-	    }
-	    return ret;
+	    int n = nums.length;
+        int[] res = new int[n];
+        // Calculate lefts and store in res.
+        // [2, 3, 4, 5]
+        int left = 1;
+        for (int i = 0; i < n; i++) {
+            if (i > 0) {
+                left = left * nums[i - 1];
+            }
+            res[i] = left;
+        }
+        // Calculate rights and the product from the end of the array.
+        int right = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            if (i < n - 1) {
+                right = right * nums[i + 1];
+            }
+            res[i] *= right;
+        }
+        return res;
 	}
 }

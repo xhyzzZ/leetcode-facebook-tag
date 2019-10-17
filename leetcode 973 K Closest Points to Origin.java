@@ -1,8 +1,11 @@
 //leetcode 973 K Closest Points to Origin
 
 /*
-time: O(n)
+avereage time: O(n) worst O(n ^ 2)
 space: O()
+The advantage of this solution is it is very efficient.
+The disadvatage of this solution are it is neither an online solution nor a stable one. 
+And the K elements closest are not sorted in ascending order.
 */
 
 class Solution {
@@ -36,7 +39,10 @@ class Solution {
 	    return p1[0] * p1[0] + p1[1] * p1[1] - p2[0] * p2[0] - p2[1] * p2[1];
 	}
 }
-
+/*
+time: O(NlogK)
+space: O(k)
+*/
 
 class Solution {
 	public int[][] kClosest(int[][] points, int K) {
