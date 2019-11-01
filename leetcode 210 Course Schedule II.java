@@ -1,7 +1,7 @@
 //leetcode 210 Course Schedule II
 
 /*
-time: O(ve)
+time: O(v + e)
 space: O()
 */
 
@@ -50,7 +50,6 @@ public class Solution {
 }
 
 
-
 public class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         List<List<Integer>> graph = new ArrayList<>();
@@ -75,10 +74,10 @@ public class Solution {
         }
         return result;
     }
-    
+    // 0 -> unvisited, 1 -> visiting, 2 -> visited
     private boolean topologicalSort(List<List<Integer>> graph, int v, Stack<Integer> stack, int[] visited) {
-        if (visited[v] == 2) return true;
         if (visited[v] == 1) return false;
+        if (visited[v] == 2) return true;
         visited[v] = 1;
         for (Integer u : graph.get(v)) {
             if (!topologicalSort(graph, u, stack, visited)) return false;

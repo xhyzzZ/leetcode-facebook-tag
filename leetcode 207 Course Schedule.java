@@ -1,7 +1,7 @@
 //leetcode 207 Course Schedule
 
 /*
-time: O(ve)
+time: O(v + e)
 space: O(n)
 */
 dfs
@@ -20,24 +20,24 @@ class Solution {
         
         int[] visited = new int[numCourses];
         for (int i = 0; i < numCourses; ++i) {
-            if (dfs(i, graph, visited)) return false;
+            if (!dfs(i, graph, visited)) return false;
         }
         
         return true;
     }
     // states: 0 == unknown, 1 == visiting, 2 == visited
-    private boolean dfs(int curr, ArrayList<ArrayList<Integer>> graph, int[] visited) {
-        if (visited[curr] == 1) return true;
-        if (visited[curr] == 2) return false;
+    private boolean dfs(int curr, List<List<Integer>> graph, int[] visited) {
+        if (visited[curr] == 1) return false;
+        if (visited[curr] == 2) return true;
         
         visited[curr] = 1;
                 
         for (int next : graph.get(curr)) {
-            if (dfs(next, graph, visited)) return true;
+            if (!dfs(next, graph, visited)) return false;
         }
         
         visited[curr] = 2;
-        return false;
+        return true;
     }
 }
 
