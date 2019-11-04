@@ -1,8 +1,8 @@
 //leetcode 567 Permutation in String
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(1)
 */
 
 class Solution {

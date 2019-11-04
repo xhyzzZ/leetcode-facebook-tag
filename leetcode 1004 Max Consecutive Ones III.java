@@ -16,14 +16,15 @@ If A[i] ~ A[j] has zeros > K, we increment i.
 
 class Solution {
     public int longestOnes(int[] A, int K) {
-        int zeroCount = 0, start = 0, res = 0;
-        for(int end = 0; end < A.length; end++) {
-            if(A[end] == 0) zeroCount++;
-            while(zeroCount > K){
-                if(A[start] == 0) zeroCount--;
+        int end = 0, start = 0, counter = 0, res = 0;
+        while (end < A.length) {
+            if (A[end] == 0) counter++;
+            end++;
+            while (counter > K) {
+                if (A[start] == 0) counter--;
                 start++;
             }
-            res = Math.max(res, end - start + 1);
+            res = Math.max(res, end - start);
         }
         return res;
     }

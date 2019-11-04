@@ -27,18 +27,18 @@ public class Codec {
     }
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        Deque<String> nodes = new LinkedList<>();
-        nodes.addAll(Arrays.asList(data.split(spliter)));
-        return buildTree(nodes);
+        Queue<String> queue = new LinkedList<>();
+        queue.addAll(Arrays.asList(data.split(spliter)));
+        return buildTree(queue);
     }
     
-    private TreeNode buildTree(Deque<String> nodes) {
-        String val = nodes.remove();
+    private TreeNode buildTree(Queue<String> queue) {
+        String val = queue.poll();
         if (val.equals(NN)) return null;
         else {
             TreeNode node = new TreeNode(Integer.valueOf(val));
-            node.left = buildTree(nodes);
-            node.right = buildTree(nodes);
+            node.left = buildTree(queue);
+            node.right = buildTree(queue);
             return node;
         }
     }

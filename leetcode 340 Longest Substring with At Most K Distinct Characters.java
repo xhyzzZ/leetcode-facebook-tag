@@ -2,13 +2,13 @@
 
 /*
 time: O(n)
-space: O(256)
+space: O(128)
 */
 
 class Solution {
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
     	if (s == null || s.length() == 0) return 0;
-	    int[] map = new int[256];
+	    int[] map = new int[128];
 	    int start = 0, end = 0, maxLen = Integer.MIN_VALUE, counter = 0;
 
 	    while (end < s.length()) {
