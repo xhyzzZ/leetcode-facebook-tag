@@ -5,11 +5,11 @@
 //space: O(1)
 public class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
-        if(head = null || head.next == null) return head;
+        if (head = null || head.next == null) return head;
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode prev = dummy;
-        while(prev != null) {
+        while (prev != null) {
             prev = reverse(prev, k);
         }
         return dummy.next;
@@ -17,13 +17,13 @@ public class Solution {
 
     public ListNode reverse(ListNode prev, int k) {
         ListNode last = prev;
-        for(int i = 0; i < k + 1; i++) {
+        for (int i = 0; i < k + 1; i++) {
             last = last.next;
-            if(i != k && last == null) return null;
+            if (i != k && last == null) return null;
         }
         ListNode tail = prev.next;
         ListNode cur = prev.next.next;
-        while(cur != null) {
+        while (cur != null) {
             ListNode next = cur.next;
             cur.next = prev.next;
             prev.next = cur;
