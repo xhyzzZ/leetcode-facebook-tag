@@ -2,8 +2,8 @@
 
 
 /*
-time: O()
-space: O()
+time: O(mn)
+space: O(mn)
 
 1, If p.charAt(j) == s.charAt(i) :  dp[i][j] = dp[i-1][j-1];
 2, If p.charAt(j) == '.' : dp[i][j] = dp[i-1][j-1];

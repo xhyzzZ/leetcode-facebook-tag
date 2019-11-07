@@ -36,19 +36,19 @@ public class Solution {
 //time: O(n)
 //space: O(n)
     public ListNode reverseKGroup(ListNode head, int k) {
-        if(head == null || head.next == null) return head;
-        Stack<ListNode> stack = new Stack<ListNode>();
+        if (head == null || head.next == null) return head;
+        Stack<ListNode> stack = new Stack<>();
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode cur = dummy;
         ListNode next = dummy.next;
-        while(next != null) {
-            for(int i = 0; i < k && next != null; i++) {
+        while (next != null) {
+            for (int i = 0; i < k && next != null; i++) {
                 stack.push(next);
                 next = next.next;
             }
-            if(stack.size() != k) return dummy.next;
-            while(stack.size() != 0) {
+            if (stack.size() != k) return dummy.next;
+            while (stack.size() != 0) {
                 cur.next = stack.pop();
                 cur = cur.next;
             }

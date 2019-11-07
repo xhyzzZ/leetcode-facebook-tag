@@ -11,7 +11,7 @@ class Solution {
         ListNode dummy = new ListNode(0), cur = dummy;
         
         // iterate two list, add each position until 2 lists are finished && carry equals to 0
-        while (!(l1 == null && l2 == null && carry == 0)) {
+        while (l1 != null || l2 != null || carry != 0) {
             // is number1 finished?
             int add1 = l1 != null ? l1.val : 0;
             // is number2 finished?
