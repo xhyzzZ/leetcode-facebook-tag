@@ -12,10 +12,10 @@ class Solution {
         for (int i = 0; i < numCourses; ++i)
             graph.add(new ArrayList<Integer>());
         
-        for (int i = 0; i < prerequisites.length; ++i) {
-            int course = prerequisites[i][0];
-            int prerequisite = prerequisites[i][1];            
-            graph.get(course).add(prerequisite);
+        for (int[] pair : prerequisites) {
+            int prev = pair[1];
+            int next = pair[0];
+            graph.get(prev).add(next);
         }
         
         int[] visited = new int[numCourses];
