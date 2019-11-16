@@ -37,7 +37,7 @@ public class Solution {
     }
     
     private void helper(List<String> res, TreeNode root, StringBuilder sb) {
-        if(root == null) {
+        if (root == null) {
             return;
         }
         int len = sb.length();

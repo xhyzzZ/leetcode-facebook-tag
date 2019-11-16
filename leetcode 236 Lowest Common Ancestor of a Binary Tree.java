@@ -1,7 +1,6 @@
 
 //leetcode 236 Lowest Common Ancestor of a Binary Tree
 
-
 /*
 time: O(n)
 space: O(h)

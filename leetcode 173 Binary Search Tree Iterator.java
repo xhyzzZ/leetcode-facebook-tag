@@ -1,5 +1,9 @@
 //leetcode 173 Binary Search Tree Iterator
 
+/*
+time: O(n)
+space: O(h)
+*/
 
 public class BSTIterator {
 

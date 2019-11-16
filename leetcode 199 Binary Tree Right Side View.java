@@ -2,7 +2,7 @@
 
 /*
 time: O(n)
-space: O(1)
+space: O(h)
 */
 
 public class Solution {
