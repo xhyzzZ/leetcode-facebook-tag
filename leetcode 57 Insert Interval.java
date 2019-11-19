@@ -7,22 +7,23 @@ space: O(1)
 
 public class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-        List<Interval> res = new LinkedList<>();
+        List<Interval> res = new ArrayList<>();
         int i = 0;
-        // add all the intervals ending before newInterval starts
-        while (i < intervals.size() && intervals.get(i).end < newInterval.start) {
-        	res.add(intervals.get(i++));
+        int start = newInterval.start;
+        int end = newInterval.end;
+
+        while (i < intervals.size() && intervals.get(i).end < start) {
+            res.add(intervals.get(i++));
         }
-        // merge all overlapping intervals to one considering newInterval
-        while (i < intervals.size() && intervals.get(i).start <= newInterval.end) {
-        	newInterval = new Interval( // we could mutate newInterval here also
-        		Math.min(newInterval.start, intervals.get(i).start), 
-        		Math.max(newInterval.end, intervals.get(i).end));
-        	i++;
+
+        while (i < intervals.size() && intervals.get(i).start <= end) {
+            start = Math.min(start, intervals.get(i).start);
+            end = Math.max(end, intervals.get(i).end);
+            i++;
         }
-        res.add(newInterval); // add the union of intervals we got
-        // add all the rest
-        while (i < intervals.size()) res.add(intervals.get(i++));
+        res.add(new Interval(start,end)); 
+
+        while (i < intervals.size()) res.add(intervals.get(i++)); 
         return res;
     }
 }

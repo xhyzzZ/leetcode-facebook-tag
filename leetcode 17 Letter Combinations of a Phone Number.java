@@ -1,10 +1,9 @@
 //leetcode 17 Letter Combinations of a Phone Number
 
 /*
-time: O()
-space: O()
+time: O(4^n)
+space: O(4^n)
 */
-
 public class Solution {
     public List<String> letterCombinations(String digits) {
         LinkedList<String> queue = new LinkedList<String>();
@@ -14,8 +13,11 @@ public class Solution {
                                         "mno", "pqrs", "tuv", "wxyz"};
         for (int i = 0; i < digits.length(); i++) {
             int cur = digits.charAt(i) - '0';
+            // View the length of the top element of the LinkedList
             while (queue.peek().length() == i) {
+                // move each element out
                 String str = queue.remove();
+                // Traversing x corresponding string of characters
                 char[] candidates = letters[cur].toCharArray();
                 for (char chr : candidates) {
                     queue.add(str + chr);
@@ -25,8 +27,9 @@ public class Solution {
         return queue;
     }
 }
-
-
+// time: O(k^n)
+// space: O()
+// k^n ( k = average length of string in KEYS and n is the length of digits.)
 dfs
 public class Solution {
 	private static final String[] KEYS = { "", "", "abc", "def", "ghi", "jkl", 
