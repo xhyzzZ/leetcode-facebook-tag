@@ -2,10 +2,11 @@
 
 /*
 time: O(mn)
-space: O()
+space: O(n)
 */
 
-public class Solution {
+class Solution {
+    private static final int[][] dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
     public void wallsAndGates(int[][] rooms) {
         if (rooms.length == 0 || rooms[0].length == 0) return;
         Queue<int[]> queue = new LinkedList<>();
@@ -16,22 +17,14 @@ public class Solution {
         }
         while (!queue.isEmpty()) {
             int[] top = queue.remove();
-            int row = top[0], col = top[1];
-            if (row > 0 && rooms[row - 1][col] == Integer.MAX_VALUE) {
-                rooms[row - 1][col] = rooms[row][col] + 1;
-                queue.add(new int[]{row - 1, col});
-            }
-            if (row < rooms.length - 1 && rooms[row + 1][col] == Integer.MAX_VALUE) {
-                rooms[row + 1][col] = rooms[row][col] + 1;
-                queue.add(new int[]{row + 1, col});
-            }
-            if (col > 0 && rooms[row][col - 1] == Integer.MAX_VALUE) {
-                rooms[row][col - 1] = rooms[row][col] + 1;
-                queue.add(new int[]{row, col - 1});
-            }
-            if (col < rooms[0].length - 1 && rooms[row][col + 1] == Integer.MAX_VALUE) {
-                rooms[row][col + 1] = rooms[row][col] + 1;
-                queue.add(new int[]{row, col + 1});
+            int x = top[0], y = top[1];
+            for (int[] dir : dirs) {
+                int newX = x + dir[0], newY = y + dir[1];
+                if (newX < 0 || newY < 0 || newX >= rooms.length || newY >= rooms[0].length) continue;
+                if (rooms[newX][newY] == Integer.MAX_VALUE) {
+                    rooms[newX][newY] = rooms[x][y] + 1;
+                    queue.offer(new int[] {newX, newY});
+                }
             }
         }
     }

@@ -6,7 +6,6 @@ space: O()
 */
 
 class AutocompleteSystem {
-
     class TrieNode {
 	    Map<Character, TrieNode> children;
 	    Map<String, Integer> counts;
@@ -67,7 +66,7 @@ class AutocompleteSystem {
 	    List<String> res = new ArrayList<String>();
 	    
 	    int k = 3;
-	    while(!pq.isEmpty() && k > 0) {
+	    while (!pq.isEmpty() && k > 0) {
 	        res.add((String) pq.poll().getKey());
 	        k--;
 	    }

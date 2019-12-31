@@ -1,8 +1,8 @@
-//x
+// leetcode 986 Interval List Intersections
 
 /*
 time: O(m + n)
-space: O()
+space: O(n)
 */
 
 class Solution {
@@ -27,8 +27,12 @@ class Solution {
             }
             
             //update the pointer with smaller end value...
-            if (a.end == endMin) { i++; }
-            if (b.end == endMin) { j++; }
+            if (a.end == endMin) { 
+                i++; 
+            }
+            if (b.end == endMin) { 
+                j++; 
+            }
         }
         return res.toArray(new Interval[0]);
     }

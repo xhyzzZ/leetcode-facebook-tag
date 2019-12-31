@@ -8,13 +8,13 @@ space: O(n^2)
 class Solution {
     public int longestPalindromeSubseq(String s) {
         int[][] dp = new int[s.length()][s.length()];  
-        for(int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             dp[i][i] = 1;
         }
-        for(int i = 1; i < s.length(); i++) {
-            for(int j = i - 1; j >= 0; j--) {
-                if(s.charAt(i) == s.charAt(j)) {
-                    if(j == i - 1) {
+        for (int i = 1; i < s.length(); i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (s.charAt(i) == s.charAt(j)) {
+                    if (j == i - 1) {
                         dp[j][i] = 2;
                     } else {
                         dp[j][i] = dp[j + 1][i - 1] + 2;
@@ -37,8 +37,8 @@ public class Solution {
         if (memo[i][j] != null) {
             return memo[i][j];
         }
-        if (i > j)      return 0;
-        if (i == j)     return 1;
+        if (i > j) return 0;
+        if (i == j) return 1;
         
         if (s.charAt(i) == s.charAt(j)) {
             memo[i][j] = helper(s, i + 1, j - 1, memo) + 2;
