@@ -8,9 +8,9 @@ space: O(1)
 public class Solution {
     public int countSubstrings(String s) {
     	int count = 0;
-        if(s == null || s.length() == 0) return 0;
+        if (s == null || s.length() == 0) return 0;
 
-        for(int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
         	extendPalindrome(s, i, i);
         	extendPalindrome(s, i, i + 1);
         }
@@ -19,7 +19,7 @@ public class Solution {
 
     private void extendPalindrome(String s, int ieft, int right) {
     	int count = 0;
-    	while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+    	while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
     		count++;
     		left--;
     		right++;

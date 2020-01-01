@@ -18,7 +18,7 @@ class MyCircularQueue {
     
     /** Insert an element into the circular queue. Return true if the operation is successful. */
     public boolean enQueue(int value) {
-        if(isFull()) {
+        if (isFull()) {
             return false;
         }
         end = (end + 1) % que.length;
@@ -29,7 +29,7 @@ class MyCircularQueue {
     
     /** Delete an element from the circular queue. Return true if the operation is successful. */
     public boolean deQueue() {
-        if(isEmpty()){
+        if (isEmpty()) {
             return false;
         }
         start = (start + 1) % que.length;

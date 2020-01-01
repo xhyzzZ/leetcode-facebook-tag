@@ -1,8 +1,8 @@
 //leetcode 794 Valid Tic-Tac-Toe State
 
 /*
-time: O()
-space: O()
+time: O(n^2)
+space: O(n)
 */
 
 class Solution {
