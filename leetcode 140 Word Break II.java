@@ -13,7 +13,7 @@ public class Solution {
     public List<String> backtrack(String s, List<String> wordDict, Map<String, List<String>> mem) {
     	if (mem.containsKey(s)) return mem.get(s);
     	List<String> res = new ArrayList<>();
-    	for(String word : wordDict) {
+    	for (String word : wordDict) {
     		if (s.startsWith(word)) {
     			String next = s.substring(word.length());
     			if (next.length() == 0) res.add(word);

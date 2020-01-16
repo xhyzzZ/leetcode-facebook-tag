@@ -15,7 +15,6 @@ public class Solution {
         int counter = map.size();
         
         int begin = 0, end = 0;
-        int head = 0;
         int len = Integer.MAX_VALUE;
         
         
@@ -40,7 +39,6 @@ public class Solution {
                 }
                 begin++;
             }
-            
         }
         return result;
     }

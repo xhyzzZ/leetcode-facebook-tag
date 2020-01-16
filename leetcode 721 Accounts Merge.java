@@ -7,8 +7,10 @@ space: O()
 
 class Solution {
     public List<List<String>> accountsMerge(List<List<String>> accounts) {
-        Map<String, Set<String>> graph = new HashMap<>();  //<email node, neighbor nodes>
-        Map<String, String> name = new HashMap<>();        //<email, username>
+        //<email node, neighbor nodes>
+        Map<String, Set<String>> graph = new HashMap<>();  
+        //<email, username>
+        Map<String, String> name = new HashMap<>();        
         // Build the graph;
         for (List<String> account : accounts) {
             String userName = account.get(0);
@@ -36,7 +38,6 @@ class Solution {
                 res.add(list);
             }
         }
-        
         return res;
     }
     

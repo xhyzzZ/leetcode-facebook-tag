@@ -5,15 +5,6 @@ time: O(n^2)
 space: O()
 */
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
 public class Codec {
 	private static final String SEP = ",";
     private static final String NULL = "null";

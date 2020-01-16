@@ -6,7 +6,7 @@ space: O(n)
 */
 public int maxSubArray(int[] A) {
 	int n = A.length;
-	int [] dp = new int[n];
+	int[] dp = new int[n];
 	dp[0] = a[0];
 	int max = dp[0];
 

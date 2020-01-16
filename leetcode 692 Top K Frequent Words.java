@@ -4,33 +4,33 @@
 time: O(n + klgk)
 space: O(n)
 bucket sort
+
 */
+
 class Solution {
     public List<String> topKFrequent(String[] words, int k) {
-        List<String> result = new LinkedList<>();
-        if (words.length == 0) return result;
-        
         Map<String, Integer> map = new HashMap<>();
-        for(String word : words) {
+        int max = 0;
+        for (String word : words) {
             map.put(word, map.getOrDefault(word, 0) + 1);
+            max = Math.max(max, map.get(word));
         }
-        
-        List<String>[] count = new List[words.length + 1];
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            if (count[entry.getValue()] == null) {
-                count[entry.getValue()] = new ArrayList<>();
+        List<String>[] bucket = new ArrayList[max + 1];
+        for (Map.Entry<String, Integer> entry: map.entrySet()) {
+            int fre = entry.getValue();
+            if (bucket[fre] == null) {
+                bucket[fre] = new ArrayList<>();
             }
-            count[entry.getValue()].add(entry.getKey());
+            bucket[fre].add(entry.getKey());
         }
-        
-        for (int i = count.length - 1; i >= 0 && k > 0; i--) {
-            if(count[i] == null) continue;
-            Collections.sort(count[i]);
-            List<String> temp = count[i].subList(0, Math.min(count[i].size(), k));
-            result.addAll(temp);
-            k = k - temp.size();
+        List<String> res = new ArrayList<>();
+        for (int i = max; i >= 0 && res.size() < k; i--) {
+            if (bucket[i] != null) {
+                Collections.sort(bucket[i]);
+                res.addAll(bucket[i]);
+            }
         }
-        return result;
+        return res.subList(0, k);
     }
 }
 
