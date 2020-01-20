@@ -1,8 +1,8 @@
 //leetcode 297 Serialize and Deserialize Binary Tree
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(n)
 */
 
 public class Codec {
