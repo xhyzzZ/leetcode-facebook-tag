@@ -1,14 +1,13 @@
 //leetcode 695 Max Area of Island
 
 /*
-time: O()
-space: O()
+time: O(mn)
+space: O(1)
 */
 
 class Solution {
     public int maxAreaOfIsland(int[][] grid) {
         if (grid == null || grid.length == 0) return 0;
-
         int m = grid.length;
         int n = grid[0].length;
         int max = 0;

@@ -1,5 +1,6 @@
 //leetcode 170 Two Sum III - Data structure design
-
+// O(1) add
+// O(n) find
 class TwoSum {
 	Map<Integer, Integer> map;
     
