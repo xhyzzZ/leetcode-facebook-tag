@@ -2,7 +2,7 @@
 
 /*
 time: O(v + e)
-space: O()
+space: O(v)
 */
 
 public class Solution {
