@@ -2,9 +2,10 @@
 
 /*
 time: O(v + e)
-space: O(v)
+space: O(v + e)
 */
 
+// bfs not has size
 public class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
       	if (numCourses == 0) return null;
@@ -48,6 +49,59 @@ public class Solution {
         return (canFinishCount == numCourses) ? order : new int[0];
     }
 }
+
+// bfs has size 
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        if (numCourses == 0) return null;
+        // Convert graph presentation from edges to indegree of adjacent list.
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            graph.add(new ArrayList<>());
+        }
+        int indegree[] = new int[numCourses], order[] = new int[numCourses], index = 0;
+        // Indegree - how many prerequisites are needed.
+        for (int[] pair : prerequisites) {
+            int prev = pair[1];
+            int next = pair[0];
+            graph.get(prev).add(next);
+            indegree[next]++;
+        } 
+
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for (int i = 0; i < numCourses; i++) {
+            if (indegree[i] == 0) {
+                // Add the course to the order because it has no prerequisites.
+                order[index++] = i;
+                queue.offer(i);
+            }
+        }
+            
+        // How many courses don't need prerequisites. 
+        int canFinishCount = 0;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int curr = queue.poll(); 
+                canFinishCount++;
+                for (int adj : graph.get(curr)) {
+                    indegree[adj]--;
+                    if (indegree[adj] == 0) {
+                        order[index++] = adj;
+                        queue.offer(adj);
+                    }
+                }
+            }
+            
+        }
+        return (canFinishCount == numCourses) ? order : new int[0];
+    }
+}
+
+/*
+time: O(v + e)
+space: O(v)
+*/
 
 
 public class Solution {
