@@ -1,2 +1,2 @@
 # leetcode-facebook-tag
-My solution for leetcode facebook-tag problems.
+My solutions for leetcode facebook-tag problems.
