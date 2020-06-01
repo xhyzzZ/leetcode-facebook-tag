@@ -1,8 +1,8 @@
 //leetcode 886 Possible Bipartition
 
 /*
-time: O(V + E)
-space: O(V + E)
+time: O(v + e)
+space: O(v + e)
 */
 bfs
 class Solution {
