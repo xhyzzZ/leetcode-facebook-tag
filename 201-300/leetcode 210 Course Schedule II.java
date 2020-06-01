@@ -23,7 +23,7 @@ public class Solution {
             indegree[next]++;
         } 
 
-        Queue<Integer> queue = new LinkedList<Integer>();
+        Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < numCourses; i++) {
             if (indegree[i] == 0) {
                 // Add the course to the order because it has no prerequisites.
