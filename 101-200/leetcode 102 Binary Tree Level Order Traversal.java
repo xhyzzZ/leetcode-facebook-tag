@@ -2,34 +2,37 @@
 
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(h)
 */
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        List<List<Integer>> wrapList = new LinkedList<List<Integer>>();
+        List<List<Integer>> levels = new LinkedList<List<Integer>>();
         
-        if (root == null) return wrapList;
-        
+        if (root == null) return levels;
         queue.offer(root);
+        int level = 0;
+
         while (!queue.isEmpty()) {
             int size = queue.size();
-            List<Integer> subList = new LinkedList<Integer>();
+            levels.add(new ArrayList<Integer>());
             for (int i = 0; i < size; i++) {
-                if (queue.peek().left != null) queue.offer(queue.peek().left);
-                if (queue.peek().right != null) queue.offer(queue.peek().right);
-                subList.add(queue.poll().val);
+                TreeNode node = queue.remove();
+                levels.get(level).add(node.val);
+
+                if (node.left != null) queue.add(node.left);
+                if (node.right != null) queue.add(node.right);
             }
-            wrapList.add(subList);
+            level++;
         }
-        return wrapList;
+        return levels;
     }
 }
 
 /*
 time: O(n)
-space: O(n)
+space: O(h)
 */
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
@@ -40,11 +43,10 @@ public class Solution {
 
     public void helper(List<List<Integer>> res, TreeNode root, int height) {
     	if (root == null) return;
-    	if (height >= res.size()) {
-    		res.add(new ArrayList<Integer>());
-    	}
+        // start the current level
+        if (res.size() == height) res.add(new ArrayList<Integer>());
     	res.get(height).add(root.val);
     	helper(res, root.left, height + 1);
-    	height(res, root.right, height + 1);
+    	helper(res, root.right, height + 1);
     }
 }

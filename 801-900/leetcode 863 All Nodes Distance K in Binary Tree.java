@@ -1,7 +1,7 @@
 //leetcode 863 All Nodes Distance K in Binary Tree
 
 /*
-time: O(N^2)
+time: O(N)
 space: O(N)
 */
 
