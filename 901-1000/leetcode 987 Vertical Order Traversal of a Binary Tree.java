@@ -1,8 +1,8 @@
 //leetcode 987 Vertical Order Traversal of a Binary Tree
 
 /*
-time: O()
-space: O()
+time: O(nlogn)
+space: O(n)
 */
 
 class Solution {
