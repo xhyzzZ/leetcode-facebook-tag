@@ -7,23 +7,12 @@ space: O(h)
 
 class Solution {
     public int longestConsecutive(TreeNode root) {
-        if (root == null) {
-			return 0;
-		}
-    	return dfs(root, root.val + 1, 1, 1);
+	    return dfs(root, null, 0);
 	}
 
-	private int dfs(TreeNode node, int target, int curr, int max) {
-		if (node == null) {
-			return max;
-		}
-		if (node.val == target) {
-			curr++;
-			max = Math.max(max, curr);
-		} else {
-			curr = 1;
-		}
-		return Math.max(dfs(node.left, node.val + 1, curr, max), 
-						dfs(node.right, node.val + 1, curr, max));
-    }
+	private int dfs(TreeNode p, TreeNode parent, int length) {
+	    if (p == null) return length;
+	    length = (parent != null && p.val == parent.val + 1) ? length + 1 : 1;
+	    return Math.max(length, Math.max(dfs(p.left, p, length), dfs(p.right, p, length)));
+	}
 }
