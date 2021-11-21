@@ -11,8 +11,7 @@ public class Solution {
         if (nums == null || nums.length == 0) return false;
         int start = 0; 
         int end = nums.length - 1;
-        while (start 
-            = end) {
+        while (start = end) {
             int mid = (end - start) / 2 + start;
             if (nums[mid] == target) return true;
 
