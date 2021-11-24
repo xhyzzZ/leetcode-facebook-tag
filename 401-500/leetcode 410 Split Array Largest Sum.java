@@ -1,34 +1,36 @@
-//leetcode 410 Split Array Largest Sum
+// leetcode 410 Split Array Largest Sum
 
 /*
-time: O()
-space: O()
+time: O(n∗log(sumofarray))
+space: O(1)
 */
 
 class Solution {
     public int splitArray(int[] nums, int m) {
-        int max = 0; long sum = 0;
+        long sum = 0;
+        int max = 0;
         for (int num : nums) {
-            max = Math.max(num, max);
+            max = Math.max(max, num);
             sum += num;
         }
-        if (m == 1) return (int)sum;
-        //binary search
-        long l = max; long r = sum;
-        while (l <= r) {
-            long mid = (l + r)/ 2;
+        // binary search
+        long start = max; 
+        long end = sum;
+        while (start < end) {
+            long mid = start + (end - start) / 2;
             if (valid(mid, nums, m)) {
-                r = mid - 1;
+                end = mid;
             } else {
-                l = mid + 1;
+                start = mid + 1;
             }
         }
-        return (int)l;
+        return (int) start;
     }
+
     public boolean valid(long target, int[] nums, int m) {
         int count = 1;
         long total = 0;
-        for(int num : nums) {
+        for (int num : nums) {
             total += num;
             if (total > target) {
                 total = num;

@@ -1,65 +1,50 @@
-//leetcode 378 Kth Smallest Element in a Sorted Matrix
+// leetcode 378 Kth Smallest Element in a Sorted Matrix
 
 /*
-time: O(nlogm)
+X = min(K,N)
+time: O(X + klogX)
 space: O()
 */
-class Node {
-    int row;
-    int col;
-
-    Node(int row, int col) {
-    this.row = row;
-    this.col = col;
-    }
-}
 class Solution {
-    public static int findKthSmallest(int[][] matrix, int k) {
-        PriorityQueue<Node> minHeap = new PriorityQueue<Node>((n1, n2) -> matrix[n1.row][n1.col] - matrix[n2.row][n2.col]);
-        // put the 1st element of each row in the min heap we don't need to 
-        // push more than 'k' elements in the heap
-        for (int i = 0; i < matrix.length && i < k; i++) {
-            minHeap.add(new Node(i, 0));
+    public int kthSmallest(int[][] matrix, int k) {
+        int m = matrix.length, n = matrix[0].length, ans = -1; // For general, the matrix need not be a square
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
+        for (int r = 0; r < Math.min(m, k); ++r)
+            minHeap.offer(new int[]{matrix[r][0], r, 0});
+
+        for (int i = 1; i <= k; ++i) {
+            int[] top = minHeap.poll();
+            int r = top[1], c = top[2];
+            ans = top[0];
+            if (c + 1 < n) minHeap.offer(new int[]{matrix[r][c + 1], r, c + 1});
         }
-        // take the smallest (top) element form the min heap, if the running count is equal to k return the number
-        // if the row of the top element has more elements, add the next element to the heap
-        int numberCount = 0, result = 0;
-        while (!minHeap.isEmpty()) {
-            Node node = minHeap.poll();
-            result = matrix[node.row][node.col];
-            if (++numberCount == k) break;
-            node.col++;
-            if (matrix[0].length > node.col) {
-                minHeap.add(node);
-            }
-        }
-        return result;
+        return ans;
     }
 }
 
 /*
-time: O(nlogm)
-space: O()
+time: O(nlog(Max−Min))
+space: O(1)
 */
 
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
         int n = matrix.length;
-        int lo = matrix[0][0], hi = matrix[n - 1][n - 1];
-        while (lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
+        int start = matrix[0][0], end = matrix[n - 1][n - 1];
+        while (start < end) {
+            int mid = start + (end - start) / 2;
             int count = getLessEqual(matrix, mid);
-            if (count < k) lo = mid + 1;
-            else hi = mid - 1;
+            if (count < k) start = mid + 1;
+            else end = mid;
         }
-        return lo;
+        return start;
     }
     
-    private int getLessEqual(int[][] matrix, int val) {
+    private int getLessEqual(int[][] matrix, int mid) {
         int res = 0;
         int n = matrix.length, i = n - 1, j = 0;
         while (i >= 0 && j < n) {
-            if (matrix[i][j] > val) i--;
+            if (matrix[i][j] > mid) i--;
             else {
                 res += i + 1;
                 j++;

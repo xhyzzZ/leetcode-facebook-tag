@@ -1,37 +1,38 @@
-//leetcode 528 Random Pick with Weight
+// leetcode 528 Random Pick with Weight
 
 /*
 time: O(n) for init, O(logn) for one pick
-space: O(n)
+space: O(n), O(1) for one pick
 */
 
+class Solution {
+    private int[] prefixSums;
+    private int totalSum;
 
-public class Solution {
-
-	Random random;
-    int[] wSums;
     public Solution(int[] w) {
-        this.random = new Random();
-        for (int i = 1; i < w.length; ++i) {
-            w[i] += w[i - 1];
+        this.prefixSums = new int[w.length];
+
+        int prefixSum = 0;
+        for (int i = 0; i < w.length; ++i) {
+            prefixSum += w[i];
+            this.prefixSums[i] = prefixSum;
         }
-        this.wSums = w;
+        this.totalSum = prefixSum;
     }
-    
+
     public int pickIndex() {
-        int len = wSums.length;
-        int idx = random.nextInt(wSums[len - 1]) + 1;
-        int left = 0, right = len - 1;
-        // search position 
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (wSums[mid] == idx)
-                return mid;
-            else if (wSums[mid] < idx)
-                left = mid + 1;
+        double target = this.totalSum * Math.random();
+
+        // run a binary search to find the target zone
+        int low = 0, high = this.prefixSums.length;
+        while (low < high) {
+            // better to avoid the overflow
+            int mid = low + (high - low) / 2;
+            if (target > this.prefixSums[mid])
+                low = mid + 1;
             else
-                right = mid;
+                high = mid;
         }
-        return left;
+        return low;
     }
 }

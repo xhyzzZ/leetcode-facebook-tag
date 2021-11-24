@@ -7,18 +7,27 @@ space: O(1)
 
 class Solution {
     public int missingElement(int[] nums, int k) {
-        int low = 0, high = nums.length - 1;
-        // ceiling
-        while (low <= high) {
-            int mid = (high - low) / 2 + low;
-            // amount missing on left
-            int missingOnLeft = nums[mid] - nums[0] - mid;
-            if (missingOnLeft == k) break;
-            else if (missingOnLeft < k) low = mid + 1;
-            else high = mid - 1;
+        int n = nums.length;
+        // If kth missing number is larger than the last element of the array
+        if (k > missing(n - 1, nums)) return nums[n - 1] + k - missing(n - 1, nums);
+
+        int left = 0, right = n - 1;
+        // find left = right index such that 
+        // missing(left - 1) < k <= missing(left)
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+
+            if (missing(mid, nums) < k) left = mid + 1;
+            else right = mid;
         }
-        low--; // previous index
-        int missingOnLeft = nums[low] - nums[0] - low;
-        return nums[low] + k - missingOnLeft;
+
+        // kth missing number is greater than nums[idx - 1]
+        // and less than nums[idx]
+        return nums[left - 1] + k - missing(left - 1, nums);
+    }
+
+    // Return how many numbers are missing until nums[idx]
+    private int missing(int idx, int[] nums) {
+        return nums[idx] - nums[0] - idx;
     }
 }
