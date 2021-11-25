@@ -1,5 +1,4 @@
-//leetcode 32 Longest Valid Parentheses
-
+// leetcode 32 Longest Valid Parentheses
 
 
 /*
@@ -13,6 +12,7 @@ start = 0 i = 0
               2
 res = 2
 */
+
 public class Solution {
     public int longestValidParentheses(String s) {
         Stack<Integer> stack = new Stack<>();
