@@ -1,8 +1,8 @@
-//leetcode 159 Longest Substring with At Most Two Distinct Characters
+// leetcode 159 Longest Substring with At Most Two Distinct Characters
 
 /*
 time: O(n)
-space: O(128)
+space: O(1)
 */
 
 public class Solution {

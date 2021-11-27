@@ -1,45 +1,44 @@
-//leetcode 438 Find All Anagrams in a String
+// leetcode 438 Find All Anagrams in a String
 
 /*
-time: O(n)
-space: O(n)
+time: O(|s| + |p|)
+space: O(128)
 */
+
 public class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> result = new LinkedList<>();
-        if (p.length() > s.length()) return result;
-        Map<Character, Integer> map = new HashMap<>();
-        for (char c : p.toCharArray()) {
-            map.put(c, map.getOrDefault(c, 0) + 1);
-        }
-        int counter = map.size();
+        List<Integer> res = new ArrayList<>();
+        if (p.length() > s.length()) return res;
+
+        int[] map = new int[128];
+        for (char c : p.toCharArray()) map[c]++;
         
-        int begin = 0, end = 0;
+        int start = 0, end = 0, count = p.length();
         int len = Integer.MAX_VALUE;
         
-        
         while (end < s.length()) {
-            char c = s.charAt(end);
-            if (map.containsKey(c)) {
-                map.put(c, map.get(c) - 1);
-                if (map.get(c) == 0) counter--;
+            // move right everytime, if the character exists in p's hash, decrease the count
+            // current hash value >= 1 means the character is existing in p
+            char c1 = s.charAt(end);
+            if (map[c1] >= 1) count--;
+            map[c1]--;
+
+            // when the count is down to 0, means we found the right anagram
+            // then add window's left to result list
+            if (count == 0) res.add(start);
+            
+            // if we find the window's size equals to p, then we have to move left (narrow the window) to find the new match window
+            // ++ to reset the hash because we kicked out the left
+            // only increase the count if the character is in p
+            if (end - start + 1 == p.length()) {
+                char c2 = s.charAt(start);
+                if (map[c2] >= 0) count++;
+                map[c2]++;
+
+                start++;
             }
             end++;
-            
-            while (counter == 0) {
-                char tempc = s.charAt(begin);
-                if (map.containsKey(tempc)) {
-                    map.put(tempc, map.get(tempc) + 1);
-                    if (map.get(tempc) > 0) {
-                        counter++;
-                    }
-                }
-                if (end - begin == p.length()) {
-                    result.add(begin);
-                }
-                begin++;
-            }
         }
-        return result;
+        return res;
     }
 }

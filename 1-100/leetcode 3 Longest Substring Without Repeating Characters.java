@@ -1,4 +1,4 @@
-//sleetcode 3 Longest Substring Without Repeating Characters
+// leetcode 3 Longest Substring Without Repeating Characters
 
 
 /*
@@ -32,9 +32,9 @@ public class Solution {
     }
 }
 
-
+// Hashmap
 public class Solution {
-	//Hashmap
+	
     public int lengthOfLongestSubstring(String s) {
         if (s.length() == 0 || s == null) return 0;
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
@@ -51,7 +51,7 @@ public class Solution {
 }
 
     
-//HashSet
+// HashSet
 public class Solution {
     //a b c a b c d e
     // j = 0, i = 3 -> j = 1

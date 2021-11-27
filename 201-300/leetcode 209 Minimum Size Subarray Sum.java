@@ -1,4 +1,4 @@
-//leetcode 209 Minimum Size Subarray Sum
+// leetcode 209 Minimum Size Subarray Sum
 
 /*
 time: O(n)
@@ -13,7 +13,8 @@ public class Solution {
             sum += nums[i];
             while (sum >= s) {
                 len = Math.min(len, i - j + 1);
-                sum -= nums[j++];
+                sum -= nums[j];
+                j++;
             }
         }
         return (len == Integer.MAX_VALUE) ? 0 : len;
