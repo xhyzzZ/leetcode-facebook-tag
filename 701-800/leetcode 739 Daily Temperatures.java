@@ -1,4 +1,4 @@
-//leetcode 739 Daily Temperatures
+// leetcode 739 Daily Temperatures
 
 /*
 time: O(n)
@@ -6,11 +6,11 @@ space: O(n)
 */
 
 class Solution {
-    public int[] dailyTemperatures(int[] T) {
+    public int[] dailyTemperatures(int[] temperatures) {
         Stack<Integer> stack = new Stack<>();
-        int[] res = new int[T.length];
-        for (int i = 0; i < T.length; i++) {
-        	while (!stack.isEmpty() && T[i] > T[stack.peek()]) {
+        int[] res = new int[temperatures.length];
+        for (int i = 0; i < temperatures.length; i++) {
+        	while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
         		int index = stack.pop();
         		res[index] = i - index;
         	}

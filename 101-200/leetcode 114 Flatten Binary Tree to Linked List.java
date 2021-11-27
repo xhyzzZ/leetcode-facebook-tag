@@ -1,4 +1,4 @@
-//leetcode 114 Flatten Binary Tree to Linked List
+// leetcode 114 Flatten Binary Tree to Linked List
     
 /*
 time: O(n)
@@ -10,7 +10,8 @@ space: O(h)h是高度
 public class Solution {
 	public void flatten(TreeNode root) {
     	helper(root, null);
-	}	
+	}
+	
 	private TreeNode helper(TreeNode root, TreeNode pre) {
 	    if (root == null) return pre;
 	    pre = helper(root.right, pre);    

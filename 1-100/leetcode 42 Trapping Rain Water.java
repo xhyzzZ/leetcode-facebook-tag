@@ -1,4 +1,4 @@
-//leetcode 42 Trapping Rain Water
+// leetcode 42 Trapping Rain Water
 
 /*
 time: O(n)

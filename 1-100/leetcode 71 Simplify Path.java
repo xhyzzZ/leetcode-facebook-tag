@@ -1,20 +1,21 @@
-//leetcode 71 Simplify Path
+// leetcode 71 Simplify Path
 
 
 /*
 time: O(n)
 space: O(n)
 */
+
 public class Solution {
     public String simplifyPath(String path) {
-        Deque<String> stack = new LinkedList<>();
-        Set<String> skip = new HashSet<>(Arrays.asList("..",".",""));
+        Stack<String> stack = new Stack<>();
         for (String dir : path.split("/")) {
-            if (dir.equals("..") && !stack.isEmpty()) stack.pop();
-            else if (!skip.contains(dir)) stack.push(dir);
+            if (dir.equals("..")) {
+                if (!stack.empty()) stack.pop();
+            } else if (dir.length() > 0 && !dir.equals(".")) {
+                stack.push(dir);
+            }
         }
-        String res = "";
-        for (String dir : stack) res = "/" + dir + res;
-        return res.isEmpty() ? "/" : res;
+        return "/" + String.join("/", stack);
     }
 }
