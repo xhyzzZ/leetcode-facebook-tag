@@ -1,8 +1,9 @@
-//leetcode 19 Remove Nth Node From End of List
+// leetcode 19 Remove Nth Node From End of List
 
 
 //time: O(n)
 //space: O(1)
+
 public class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = new ListNode(0);

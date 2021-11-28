@@ -1,12 +1,11 @@
-//leetcode 148 Sort List
+// leetcode 148 Sort List
 
 /*
 time: O(nlogn)
 space: O(1)
 */
-/*
-buttom up
-*/
+
+// buttom up
 public class Solution {
     public ListNode sortList(ListNode head) {
     	if (head == null || head.next == null) return head;
@@ -62,52 +61,52 @@ public class Solution {
 }
 
 
-public class Solution {
+/*
+time: O(nlogn)
+space: O(logn)
+*/
+
+// Top Down
+class Solution {
     public ListNode sortList(ListNode head) {
-        //bottom case
-        if (head == null) {
-            return head;
+        if (head == null || head.next == null) return head;
+
+        // step 1. cut the list to two halves
+        ListNode prev = null, slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        if (head.next == null) {
-            return head;
-        }
-        
-        //p1 move 1 step every time, p2 move 2 step every time, pre record node before p1
-        ListNode p1 = head;
-        ListNode p2 = head;
-        ListNode pre = head;
-        
-        while (p2 != null && p2.next != null) {
-            pre = p1;
-            p1 = p1.next;
-            p2 = p2.next.next;
-        }
-        //change pre next to null, make two sub list(head to pre, p1 to p2)
-        pre.next = null;
-        
-        //handle those two sub list
-        ListNode h1 = sortList(head);
-        ListNode h2 = sortList(p1);
-        
-        return merge(h1, h2);   
-    }
     
-    //merge two sorted list, return result head
-    public ListNode merge(ListNode h1, ListNode h2) {
-        if (h1 == null) {
-            return h2;
-        }
-        if (h2 == null) {
-            return h1;
-        }
+        prev.next = null;
+
+        // step 2. sort each half
+        ListNode l1 = sortList(head);
+        ListNode l2 = sortList(slow);
         
-        if (h1.val < h2.val) {
-            h1.next = merge(h1.next, h2);
-            return h1;
+        // step 3. merge l1 and l2
+        return merge(l1, l2);
+    }
+
+    private ListNode merge(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                cur.next = new ListNode(l1.val);
+                l1 = l1.next;
+            } else {
+                cur.next = new ListNode(l2.val);
+                l2 = l2.next;
+            } 
+            cur = cur.next;
+        }
+        if (l1 != null) {
+            cur.next = l1;
         } else {
-            h2.next = merge(h1, h2.next);
-            return h2;
+            cur.next = l2;
         }
-        
+        return dummy.next;
     }
 }

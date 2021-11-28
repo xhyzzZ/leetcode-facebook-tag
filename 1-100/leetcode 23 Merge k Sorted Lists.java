@@ -1,4 +1,4 @@
-//leetcode 23 Merge k Sorted Lists
+// leetcode 23 Merge k Sorted Lists
 
 /*
 time: O(nlogk)k代表链表的个数
@@ -31,6 +31,11 @@ public class Solution {
     }
 }
 
+/*
+time: O(nlogk)k代表链表的个数
+space: O(n)
+*/
+
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) return null;
@@ -43,6 +48,7 @@ public class Solution {
                 queue.add(list);
             }
         }
+        
         while (!queue.isEmpty()) {
             cur.next = queue.poll();
             cur = cur.next;
