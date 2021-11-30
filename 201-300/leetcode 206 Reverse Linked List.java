@@ -1,4 +1,4 @@
-//leetcode 206 Reverse Linked List
+// leetcode 206 Reverse Linked List
 
 /*
 time: O(n)

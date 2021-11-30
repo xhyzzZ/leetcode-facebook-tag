@@ -1,7 +1,7 @@
-//leetcode 332 Reconstruct Itinerary
+// leetcode 332 Reconstruct Itinerary
 
 /*
-time: O(n + n + nlogn)
+time: O(nlogn)
 space: O(n)
 */
 
@@ -19,8 +19,7 @@ public class Solution {
         return path;
     }
 
-    public void dfs(String departure, Map<String, PriorityQueue<String>> flights,
-        LinkedList<String> path) {
+    public void dfs(String departure, Map<String, PriorityQueue<String>> flights, LinkedList<String> path) {
         PriorityQueue<String> arrivals = flights.get(departure);
         while (arrivals != null && !arrivals.isEmpty()) {
             dfs(arrivals.poll(), flights, path);

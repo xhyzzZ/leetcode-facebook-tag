@@ -1,68 +1,116 @@
-//leetcode 505 The Maze II
+// leetcode 505 The Maze II
 
 /*
-time: O()
-space: O()
+time: O(m∗n∗max(m,n))
+space: O(mn)
 */
 
-class Solution {
-    public static final int[][] dirs = new int[][] {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+dfs
+public class Solution {
 
-	public int shortestDistance(int[][] maze, int[] start, int[] destination) {
-	    if(maze == null || maze.length == 0 || maze[0].length == 0) {
-	        return -1;
-	    }
+	public static final int[][] dirs = new int[][] {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
-	    int m = maze.length;
-	    int n = maze[0].length;
-	    int[][] dp = new int[m][n];
-	    Queue<Pair> que = new LinkedList<>();
+    public int shortestDistance(int[][] maze, int[] start, int[] dest) {
+        int[][] distance = new int[maze.length][maze[0].length];
+        for (int[] row : distance) Arrays.fill(row, Integer.MAX_VALUE);
+        distance[start[0]][start[1]] = 0;
+        dfs(maze, start, distance);
+        return distance[dest[0]][dest[1]] == Integer.MAX_VALUE ? -1 : distance[dest[0]][dest[1]];
+    }
 
-	    que.offer(new Pair(start[0], start[1], 0));
-	    for(int i = 0; i < m; i++) {
-	        Arrays.fill(dp[i], Integer.MAX_VALUE);
-	    }
+    private void dfs(int[][] maze, int[] start, int[][] distance) {
+        for (int[] dir : dirs) {
+            int x = start[0] + dir[0];
+            int y = start[1] + dir[1];
+            int count = 0;
+            while (x >= 0 && y >= 0 && x < maze.length && y < maze[0].length && maze[x][y] == 0) {
+                x += dir[0];
+                y += dir[1];
+                count++;
+            }
+            if (distance[start[0]][start[1]] + count < distance[x - dir[0]][y - dir[1]]) {
+                distance[x - dir[0]][y - dir[1]] = distance[start[0]][start[1]] + count;
+                dfs(maze, new int[] {x - dir[0],y - dir[1]}, distance);
+            }
+        }
+    }
+}
 
+/*
+time: O(m∗n∗max(m,n))
+space: O(mn)
+*/
 
-	    while(!que.isEmpty()) {
-	        Pair cur = que.poll();
-	        for(int[] dir : dirs) {
-	            int nextX = cur.x;
-	            int nextY = cur.y;
-	            int len = cur.len;
-	            while(nextX < m && nextX >= 0 && nextY < n && nextY >= 0 && maze[nextX][nextY] == 0) {
-	                nextX += dir[0];
-	                nextY += dir[1];
-	                len++;
+bfs
+public class Solution {
 
-	            }
-	            nextX -= dir[0];
-	            nextY -= dir[1];
-	            len--;
+	public static final int[][] dirs = new int[][] {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
-	            // avoid going through unneccessary cases.
-	            if(len > dp[destination[0]][destination[1]]) {
-	                continue;
-	            }
+    public int shortestDistance(int[][] maze, int[] start, int[] dest) {
+        int[][] distance = new int[maze.length][maze[0].length];
+        for (int[] row : distance) Arrays.fill(row, Integer.MAX_VALUE);
+        distance[start[0]][start[1]] = 0;
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(start);
+        while (!queue.isEmpty()) {
+            int[] s = queue.remove();
+            for (int[] dir : dirs) {
+                int x = s[0] + dir[0];
+                int y = s[1] + dir[1];
+                int count = 0;
+                while (x >= 0 && y >= 0 && x < maze.length && y < maze[0].length && maze[x][y] == 0) {
+                    x += dir[0];
+                    y += dir[1];
+                    count++;
+                }
+                if (distance[s[0]][s[1]] + count < distance[x - dir[0]][y - dir[1]]) {
+                    distance[x - dir[0]][y - dir[1]] = distance[s[0]][s[1]] + count;
+                    queue.add(new int[] {x - dir[0], y - dir[1]});
+                }
+            }
+        }
+        return distance[dest[0]][dest[1]] == Integer.MAX_VALUE ? -1 : distance[dest[0]][dest[1]];
+    }
+}
 
-	            if(len < dp[nextX][nextY]) {
-	                dp[nextX][nextY] = len;
-	                que.offer(new Pair(nextX, nextY, len));
-	            }
-	        }
-	    }
+/*
+time: O(mn∗log(mn))
+space: O(mn)
+*/
 
-	    return dp[destination[0]][destination[1]] == Integer.MAX_VALUE ? -1 : dp[destination[0]][destination[1]];
-	}
+Dijkstra
+public class Solution {
 
-	class Pair {
-	    int x;
-	    int y;
-	    int len;
-	    public Pair(int x, int y, int len) {
-	        this.x = x;
-	        this.y = y;
-	        this.len = len;
-	    }
-	}
+	public static final int[][] dirs = new int[][] {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+
+    public int shortestDistance(int[][] maze, int[] start, int[] dest) {
+        int[][] distance = new int[maze.length][maze[0].length];
+        for (int[] row : distance) Arrays.fill(row, Integer.MAX_VALUE);
+        distance[start[0]][start[1]] = 0;
+        dijkstra(maze, start, distance);
+        return distance[dest[0]][dest[1]] == Integer.MAX_VALUE ? -1 : distance[dest[0]][dest[1]];
+    }
+
+    private void dijkstra(int[][] maze, int[] start, int[][] distance) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+        pq.offer(new int[] {start[0], start[1], 0});
+        while (!pq.isEmpty()) {
+            int[] s = pq.poll();
+            if (distance[s[0]][s[1]] < s[2]) continue;
+            for (int[] dir : dirs) {
+                int x = s[0] + dir[0];
+                int y = s[1] + dir[1];
+                int count = 0;
+                while (x >= 0 && y >= 0 && x < maze.length && y < maze[0].length && maze[x][y] == 0) {
+                    x += dir[0];
+                    y += dir[1];
+                    count++;
+                }
+                if (distance[s[0]][s[1]] + count < distance[x - dir[0]][y - dir[1]]) {
+                    distance[x - dir[0]][y - dir[1]] = distance[s[0]][s[1]] + count;
+                    pq.offer(new int[] {x - dir[0], y - dir[1], distance[x - dir[0]][y - dir[1]]});
+                }
+            }
+        }
+    }
 }

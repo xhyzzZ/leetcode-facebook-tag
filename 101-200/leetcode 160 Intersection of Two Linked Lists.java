@@ -1,10 +1,11 @@
-//leetcode 160 Intersection of Two Linked Lists
+// leetcode 160 Intersection of Two Linked Lists
 
 
 /*
 time: O(n)
 space: O(1)
 */
+
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 	    //boundary check
