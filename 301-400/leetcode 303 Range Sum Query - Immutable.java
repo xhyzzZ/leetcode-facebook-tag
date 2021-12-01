@@ -1,16 +1,22 @@
-//leetcode 303 Range Sum Query - Immutable
+// leetcode 303 Range Sum Query - Immutable
 
-public class Solution {
-	public class NumArray(int[] nums) {
-		for(int i = 1; i < nums.length; i++) 
-			nums[i] += nums[i - 1];
-		this.nums = nums;
-	}
+/*
+time: O(n) time pre-computation, O(1) sumRange
+space: O(n)
+*/
 
-public int sumRange(int i, int j) {
-		if(i == 0)
-			return nums[j];
+class NumArray {
 
-		return nums[j] - nums[i - 1];
-	}
+	private int[] sum;
+
+    public NumArray(int[] nums) {
+        sum = new int[nums.length + 1];
+	    for (int i = 0; i < nums.length; i++) {
+	        sum[i + 1] = sum[i] + nums[i];
+	    }
+    }
+    
+    public int sumRange(int left, int right) {
+        return sum[right + 1] - sum[left];
+    }
 }

@@ -1,4 +1,4 @@
-//leetcode 525 Contiguous Array
+// leetcode 525 Contiguous Array
 
 /*
 time: O(n)

@@ -1,4 +1,4 @@
-//leetcode 304 Range Sum Query 2D - Immutable
+// leetcode 304 Range Sum Query 2D - Immutable
 
 /*
 time: O(n^2)
@@ -6,7 +6,7 @@ space: O(1)
 */
 
 public class NumMatrix {
-	int[][] dp;
+	private int[][] dp;
     public NumMatrix(int[][] matrix) {
         if (matrix == null || matrix.length == 0) return;
         int m = matrix.length, n = matrix[0].length;

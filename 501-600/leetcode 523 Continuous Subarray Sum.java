@@ -1,10 +1,10 @@
-//leetcode 523 Continuous Subarray Sum
-
+// leetcode 523 Continuous Subarray Sum
 
 /*
 time: O(n)
 space: O(k)
 */
+
 public class Solution {
     public boolean checkSubarraySum(int[] nums, int k) {
         // Since the size of subarray is at least 2.
