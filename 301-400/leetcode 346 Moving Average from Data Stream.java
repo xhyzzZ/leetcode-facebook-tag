@@ -1,30 +1,28 @@
-//leetcode 346 Moving Average from Data Stream
+// leetcode 346 Moving Average from Data Stream
 
 /*
 time: O(1)
-space: O()
+space: O(n)
 */
 
-public class MovingAverage {
-	Queue<Integer> queue;
-    int capacity;
-    int currSum;
-    /** Initialize your data structure here. */
+class MovingAverage {
+    private int size, windowSum = 0, count = 0;
+    private Deque<Integer> queue;
+
     public MovingAverage(int size) {
-        queue = new LinkedList<Integer>();
-        capacity = size;
-        currSum = 0;
+        this.size = size;
+        this.queue = new ArrayDeque<Integer>();
     }
-    
+
     public double next(int val) {
-        currSum += val;
-        queue.offer(val);
-        
-        if (q.size() > capacity) {
-            currSum -= queue.poll();
-        }
-       
-        return currSum * 1.0 / queue.size();
+        count++;
+        // calculate the new sum by shifting the window
+        queue.add(val);
+        int tail = count > size ? (int) queue.poll() : 0;
+
+        windowSum = windowSum - tail + val;
+
+        return windowSum * 1.0 / Math.min(size, count);
     }
 }
 

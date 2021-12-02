@@ -1,14 +1,14 @@
-//leetcode 380 Insert Delete GetRandom O(1)
+// leetcode 380 Insert Delete GetRandom O(1)
 
 /*
-time: O()
+time: O(1)
 space: O(1)
 */
 
 public class RandomizedSet {
-	HashMap<Integer, Integer> valToInd;
-    List<Integer> list;
-    Random random;
+	private HashMap<Integer, Integer> valToInd;
+    private List<Integer> list;
+    private Random random;
     /** Initialize your data structure here. */
     public RandomizedSet() {
         valToInd = new HashMap<>();

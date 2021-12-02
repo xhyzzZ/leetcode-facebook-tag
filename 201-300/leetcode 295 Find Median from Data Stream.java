@@ -1,4 +1,4 @@
-//leetcode 295 Find Median from Data Stream
+// leetcode 295 Find Median from Data Stream
 
 /*
 time: O(nlogn)
@@ -19,6 +19,7 @@ After adding the number, total (n + 1) numbers, they will become:
 (1) length of (small, large) == (k, k + 1)
 (2) length of (small, large) == (k + 1, k + 1)
 */
+
 class MedianFinder {
     private PriorityQueue<Integer> small;
     private PriorityQueue<Integer> large;

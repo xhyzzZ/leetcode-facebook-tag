@@ -1,4 +1,4 @@
-//leetcode 297 Serialize and Deserialize Binary Tree
+// leetcode 297 Serialize and Deserialize Binary Tree
 
 /*
 time: O(n)

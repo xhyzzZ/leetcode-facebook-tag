@@ -1,4 +1,4 @@
-//leetcode 348 Design Tic-Tac-Toe
+// leetcode 348 Design Tic-Tac-Toe
 
 /*
 time: O(n)
@@ -30,19 +30,13 @@ public class TicTacToe {
         
         rows[row] += toAdd;
         cols[col] += toAdd;
-        if (row == col) {
-            diagonal += toAdd;
-        }
+        if (row == col) diagonal += toAdd;
         
-        if (col == (cols.length - row - 1)) {
-            antiDiagonal += toAdd;
-        }
+        if (col == (cols.length - row - 1)) antiDiagonal += toAdd;
         
         int size = rows.length;
-        if (Math.abs(rows[row]) == size ||
-            Math.abs(cols[col]) == size ||
-            Math.abs(diagonal) == size  ||
-            Math.abs(antiDiagonal) == size) {
+        if (Math.abs(rows[row]) == size || Math.abs(cols[col]) == size ||
+            Math.abs(diagonal) == size || Math.abs(antiDiagonal) == size) {
             return player;
         }
         return 0;
