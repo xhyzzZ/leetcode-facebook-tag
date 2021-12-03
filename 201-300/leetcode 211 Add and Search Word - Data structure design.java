@@ -1,4 +1,4 @@
-//leetcode 211 Add and Search Word - Data structure design
+// leetcode 211 Add and Search Word - Data structure design
 
 /*
 time: O(n)

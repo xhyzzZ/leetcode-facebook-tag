@@ -1,4 +1,4 @@
-//leetcode 642 Design Search Autocomplete System
+// leetcode 642 Design Search Autocomplete System
 
 /*
 time: O()

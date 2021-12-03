@@ -1,8 +1,8 @@
-//leetcode 212 Word Search II
+// leetcode 212 Word Search II
 
 /*
-time: O()
-space: O()
+time: O(m(4 * 3^(l-1))) M is the number of cells in the board and LL is the maximum length of words.
+space: O(n)
 */
 
 class Solution {
@@ -32,6 +32,7 @@ class Solution {
 	        p.word = null;     // de-duplicate
 	    }
 
+	    // mark the current letter before the EXPLORATION
 	    board[i][j] = '#';
 	    if (i > 0) dfs(board, i - 1, j ,p, res); 
 	    if (j > 0) dfs(board, i, j - 1, p, res);

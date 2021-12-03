@@ -1,12 +1,11 @@
-//leetcode 692 Top K Frequent Words
+// leetcode 692 Top K Frequent Words
 
 /*
-time: O(n + klgk)
+time: O(n + klogk)
 space: O(n)
-bucket sort
-
 */
 
+bucket sort
 class Solution {
     public List<String> topKFrequent(String[] words, int k) {
         Map<String, Integer> map = new HashMap<>();
@@ -16,7 +15,7 @@ class Solution {
             max = Math.max(max, map.get(word));
         }
         List<String>[] bucket = new ArrayList[max + 1];
-        for (Map.Entry<String, Integer> entry: map.entrySet()) {
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
             int fre = entry.getValue();
             if (bucket[fre] == null) {
                 bucket[fre] = new ArrayList<>();
@@ -37,8 +36,9 @@ class Solution {
 /*
 time: O(nlogk)
 space: O(n)
-min heap + pq
 */
+
+min heap + pq
 class Solution {
     public List<String> topKFrequent(String[] words, int k) {
         List<String> result = new LinkedList<>();
