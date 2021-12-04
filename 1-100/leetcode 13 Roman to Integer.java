@@ -1,7 +1,9 @@
-//leetcode 13 Roman to Integer
+// leetcode 13 Roman to Integer
 
-//time: O(n)
-//space; O(1)
+/*
+time: O(n)
+space: O(1)
+*/
 
 //规律： 左边的数字如果小于右边的数字 = 右 - 左
 

@@ -1,4 +1,4 @@
-//leetcode 127 Word Ladder
+// leetcode 127 Word Ladder
 
 /*
 time: O(n * 26^l/2)
@@ -10,6 +10,7 @@ bidirectional BFS
 双向bfs，设计两个set存放两遍遍历的单词，遍历最短set中的每个单词
 对每个单词的每个字母进行替换，如果替换的字母在dict中，那么加入一个新的set中并赋值给原set
 */
+
 public class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> dict = new HashSet<>(wordList);
@@ -24,7 +25,7 @@ public class Solution {
 	    int steps = 0;
 	    
 	    while (!q1.isEmpty() && !q2.isEmpty()) {
-	        ++steps;
+	        steps++;
 	      	// always expend the smaller queue first
 	        if (q1.size() > q2.size()) {
 		        Set<String> tmp = q1;

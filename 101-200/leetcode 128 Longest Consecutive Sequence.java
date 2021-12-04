@@ -1,10 +1,10 @@
-//leetcode 128 Longest Consecutive Sequence
-
+// leetcode 128 Longest Consecutive Sequence
 
 /*
 time: O(n)
 space: O(n)
 */
+
 public class Solution {
     public int longestConsecutive(int[] nums) {
         int max = 0;

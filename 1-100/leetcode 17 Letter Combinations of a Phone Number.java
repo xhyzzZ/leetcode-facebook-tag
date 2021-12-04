@@ -1,4 +1,4 @@
-//leetcode 17 Letter Combinations of a Phone Number
+// leetcode 17 Letter Combinations of a Phone Number
 
 /*
 time: O(4^n)
@@ -29,9 +29,11 @@ public class Solution {
     }
 }
 
-// time: O(k^n)
-// space: O(k^n)
-// k^n ( k = average length of string in KEYS and n is the length of digits.)
+/*
+time: O(k^n) k = average length of string in KEYS and n is the length of digits
+space: O(k^n)
+*/
+
 dfs
 public class Solution {
 	private static final String[] KEYS = { "", "", "abc", "def", "ghi", "jkl", 

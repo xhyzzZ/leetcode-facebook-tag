@@ -1,9 +1,10 @@
-//leetcode 49 Group Anagrams
+// leetcode 49 Group Anagrams
 
 /*
-time: O(m * n)
-space: O(n)
+time: O(mn)
+space: O(mn)
 */
+
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         if (strs.length == 0) return new ArrayList();
@@ -19,7 +20,7 @@ class Solution {
                 sb.append(count[i]);
             }
             String key = sb.toString();
-            if (!map.containsKey(key)) map.put(key, new ArrayList());
+            if (!ans.containsKey(key)) ans.put(key, new ArrayList());
             map.get(key).add(s);
         }
         return new ArrayList(map.values());
@@ -27,10 +28,11 @@ class Solution {
 }
 
 /*
-time: O(m * n *logn)
-space: O(n)
+time: O(mnlogn)
+space: O(mn)
 */
-public class Solution {
+
+class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> res = new ArrayList<>();
         if (strs == null || strs.length == 0) return res;

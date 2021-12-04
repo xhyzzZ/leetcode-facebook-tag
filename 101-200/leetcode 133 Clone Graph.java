@@ -1,18 +1,14 @@
-//leetcode 133 Clone Graph
+// leetcode 133 Clone Graph
 
 /*
-time: O()
-space: O()
+time: O(n + m) N is a number of nodes (vertices) and MM is a number of edges.
+space: O(n)
 */
 
 public class Solution {
-    public HashMap<Integer, Node> map = new HashMap<>();
+    private HashMap<Integer, Node> map = new HashMap<>();
     
     public Node cloneGraph(Node node) {
-        return clone(node);
-    }
-    
-    public Node clone(Node node) {
         if (node == null) return null;
         
         if (map.containsKey(node.val)) return map.get(node.val);
@@ -20,7 +16,7 @@ public class Solution {
         Node newNode = new Node(node.val, new ArrayList<Node>());
         map.put(newNode.val, newNode);
         for (Node neighbor : node.neighbors) {
-        	newNode.neighbors.add(clone(neighbor));
+            newNode.neighbors.add(cloneGraph(neighbor));
         } 
         return newNode;
     }
