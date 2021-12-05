@@ -1,4 +1,4 @@
-//leetcode 5 Longest Palindromic Substring
+// leetcode 5 Longest Palindromic Substring
 
 /*
 time: O(n^2)

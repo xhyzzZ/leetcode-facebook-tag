@@ -1,4 +1,4 @@
-//leetcode 921 Minimum Add to Make Parentheses Valid
+// leetcode 921 Minimum Add to Make Parentheses Valid
 
 /*
 time: O(n)
@@ -6,17 +6,16 @@ space: O(1)
 */
 
 class Solution {
-    public int minAddToMakeValid(String S) {
-        int count = 0, stk = 0;
-        for (int i = 0; i < S.length(); i++) {
-            if (S.charAt(i) == '(') { 
-            	++stk; 
-            } else if (stk <= 0) { 
-            	++count; 
-            } else { 
-            	--stk; 
+    public int minAddToMakeValid(String s) {
+        int ans = 0, bal = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            bal += s.charAt(i) == '(' ? 1 : -1;
+            // It is guaranteed bal >= -1
+            if (bal == -1) {
+                ans++;
+                bal++;
             }
         }
-        return count + stk;
+        return ans + bal;
     }
 }

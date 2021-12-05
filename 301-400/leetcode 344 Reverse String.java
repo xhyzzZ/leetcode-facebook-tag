@@ -1,21 +1,17 @@
-//leetcode 344 Reverse String
+// leetcode 344 Reverse String
 
 /*
 time: O(n)
-space: O(n)
+space: O(1)
 */
-public class Solution {
-    public String reverseString(String s) {
-        char[] word = s.toCharArray();
-        int i = 0; 
-        int j = s.length() - 1;
-        while(i < j) {
-        	char temp = word[i];
-        	word[i] = word[j];
-        	word[j] = temp;
-        	i++;
-        	j--;
+
+class Solution {
+    public void reverseString(char[] s) {
+        int left = 0, right = s.length - 1;
+        while (left < right) {
+            char tmp = s[left];
+            s[left++] = s[right];
+            s[right--] = tmp;
         }
-        return new String(word);
     }
 }

@@ -1,5 +1,4 @@
-//leetcode 76 Minimum Window Substring
-
+// leetcode 76 Minimum Window Substring
 
 /*
 time: O(n)

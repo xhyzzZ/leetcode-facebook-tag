@@ -1,10 +1,10 @@
-//leetcode 224 Basic Calculator
+// leetcode 224 Basic Calculator
 
 /*
 time: O(n)
 space: O(n)
-Principle:
 
+Principle:
 (Sign before '+'/'-') = (This context sign);
 (Sign after '+'/'-') = (This context sign) * (1 or -1);
 

@@ -1,4 +1,4 @@
-//leetcode 394 Decode String
+// leetcode 394 Decode String
 
 /*
 time: O(n)

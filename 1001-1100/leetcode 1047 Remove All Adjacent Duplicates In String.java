@@ -1,4 +1,4 @@
-//leetcode 1047 Remove All Adjacent Duplicates In String
+// leetcode 1047 Remove All Adjacent Duplicates In String
 
 /*
 time: O(n)
@@ -6,17 +6,17 @@ space: O(n)
 */
 
 class Solution {
-    public String removeDuplicates(String S) {
+    public String removeDuplicates(String s) {
         Stack<Character> stack = new Stack<>();
-        for (char s : S.toCharArray()) {
-            if (!stack.isEmpty() && stack.peek() == s) {
+        for (char c : s.toCharArray()) {
+            if (!stack.isEmpty() && stack.peek() == c) {
                 stack.pop();
             } else {
-                stack.push(s);
+                stack.push(c);
             }  
         }
         StringBuilder sb = new StringBuilder();
-        for (char s : stack) sb.append(s);
+        for (char c : stack) sb.append(c);
         return sb.toString();
     }
 }

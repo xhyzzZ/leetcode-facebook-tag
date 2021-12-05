@@ -1,11 +1,10 @@
-//leetcode 161 One Edit Distance
-
+// leetcode 161 One Edit Distance
 
 /*
 time: O(n)
 space: O(1)
-
 */
+
 public class Solution {
     public boolean isOneEditDistance(String s, String t) {
         if (Math.abs(s.length() - t.length()) > 1) return false;

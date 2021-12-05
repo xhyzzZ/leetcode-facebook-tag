@@ -1,25 +1,23 @@
-//leetcode 721 Accounts Merge
+// leetcode 721 Accounts Merge
 
 /*
-time: O()
-space: O()
+time: O(NKlogNK) N is the number of accounts and K is the maximum length of an account.
+space: O(NK)
 */ 
 
-class Solution {
+dfs
+class Solution {    
     public List<List<String>> accountsMerge(List<List<String>> accounts) {
-        //<email node, neighbor nodes>
-        Map<String, Set<String>> graph = new HashMap<>();  
-        //<email, username>
-        Map<String, String> name = new HashMap<>();        
-        // Build the graph;
+        // <email node, neighbor nodes>
+        Map<String, List<String>> graph = new HashMap<String, List<String>>();
         for (List<String> account : accounts) {
-            String userName = account.get(0);
+            // Building adjacency list
+            // Adding edge between first email to all other emails in the account
             for (int i = 1; i < account.size(); i++) {
                 if (!graph.containsKey(account.get(i))) {
-                    graph.put(account.get(i), new HashSet<>());
+                    graph.put(account.get(i), new ArrayList<>());
                 }
-                name.put(account.get(i), userName);
-                
+
                 if (i == 1) continue;
                 graph.get(account.get(i)).add(account.get(i - 1));
                 graph.get(account.get(i - 1)).add(account.get(i));
@@ -27,25 +25,38 @@ class Solution {
         }
         
         Set<String> visited = new HashSet<>();
-        List<List<String>> res = new LinkedList<>();
-        // DFS search the graph;
-        for (String email : name.keySet()) {
-            List<String> list = new LinkedList<>();
-            if (visited.add(email)) {
-                dfs(graph, email, visited, list);
-                Collections.sort(list);
-                list.add(0, name.get(email));
-                res.add(list);
+        // Traverse over all th accounts to store components
+        List<List<String>> res = new ArrayList<>();
+        for (List<String> account : accounts) {
+            String accountName = account.get(0);
+            String accountFirstEmail = account.get(1);
+            
+            // If email is visited, then it's a part of different component
+            // Hence perform dfs only if email is not visited yet
+            if (!visited.contains(accountFirstEmail)) {
+                List<String> mergedAccount = new ArrayList<>();
+                // Adding account name at the 0th index
+                mergedAccount.add(accountName);
+                
+                dfs(graph, visited, mergedAccount, accountFirstEmail);
+                Collections.sort(mergedAccount.subList(1, mergedAccount.size())); 
+                res.add(mergedAccount);
             }
         }
+        
         return res;
     }
-    
-    public void dfs(Map<String, Set<String>> graph, String email, Set<String> visited, List<String> list) {
-        list.add(email);
-        for (String next : graph.get(email)) {
-            if (visited.add(next)) {
-                dfs(graph, next, visited, list);
+
+    private void dfs(Map<String, List<String>> graph, Set<String> visited, List<String> mergedAccount, String email) {
+        visited.add(email);
+        // Add the email vector that contains the current component's emails
+        mergedAccount.add(email);
+        
+        if (!graph.containsKey(email)) return;
+        
+        for (String neighbor : graph.get(email)) {
+            if (!visited.contains(neighbor)) {
+                dfs(graph, visited, mergedAccount, neighbor);
             }
         }
     }

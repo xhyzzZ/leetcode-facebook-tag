@@ -1,4 +1,4 @@
-//leetcode 678 Valid Parenthesis String
+// leetcode 678 Valid Parenthesis String
 
 /*
 time: O(n)
@@ -7,27 +7,24 @@ space: O(1)
 
 class Solution {
     public boolean checkValidString(String s) {
-        int low = 0;
-        int high = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
-                low++;
-                high++;
-            } else if (s.charAt(i) == ')') {
-                if (low > 0) {
-                    low--;
-                }
-                high--;
-            } else {
-                if (low > 0) {
-                    low--;
-                }
-                high++;
+        int cmin = 0, cmax = 0; // open parentheses count in range [cmin, cmax]
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                cmax++;
+                cmin++;
+            } else if (c == ')') {
+                cmax--;
+                cmin--;
+            } else if (c == '*') {
+                cmax++; // if `*` become `(` then openCount++
+                cmin--; // if `*` become `)` then openCount--
+                // if `*` become `` then nothing happens
+                // So openCount will be in new range [cmin-1, cmax+1]
             }
-            if (high < 0) {
-                return false;
-            }
+            if (cmax < 0) return false; // Currently, don't have enough open parentheses to match close parentheses-> Invalid
+                                        // For example: ())(
+            cmin = Math.max(cmin, 0);   // It's invalid if open parentheses count < 0 that's why cmin can't be negative
         }
-        return low == 0;
+        return cmin == 0; // Return true if can found `openCount == 0` in range [cmin, cmax]
     }
 }

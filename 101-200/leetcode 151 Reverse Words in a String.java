@@ -1,47 +1,34 @@
-//leetcode 151 Reverse Words in a String
+// leetcode 151 Reverse Words in a String
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(n)
 */
-public class Solution {
+
+class Solution {
     public String reverseWords(String s) {
-        if (s == null) return null;
-        char[] a = s.toCharArray();
-        int n = a.length;
-        // step 1. reverse the whole string
-        reverse(a, 0, n - 1);
-        // step 2. reverse each word
-        reverseWords(a, n);
-        // step 3. clean up spaces
-        return cleanSpaces(a, n);
-    }
+        int left = 0, right = s.length() - 1;
+        // remove leading spaces
+        while (left <= right && s.charAt(left) == ' ') left++;
 
-    void reverseWords(char[] a, int n) {
-    	while (i < n) {
-    		while (i < j || j < n && a[i] == ' ') j++;	// skip spaces
-    		while (j < i || j < n && a[j] != ' ') j++;	// skip non spaces
-    		reverse(a, i, j - 1);						// reverse the word
-    	}
-    }
+        // remove trailing spaces
+        while (left <= right && s.charAt(right) == ' ') right--;
 
-    String cleanSpaces(char[] a, int n) {
-    	int i = 0, j = 0;
-    	while (j < n) {
-    		while (j < n && a[j] == ' ') j++;				// skip spaces
-    		while (j < n && a[j] != ' ') a[i++] = a[j++];	// keep non spaces
-    		while (j < n && a[j] == ' ') j++;				// skip spaces
-    		if (j < n) a[i++] = ' ';							// keep only one space
-    	}
-    	return new String(a).substring(0, i);
-    }
+        Deque<String> deque = new ArrayDeque<>();
+        StringBuilder word = new StringBuilder();
+        // push word by word in front of deque
+        while (left <= right) {
+            char c = s.charAt(left);
 
-    // reverse a[] from a[i] to a[j]
-    private void reverse(char[] a, int i, int j) {
-    	while (i < j) {
-    		char t = a[j];
-    		a[i++] = a[j];
-    		a[j--] = t;
-    	}
+            if ((word.length() != 0) && (c == ' ')) {
+                deque.offerFirst(word.toString());
+                word.setLength(0);
+            } else if (c != ' ') {
+                word.append(c);
+            }
+            left++;
+        }
+        deque.offerFirst(word.toString());
+        return String.join(" ", deque);
     }
 }
