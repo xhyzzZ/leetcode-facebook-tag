@@ -1,4 +1,4 @@
-//leetcode 387 First Unique Character in a String
+// leetcode 387 First Unique Character in a String
 
 /*
 time: O(n)

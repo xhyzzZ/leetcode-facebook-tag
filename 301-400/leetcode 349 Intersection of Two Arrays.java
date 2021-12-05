@@ -1,10 +1,10 @@
-//leetcode 349 Intersection of Two Arrays
-
+// leetcode 349 Intersection of Two Arrays
 
 /*
 time: O(m + n)
 space: O(n)
 */
+
 public class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
     	Set<Integer> set = new HashSet<>();

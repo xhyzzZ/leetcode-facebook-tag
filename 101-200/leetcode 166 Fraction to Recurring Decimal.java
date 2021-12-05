@@ -1,10 +1,10 @@
-//leetcode 166 Fraction to Recurring Decimal
-
+// leetcode 166 Fraction to Recurring Decimal
 
 /*
 time: O(n)
 space: O(n)
 */
+
 public class Solution {
     public String fractionToDecimal(int numerator, int denominator) {
         StringBuilder result = new StringBuilder();
@@ -14,8 +14,7 @@ public class Solution {
 	    result.append(sign);
 	    result.append(num / den);
 	    long remainder = num % den;
-	    if (remainder == 0)
-	        return result.toString();
+	    if (remainder == 0) return result.toString();
 	    result.append(".");
 	    HashMap<Long, Integer> hashMap = new HashMap<Long, Integer>();
 	    while (!hashMap.containsKey(remainder)) {

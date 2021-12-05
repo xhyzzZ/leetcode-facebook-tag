@@ -1,4 +1,4 @@
-//leetcode 242 Valid Anagram
+// leetcode 242 Valid Anagram
 
 /*
 time: O(n)
