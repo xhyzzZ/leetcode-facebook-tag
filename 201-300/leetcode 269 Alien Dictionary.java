@@ -1,4 +1,4 @@
-//leetcode 269 Alien Dictionary
+// leetcode 269 Alien Dictionary
 
 /*
 time: O(V + E)
@@ -11,8 +11,8 @@ space: O()
 class Solution {
     /** Pretty similar to Course Schedule problem (LC 210), the only difference is that
 	 * we need to build graph by comparing every consecutive pair of strings firstly,
-	 * and then doing topological sort for the graph to get the result string*/
-	/*.*/
+	 * and then doing topological sort for the graph to get the result string.
+	 **/
 	public String alienOrder(String[] words) {
 	    if (words == null || words.length == 0) {
 	        return "";

@@ -1,4 +1,4 @@
-//leetcode 210 Course Schedule II
+// leetcode 210 Course Schedule II
 
 /*
 time: O(v + e)
@@ -23,7 +23,7 @@ public class Solution {
             indegree[next]++;
         } 
 
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new LinkedList<Integer>();
         for (int i = 0; i < numCourses; i++) {
             if (indegree[i] == 0) {
                 // Add the course to the order because it has no prerequisites.
@@ -49,6 +49,11 @@ public class Solution {
         return (canFinishCount == numCourses) ? order : new int[0];
     }
 }
+
+/*
+time: O(v + e)
+space: O(v + e)
+*/
 
 // bfs has size 
 class Solution {
@@ -100,10 +105,10 @@ class Solution {
 
 /*
 time: O(v + e)
-space: O(v)
+space: O(v + e)
 */
 
-
+dfs
 public class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         List<List<Integer>> graph = new ArrayList<>();

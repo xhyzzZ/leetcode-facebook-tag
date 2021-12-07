@@ -1,4 +1,4 @@
-//leetcode 498 Diagonal Traverse
+// leetcode 498 Diagonal Traverse
 
 /*
 time: O(mn)

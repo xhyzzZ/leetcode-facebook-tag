@@ -1,7 +1,7 @@
-//leetcode 463 Island Perimeter
+// leetcode 463 Island Perimeter
 
 /*
-time: O(n^2)
+time: O(mn)
 space: O(1)
 */
 

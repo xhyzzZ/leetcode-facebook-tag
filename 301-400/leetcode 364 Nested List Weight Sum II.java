@@ -1,10 +1,11 @@
-//leetcode 364 Nested List Weight Sum II
+// leetcode 364 Nested List Weight Sum II
 
 /*
 time: O(n)
-space: O()
+space: O(h)
 */
 
+bfs
 class Solution {
     public int depthSumInverse(List<NestedInteger> nestedList) {
         int prevSum = 0, totalSum = 0;

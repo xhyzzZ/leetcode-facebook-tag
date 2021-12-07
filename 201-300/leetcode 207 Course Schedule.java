@@ -1,9 +1,10 @@
-//leetcode 207 Course Schedule
+// leetcode 207 Course Schedule
 
 /*
 time: O(v + e)
 space: O(v + e)
 */
+
 dfs
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
@@ -40,6 +41,7 @@ class Solution {
         return true;
     }
 }
+
 /*
 time: O(v + e)
 space: O(v + e)

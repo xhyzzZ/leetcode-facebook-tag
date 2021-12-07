@@ -1,4 +1,4 @@
-//leetcode 695 Max Area of Island
+// leetcode 695 Max Area of Island
 
 /*
 time: O(mn)

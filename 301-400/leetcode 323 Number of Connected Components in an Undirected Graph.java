@@ -1,9 +1,10 @@
-//leetcode 323 Number of Connected Components in an Undirected Graph
+// leetcode 323 Number of Connected Components in an Undirected Graph
 
 /*
-time: O()
-space: O()
+time: O(E⋅α(n))
+space: O(v)
 */
+
 union find
 class Solution {
     class UnionFind {
@@ -43,6 +44,7 @@ class Solution {
             return count;
         }
     }
+    
     public int countComponents(int n, int[][] edges) {
         UnionFind uf = new UnionFind(n);
         for (int[] edge : edges) {
@@ -53,38 +55,15 @@ class Solution {
     }
 }
 
-class Solution {
-    public int countComponents(int n, int[][] edges) {
-        int[] roots = new int[n];
-	    for(int i = 0; i < n; i++) roots[i] = i; 
-
-	    for(int[] e : edges) {
-	        int root1 = find(roots, e[0]);
-	        int root2 = find(roots, e[1]);
-	        if(root1 != root2) {      
-	            roots[root1] = root2;  // union
-	            n--;
-	        }
-	    }
-	    return n;
-	}
-
-	public int find(int[] roots, int id) {
-	    while(roots[id] != id) {
-	        roots[id] = roots[roots[id]];  // optional: path compression
-	        id = roots[id];
-	    }
-	    return id;
-    }
-}
+/*
+time: O(v + e)
+space: O(v + e)
+*/
 
 dfs
 public class Solution {
-    
     public int countComponents(int n, int[][] edges) {
-        if (n <= 1) {
-            return n;
-        }
+        if (n <= 1) return n;
         List<List<Integer>> adjList = new ArrayList<List<Integer>>();
         for (int i = 0; i < n; i++) {
             adjList.add(new ArrayList<Integer>());

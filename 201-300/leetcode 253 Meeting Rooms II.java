@@ -1,10 +1,8 @@
-//leetcode 253 Meeting Rooms II
+// leetcode 253 Meeting Rooms II
 
 /*
 time: O(nlogn)
 space: O(n)
-当我们开始一场会议时，我们需要加一个房间。在我们加房间之前，我们需要判断之前的会议是否结束
-这就是为什么要检查starts[i] < ends[end]
 */
 
 class Solution {
@@ -19,6 +17,8 @@ class Solution {
         Arrays.sort(ends);
         int res = 0;
         int end = 0;
+        // 当我们开始一场会议时，我们需要加一个房间。在我们加房间之前，我们需要判断之前的会议是否结束
+        // 这就是为什么要检查starts[i] < ends[end]
         for (int i = 0; i < intervals.length; i++) {
             if (starts[i] < ends[end]) {
                 res++;
@@ -28,6 +28,11 @@ class Solution {
     }
 }
 
+/*
+time: O(nlogn)
+space: O(n)
+*/
+
 class Solution {
     public int minMeetingRooms(Interval[] intervals) {
         if (intervals == null || intervals.length == 0) return 0;
@@ -35,6 +40,8 @@ class Solution {
         PriorityQueue<Interval> pq = new PriorityQueue<>((a, b) -> a.end - b.end);
         pq.add(intervals[0]);
         for (int i = 1; i < intervals.length; i++) {
+            // if the current meeting starts right after 
+            // there's no need for a new room, merge the interval
             if (intervals[i].start >= pq.peek().end) {
                 pq.poll();
             }
