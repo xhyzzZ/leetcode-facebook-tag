@@ -1,10 +1,10 @@
-//leetcode 108 Convert Sorted Array to Binary Search Tree
-
+// leetcode 108 Convert Sorted Array to Binary Search Tree
 
 /*
 time: O(n)
 space: O(logn)
 */
+
 public class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {
         if (nums.length == 0) return null;

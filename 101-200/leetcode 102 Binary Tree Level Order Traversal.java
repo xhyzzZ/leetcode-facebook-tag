@@ -1,10 +1,11 @@
-//leetcode 102 Binary Tree Level Order Traversal
-
+// leetcode 102 Binary Tree Level Order Traversal
 
 /*
 time: O(n)
 space: O(h)
 */
+
+bfs
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
@@ -34,6 +35,8 @@ public class Solution {
 time: O(n)
 space: O(h)
 */
+
+dfs
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
     	List<List<Integer>> res = new ArrayList<>();

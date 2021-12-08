@@ -1,4 +1,4 @@
-//leetcode 428 Serialize and Deserialize N-ary Tree
+// leetcode 428 Serialize and Deserialize N-ary Tree
 
 /*
 time: O(n)
@@ -15,6 +15,7 @@ class Codec {
         buildString(root, sb);
         return sb.toString();
     }
+    
     private void buildString(Node node, StringBuilder sb) {
         if (node == null) {
             sb.append(NN).append(spliter);

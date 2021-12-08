@@ -1,10 +1,9 @@
-//leetcode 129 Sum Root to Leaf Numbers 
+// leetcode 129 Sum Root to Leaf Numbers 
 
 /*
 time: O(n)
 space: O(h)
 */
-
 
 public class Solution {
     public int sumNumbers(TreeNode root) {

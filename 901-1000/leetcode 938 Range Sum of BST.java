@@ -1,4 +1,4 @@
-//leetcode 938 Range Sum of BST
+// leetcode 938 Range Sum of BST
 
 /*
 time: O(n)

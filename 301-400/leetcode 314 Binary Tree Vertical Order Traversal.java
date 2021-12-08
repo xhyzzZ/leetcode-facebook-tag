@@ -1,10 +1,8 @@
-//leetcode 314 Binary Tree Vertical Order Traversal
-
+// leetcode 314 Binary Tree Vertical Order Traversal
 
 /*
 time: O(n)
 space: O(h)
-
 1. BFS, put node, col into queue at the same time
 2. Every left child access col - 1 while right child col + 1
 3. This maps node into different col buckets

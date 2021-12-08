@@ -1,5 +1,4 @@
-//leetcode 116 Populating Next Right Pointers in Each Nod
-
+// leetcode 116 Populating Next Right Pointers in Each Nod
 
 /*
 time: O(n)
@@ -23,6 +22,11 @@ class Solution {
         return root;
     }
 }
+
+/*
+time: O(n)
+space: O(1)
+*/
 
 // right to left
 public class Solution {

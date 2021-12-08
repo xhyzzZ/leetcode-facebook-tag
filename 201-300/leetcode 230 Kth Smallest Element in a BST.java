@@ -1,4 +1,4 @@
-//leetcode 230 Kth Smallest Element in a BST
+// leetcode 230 Kth Smallest Element in a BST
 
 /*
 time: O(n)
@@ -26,6 +26,11 @@ class Solution {
         if (root.right != null) helper(root.right);
     }
 }
+
+/*
+time: O(n)
+space: O(h)
+*/
 
 bfs
 class Solution {

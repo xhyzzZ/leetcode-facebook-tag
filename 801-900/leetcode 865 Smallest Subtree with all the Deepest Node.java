@@ -1,4 +1,4 @@
-//leetcode 865 Smallest Subtree with all the Deepest Nodes
+// leetcode 865 Smallest Subtree with all the Deepest Nodes
 
 /*
 time: O(n)

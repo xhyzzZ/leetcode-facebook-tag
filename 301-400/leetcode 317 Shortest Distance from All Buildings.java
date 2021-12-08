@@ -1,67 +1,90 @@
-//leetcode 317 Shortest Distance from All Buildings
+// leetcode 317 Shortest Distance from All Buildings
 
 /*
-time: O()
-
-space: O()
+time: O(m^2n^2)
+space: O(mn)
 */
 
-public class Solution {
+class Solution {
+    // BFS from Houses to Empty Land
+    private static int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     public int shortestDistance(int[][] grid) {
-        int row = grid.length;
-        if (row == 0) {
-            return -1;
+        int minDistance = Integer.MAX_VALUE;
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int totalHouses = 0;
+
+        // Store { total_dist, houses_count } for each cell.
+        int[][][] distances = new int[rows][cols][2];
+
+        // Count houses and start bfs from each house.
+        for (int row = 0; row < rows; ++row) {
+            for (int col = 0; col < cols; ++col) {
+                if (grid[row][col] == 1) {
+                    totalHouses++;
+                    bfs(grid, distances, row, col);
+                }
+            }
         }
-        int col = grid[0].length;
-        int[][] record1 = new int[row][col]; // visited num
-        int[][] record2 = new int[row][col]; // distance
-        int num1 = 0;
-        for (int r = 0; r < row; r++) {
-            for (int c = 0; c < col; c++) {
-                if (grid[r][c] == 1) {
-                    num1++;
-                    boolean[][] visited = new boolean[row][col];
-                    Queue<int[]> queue = new LinkedList<int[]>();
-                    queue.offer(new int[]{r, c});
-                    int dist = 0;
-                    while (!queue.isEmpty()) {
-                        int size = queue.size();
-                        for (int i = 0; i < size; i++) {
-                            int[] node = queue.poll();
-                            int x = node[0];
-                            int y = node[1];
-                            record2[x][y] += dist;
-                            record1[x][y]++;
-                            if (x > 0 && grid[x - 1][y] == 0 && !visited[x - 1][y]) {
-                                queue.offer(new int[]{x - 1, y});
-                                visited[x - 1][y] = true;
-                            }
-                            if (x + 1 < row && grid[x + 1][y] == 0 && !visited[x + 1][y]) {
-                                queue.offer(new int[]{x + 1, y});
-                                visited[x + 1][y] = true;
-                            }
-                            if (y > 0 && grid[x][y - 1] == 0 && !visited[x][y - 1]) {
-                                queue.offer(new int[]{x, y - 1});
-                                visited[x][y - 1] = true;
-                            }
-                            if (y + 1 < col && grid[x][y + 1] == 0 && !visited[x][y + 1]) {
-                                queue.offer(new int[]{x, y + 1});
-                                visited[x][y + 1] = true;
-                            }
+
+        // Check all empty lands with houses count equal to total houses and find the min ans.
+        for (int row = 0; row < rows; ++row) {
+            for (int col = 0; col < cols; ++col) {
+                if (distances[row][col][1] == totalHouses) {
+                    minDistance = Math.min(minDistance, distances[row][col][0]);
+                }
+            }
+        }
+
+        // If we haven't found a valid cell return -1.
+        if (minDistance == Integer.MAX_VALUE) return -1;
+        return minDistance;
+    }
+
+    private void bfs(int[][] grid, int[][][] distances, int row, int col) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        // Use a queue to do a bfs, starting from each cell located at (row, col).
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[] {row, col});
+
+        // Keep track of visited cells.
+        boolean[][] visited = new boolean[rows][cols];
+        visited[row][col] = true;
+
+        int steps = 0;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] curr = queue.poll();
+                row = curr[0];
+                col = curr[1];
+
+                // If we reached an empty cell, then add the distance
+                // and increment the count of houses reached at this cell.
+                if (grid[row][col] == 0) {
+                    distances[row][col][0] += steps;
+                    distances[row][col][1] += 1;
+                }
+
+                // Traverse the next cells which is not a blockage.
+                for (int[] dir : dirs) {
+                    int nextRow = row + dir[0];
+                    int nextCol = col + dir[1];
+
+                    if (nextRow >= 0 && nextCol >= 0 && nextRow < rows && nextCol < cols) {
+                        if (!visited[nextRow][nextCol] && grid[nextRow][nextCol] == 0) {
+                            visited[nextRow][nextCol] = true;
+                            queue.offer(new int[]{ nextRow, nextCol });
                         }
-                        dist++;
                     }
                 }
             }
+
+            // After traversing one level cells, increment the steps by 1.
+            steps++;
         }
-        int result = Integer.MAX_VALUE;
-        for (int r = 0; r < row; r++) {
-            for (int c = 0; c < col; c++) {
-                if (grid[r][c] == 0 && record1[r][c] == num1 && record2[r][c] < result) {
-                    result = record2[r][c];
-                }
-            }
-        }
-        return result == Integer.MAX_VALUE ? -1 : result;
     }
 }

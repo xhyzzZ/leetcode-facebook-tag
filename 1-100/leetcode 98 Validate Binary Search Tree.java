@@ -1,5 +1,4 @@
-//leetcode 98 Validate Binary Search Tree
-
+// leetcode 98 Validate Binary Search Tree
 
 /*
 time: O(n)
@@ -20,6 +19,11 @@ public class Solution {
     	return helper(root.left, min, root.val) && helper(root.right, root.val, max);
     }
 }
+
+/*
+time: O(n)
+space: O(h)
+*/
 
 bfs
 public class Solution {

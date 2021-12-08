@@ -1,4 +1,4 @@
-//leetcode 298 Binary Tree Longest Consecutive Sequence
+// leetcode 298 Binary Tree Longest Consecutive Sequence
 
 /*
 time: O(n)

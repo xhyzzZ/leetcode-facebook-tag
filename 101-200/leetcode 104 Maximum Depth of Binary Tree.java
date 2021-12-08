@@ -1,10 +1,10 @@
-//leetcode 104 Maximum Depth of Binary Tree
-
+// leetcode 104 Maximum Depth of Binary Tree
 
 /*
 time: O(n)
 space: O(h)
 */
+
 public class Solution {
     public int maxDepth(TreeNode root) {
         if (root == null) return 0;

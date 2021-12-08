@@ -1,10 +1,11 @@
-//leetcode 235 Lowest Common Ancestor of a Binary Search Tree
+// leetcode 235 Lowest Common Ancestor of a Binary Search Tree
 
 /*
 time: O(n)
-space: O(h)
+space: O(1)
 */
-bfs
+
+iterative
 public class Solution {
 	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 	    while ((root.val - p.val) * (root.val - q.val) > 0) {
@@ -13,6 +14,11 @@ public class Solution {
     	return root;
 	}
 }
+
+/*
+time: O(n)
+space: O(h)
+*/
 
 dfs
 public class Solution {

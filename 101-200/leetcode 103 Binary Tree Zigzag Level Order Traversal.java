@@ -1,10 +1,10 @@
-//leetcode 103 Binary Tree Zigzag Level Order Traversal
-
+// leetcode 103 Binary Tree Zigzag Level Order Traversal
 
 /*
 time: O(n)
 space: O(h)
 */
+
 bfs
 public class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
@@ -38,6 +38,11 @@ public class Solution {
     }
 }
 
+/*
+time: O(n)
+space: O(h)
+*/
+
 dfs
 public class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
@@ -48,7 +53,7 @@ public class Solution {
 
     private void helper(List<List<Integer>> res, int level, TreeNode cur) {
     	if (cur == null) return;
-    	if (res.size() <= level) {
+    	if (res.size() == level) {
     		res.add(new ArrayList<>());
     	}
     	if (level % 2 == 0) {

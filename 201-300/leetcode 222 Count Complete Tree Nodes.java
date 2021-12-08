@@ -1,4 +1,4 @@
-//leetcode 222 Count Complete Tree Nodes
+// leetcode 222 Count Complete Tree Nodes
 
 /*
 time: O(n)

@@ -1,10 +1,10 @@
-
-//leetcode 236 Lowest Common Ancestor of a Binary Tree
+// leetcode 236 Lowest Common Ancestor of a Binary Tree
 
 /*
 time: O(n)
 space: O(h)
 */
+
 dfs
 public class Solution {
     // 抽象解释
@@ -20,6 +20,11 @@ public class Solution {
         return left != null ? left : right;
     }
 }
+
+/*
+time: O(n)
+space: O(h)
+*/
 
 bfs
 public class Solution {

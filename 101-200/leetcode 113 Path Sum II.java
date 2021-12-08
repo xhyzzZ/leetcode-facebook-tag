@@ -1,9 +1,10 @@
-//leetcode 113 Path Sum II
+// leetcode 113 Path Sum II
 
 /*
-time: O(n)
+time: O(n^2)
 space: O(h)
 */
+
 public class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> res = new ArrayList<>(); 
@@ -13,9 +14,7 @@ public class Solution {
     }
 
     public void pathSum(TreeNode root, int sum, List<Integer> cur, List<List<Integer>> res) {
-        if (root == null) {
-            return; 
-        }
+        if (root == null) return; 
         cur.add(root.val);
         if (root.left == null && root.right == null && root.val == sum) {
             res.add(new ArrayList<>(cur));

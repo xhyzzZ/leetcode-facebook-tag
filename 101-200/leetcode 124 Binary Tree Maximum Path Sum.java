@@ -1,9 +1,10 @@
-//leetcode 124 Binary Tree Maximum Path Sum
+// leetcode 124 Binary Tree Maximum Path Sum
 
 /*
 time: O(n)
 space: O(h)
 */
+
 public class Solution {
     // 全局变量，用于连接不连续的状态
     int max = Integer.MIN_VALUE;

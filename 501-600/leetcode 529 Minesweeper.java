@@ -1,8 +1,8 @@
-//leetcode 529 Minesweeper
+// leetcode 529 Minesweeper
 
 /*
 time: O(mn)
-space: O()
+space: O(n)
 
 If click on a mine ('M'), mark it as 'X', stop further search.
 If click on an empty cell ('E'), depends on how many surrounding mine:
@@ -22,7 +22,8 @@ class Solution {
             
             if (board[row][col] == 'M') { // Mine
                 board[row][col] = 'X';
-            } else { // Empty
+            } else { 
+                // Empty
                 // Get number of mines first.
                 int count = 0;
                 for (int i = -1; i < 2; i++) {
@@ -35,7 +36,7 @@ class Solution {
                 }
                 
                 if (count > 0) { // If it is not a 'B', stop further BFS.
-                    board[row][col] = (char)(count + '0');
+                    board[row][col] = (char) (count + '0');
                 } else { // Continue BFS to adjacent cells.
                     board[row][col] = 'B';
                     for (int i = -1; i < 2; i++) {

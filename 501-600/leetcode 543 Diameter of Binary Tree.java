@@ -1,9 +1,10 @@
-//leetcode 543 Diameter of Binary Tree
+// leetcode 543 Diameter of Binary Tree
 
 /*
 time: O(n)
-space: O(n)
+space: O(h)
 */
+
 public class Solution {
 	int max = 0;
     public int diameterOfBinaryTree(TreeNode root) {

@@ -1,4 +1,4 @@
-//leetcode 572 Subtree of Another Tree
+// leetcode 572 Subtree of Another Tree
 
 /*
 time: O(mn)

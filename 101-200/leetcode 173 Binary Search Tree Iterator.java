@@ -1,4 +1,4 @@
-//leetcode 173 Binary Search Tree Iterator
+// leetcode 173 Binary Search Tree Iterator
 
 /*
 time: O(n)

@@ -1,10 +1,11 @@
-//leetcode 199 Binary Tree Right Side View
+// leetcode 199 Binary Tree Right Side View
 
 /*
 time: O(n)
 space: O(h)
 */
 
+dfs
 public class Solution {
     public List<Integer> rightSideView(TreeNode root) {
         List<Integer> result = new ArrayList<Integer>();
@@ -13,9 +14,7 @@ public class Solution {
     }
     
     public void rightView(TreeNode curr, List<Integer> result, int currDepth) {
-        if (curr == null) {
-            return;
-        }
+        if (curr == null) return;
         if (currDepth == result.size()) {
             result.add(curr.val);
         }
@@ -26,6 +25,12 @@ public class Solution {
     }
 }
 
+/*
+time: O(n)
+space: O(h)
+*/
+
+bfs
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
         if (root == null) return new ArrayList();

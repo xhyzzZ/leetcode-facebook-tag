@@ -1,10 +1,10 @@
-//leetcode 100 Same Tree
-
+// leetcode 100 Same Tree
 
 /*
 time: O(n)
-space: O(n)
+space: O(h)
 */
+
 public class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) return true;

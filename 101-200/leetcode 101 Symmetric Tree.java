@@ -1,5 +1,4 @@
-//leetcode 101 Symmetric Tree
-
+// leetcode 101 Symmetric Tree
 
 /*
 time: O(n)
@@ -15,6 +14,6 @@ public class Solution {
     public boolean helper(TreeNode p, TreeNode q) {
         if (p == null && q == null) return true;
     	if (p == null || q == null) return false;
-    	return (p.val == q.val) && helper(p.left, q.right) & helper(p.right, q.left);
+    	return (p.val == q.val) && helper(p.left, q.right) && helper(p.right, q.left);
     }
 }

@@ -1,10 +1,10 @@
-//leetcode 111 Minimum Depth of Binary Tree
-
+// leetcode 111 Minimum Depth of Binary Tree
 
 /*
 time: O(n)
-space: O(n)
+space: O(h)
 */
+
 bfs
 public class Solution {
 	public int minDepth(TreeNode root) {
@@ -31,6 +31,11 @@ public class Solution {
 	    return depth;
 	}
 }
+
+/*
+time: O(n)
+space: O(h)
+*/
 
 dfs
 public class Solution {
