@@ -1,7 +1,9 @@
-//leetcode 15 3Sum
+// leetcode 15 3Sum
 
-//time: O(n^2)
-//space: O(n)
+/*
+time: O(n^2)
+space: O(n)
+*/
 
 public class Solution {
     public List<List<Integer>> threeSum(int[] nums) {

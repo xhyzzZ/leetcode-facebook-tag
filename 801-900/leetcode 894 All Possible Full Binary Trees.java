@@ -6,7 +6,7 @@ space: O(2^n)
 */
 
 class Solution {
-    Map<Integer, List<TreeNode>> memo = new HashMap();
+    Map<Integer, List<TreeNode>> memo = new HashMap<>();
 
     public List<TreeNode> allPossibleFBT(int n) {
         if (!memo.containsKey(n)) {

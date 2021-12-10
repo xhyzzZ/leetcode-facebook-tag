@@ -1,4 +1,4 @@
-//leetcode 611 Valid Triangle Number
+// leetcode 611 Valid Triangle Number
 
 /*
 time: O(n^2)
@@ -18,11 +18,13 @@ class Solution {
                 if (nums[left] + nums[right] > nums[i]) {
                     result += (right - left);
                     right--;
-                } else {
+                }
+                else {
                     left++;
                 }
             }
         }
+        
         return result;
     }
 }

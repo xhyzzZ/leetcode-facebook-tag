@@ -1,7 +1,9 @@
-//leetcode 16 3Sum Closest
+// leetcode 16 3Sum Closest
 
-//time: O(n^2)
-//space: O(1)
+/*
+time: O(n^2)
+space: O(1)
+*/
 
 public class Solution {
 	public int threeSumCloset(int [] nums, int target) {

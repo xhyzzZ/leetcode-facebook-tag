@@ -1,4 +1,4 @@
-//leetcode 939 Minimum Area Rectangle
+// leetcode 939 Minimum Area Rectangle
 
 /*
 time: O(mn)

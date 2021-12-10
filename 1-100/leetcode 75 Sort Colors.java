@@ -1,23 +1,26 @@
-//leetcode 75 Sort Colors
-
+// leetcode 75 Sort Colors
 
 /*
 time: O(n)
 space: O(1)
 */
+
 public class Solution {
     public void sortColors(int[] nums) {
-        if(nums == null || nums.length == 0) return;
+        if (nums == null || nums.length == 0) return;
         int left = 0;
         int right = nums.length - 1;
         int index = 0;
         while (index <= right) {
         	if (nums[index] == 0) {
-        		swap(nums, index++, left++);
+        		swap(nums, index, left);
+                index++;
+                left++;
         	} else if (nums[index] == 1) {
         		index++;
         	} else {
-        		swap(nums, index, right--);
+        		swap(nums, index, right);
+                right--;
         	}
         }
     }
@@ -29,6 +32,11 @@ public class Solution {
     }
 }
 
+
+/*
+time: O(n)
+space: O(1)
+*/
 
 public class Solution {
     public void sortColors(int[] nums) {

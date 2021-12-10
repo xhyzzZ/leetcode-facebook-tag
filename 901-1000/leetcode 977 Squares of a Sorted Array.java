@@ -1,4 +1,4 @@
-//leetcode 977 Squares of a Sorted Array
+// leetcode 977 Squares of a Sorted Array
 
 /*
 time: O(n)
@@ -6,18 +6,22 @@ space: O(n)
 */
 
 class Solution {
-    public int[] sortedSquares(int[] A) {
-        int n = A.length;
+    public int[] sortedSquares(int[] nums) {
+        int n = nums.length;
         int[] result = new int[n];
-        int i = 0, j = n - 1;
-        for (int p = n - 1; p >= 0; p--) {
-            if (Math.abs(A[i]) > Math.abs(A[j])) {
-                result[p] = A[i] * A[i];
-                i++;
+        int left = 0;
+        int right = n - 1;
+
+        for (int i = n - 1; i >= 0; i--) {
+            int square;
+            if (Math.abs(nums[left]) < Math.abs(nums[right])) {
+                square = nums[right];
+                right--;
             } else {
-                result[p] = A[j] * A[j];
-                j--;
+                square = nums[left];
+                left++;
             }
+            result[i] = square * square;
         }
         return result;
     }

@@ -1,4 +1,4 @@
-//leetcode 973 K Closest Points to Origin
+// leetcode 973 K Closest Points to Origin
 
 /*
 avereage time: O(n) worst O(n ^ 2)
@@ -9,18 +9,18 @@ And the K elements closest are not sorted in ascending order.
 */
 
 class Solution {
-    public int[][] kClosest(int[][] points, int K) {
+    public int[][] kClosest(int[][] points, int k) {
 	    int len =  points.length, l = 0, r = len - 1;
 	    while (l <= r) {
 	        int mid = helper(points, l, r);
-	        if (mid == K) break;
-	        if (mid < K) {
+	        if (mid == k) break;
+	        if (mid < k) {
 	            l = mid + 1;
 	        } else {
 	            r = mid - 1;
 	        }
 	    }
-	    return Arrays.copyOfRange(points, 0, K);
+	    return Arrays.copyOfRange(points, 0, k);
 	}
 
 	private int helper(int[][] A, int l, int r) {
@@ -39,23 +39,24 @@ class Solution {
 	    return p1[0] * p1[0] + p1[1] * p1[1] - p2[0] * p2[0] - p2[1] * p2[1];
 	}
 }
+
 /*
 time: O(NlogK)
 space: O(k)
 */
 
 class Solution {
-	public int[][] kClosest(int[][] points, int K) {
+	public int[][] kClosest(int[][] points, int k) {
 	    PriorityQueue<int[]> pq = new PriorityQueue<int[]>((p1, p2) -> p2[0] * p2[0] + p2[1] * p2[1] - p1[0] * p1[0] - p1[1] * p1[1]);
 	    for (int[] p : points) {
 	        pq.offer(p);
-	        if (pq.size() > K) {
+	        if (pq.size() > k) {
 	            pq.poll();
 	        }
 	    }
-	    int[][] res = new int[K][2];
-	    while (K > 0) {
-	        res[--K] = pq.poll();
+	    int[][] res = new int[k][2];
+	    while (k > 0) {
+	        res[--k] = pq.poll();
 	    }
 	    return res;
 	}
