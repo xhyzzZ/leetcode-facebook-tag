@@ -1,25 +1,23 @@
-//leetcode 45 Jump Game II
-
+// leetcode 45 Jump Game II
 
 /*
 time: O(n)
 space: O(1)
-
 */
 
-public class Solution {
+class Solution {
     public int jump(int[] nums) {
-        if(nums == null || nums.length < 2) return 0;
-        int res = 0;
-        int curMaxArea = 0;
-        int maxNext = 0;
-        for(int i = 0; i < nums.length - 1; i++) {
-        	maxNext = Math.max(maxNext, i + nums[i]);
-        	if(i == curMaxArea) {
-        		res++;
-        		curMaxArea = maxNext;
-        	}
+        int jumps = 0, currentJumpEnd = 0, farthest = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            // we continuously find the how far we can reach in the current jump
+            farthest = Math.max(farthest, i + nums[i]);
+            // if we have come to the end of the current jump,
+            // we need to make another jump
+            if (i == currentJumpEnd) {
+                jumps++;
+                currentJumpEnd = farthest;
+            }
         }
-        return res;
+        return jumps;
     }
 }

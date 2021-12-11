@@ -1,10 +1,10 @@
-//leetcode 67 Add Binary
-
+// leetcode 67 Add Binary
 
 /*
 time: O(n)
 space: O(n)
 */ 
+
 public class Solution {
     public String addBinary(String a, String b) {
         StringBuilder sb = StringBuilder();

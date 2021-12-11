@@ -1,4 +1,4 @@
-//leetcode 283 Move Zeroes
+// leetcode 283 Move Zeroes
 
 /*
 time: O(n)

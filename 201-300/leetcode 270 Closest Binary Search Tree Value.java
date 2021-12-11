@@ -1,8 +1,8 @@
-//leetcode 270 Closest Binary Search Tree Value
+// leetcode 270 Closest Binary Search Tree Value
 
 /*
 time: O(logn)
-space: O()
+space: O(1)
 */
 
 public class Solution {

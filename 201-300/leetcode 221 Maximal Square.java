@@ -1,4 +1,4 @@
-//leetcode 221 Maximal Square
+// leetcode 221 Maximal Square
 
 /*
 time: O(m * n)

@@ -1,10 +1,10 @@
-//leetcode 277 Find the Celebrity
-
+// leetcode 277 Find the Celebrity
 
 /*
 time: O(n)
 space: O(1)
 */
+
 public class Solution extends Relation {
     public int findCelebrity(int n) {
         int candidate = 0;

@@ -1,10 +1,10 @@
-//leetcode 125 Valid Palindrome
-
+// leetcode 125 Valid Palindrome
 
 /*
 time: O(n)
 space: O(1)
 */
+
 public class Solution {
     public boolean isPalindrome(String s) {
         int i = 0; 
@@ -21,7 +21,8 @@ public class Solution {
         }
         return true;
     }
-    public boolean valid(char c) {
+
+    private boolean valid(char c) {
     	return (c >= 'a' && c <= 'z') ||
     	       (c >= 'A' && c <= 'Z') ||
     	       (c >= '0' && c <= '9');

@@ -1,4 +1,9 @@
-//leetcode 121 Best Time to Buy and Sell Stock
+// leetcode 121 Best Time to Buy and Sell Stock
+
+/*
+time: O(n)
+space: O(1)
+*/
 
 public int maxProfit(int [] prices) {
 	int maxCur = 0, maxsSoFar = 0;

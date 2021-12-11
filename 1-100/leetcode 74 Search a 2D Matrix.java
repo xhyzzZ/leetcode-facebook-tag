@@ -1,32 +1,30 @@
-//leetcode 74 Search a 2D Matrix
+// leetcode 74 Search a 2D Matrix
 
 /*
 time: O(logmn)
-space: O(logmn)
+space: O(1)
 */
 
-public class Solution {
+class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-    	if (matrix.length == 0 || matrix[0].length == 0) return false;
-        int row_num = matrix.length;
-		int col_num = matrix[0].length;
-		
-		int begin = 0, end = row_num * col_num - 1;
-		
-		while(begin <= end){
-			int mid = (end  - begin) / 2 + begin;
-			int mid_value = matrix[mid / col_num][mid % col_num];
-			
-			if(mid_value == target) {
-				return true;
-			
-			} else if(mid_value < target) {
-				//Should move a bit further, otherwise dead loop.
-				begin = mid + 1;
-			} else {
-				end = mid - 1;
-			}
-		}
-		return false;
+        int m = matrix.length;
+        if (m == 0) return false;
+        int n = matrix[0].length;
+
+        int left = 0, right = m * n - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int pivotElement = matrix[mid / n][mid % n];
+            if (target == pivotElement)
+                return true;
+            else {
+                if (target < pivotElement) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+        }
+        return false;
     }
 }

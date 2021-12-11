@@ -1,4 +1,4 @@
-//leetcode 287 Find the Duplicate Number
+// leetcode 287 Find the Duplicate Number
 
 /*
 time: O(n)
@@ -20,6 +20,23 @@ public class Solution {
         		slow = nums[slow];
         	}
         	return slow;
+        }
+        return -1;
+    }
+}
+
+/*
+time: O(n)
+space: O(n)
+*/
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+        Set<Integer> seen = new HashSet<Integer>();
+        for (int num : nums) {
+            if (seen.contains(num))
+                return num;
+            seen.add(num);
         }
         return -1;
     }

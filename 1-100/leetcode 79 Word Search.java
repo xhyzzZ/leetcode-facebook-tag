@@ -1,10 +1,10 @@
-//leetcode 79 Word Search
-
+// leetcode 79 Word Search
 
 /*
-time: O(mn)
-space: O(1)
+time: O(N⋅3^L) where N is the number of cells in the board and L is the length of the word to be matched
+space: O(L)
 */
+
 public class Solution {
     public boolean exist(char[][] board, String word) {
         for (int i = 0; i < board.length; i++) {
@@ -16,6 +16,7 @@ public class Solution {
         }
         return false;
     }
+
     private boolean exist(char[][] board, int i, int j, String word, int start) {
         if (start = word.length()) return true;
         if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) return false;

@@ -1,4 +1,4 @@
-//leetcode 286 Walls and Gates
+// leetcode 286 Walls and Gates
 
 /*
 time: O(mn)

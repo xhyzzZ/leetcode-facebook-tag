@@ -1,5 +1,4 @@
-//leetcode 63 Unique Paths II
-
+// leetcode 63 Unique Paths II
 
 /*
 time: O(m * n)
@@ -14,7 +13,6 @@ dp[i - 1][j]) and dp[j - 1] corresponding to the dp[i][j - 1] in the 2D array)
 
 dp[j]          = dp[j] + dp[j - 1]
 dp[i - 1][j]   =       + dp[i][j - 1]
-
 */
 public class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {

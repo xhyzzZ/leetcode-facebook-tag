@@ -1,10 +1,10 @@
-//leetcode 278 First Bad Version
-
+// leetcode 278 First Bad Version
 
 /*
 time: O(logn)
 space: O(1)
 */
+
 public class Solution extends VersionControl {
     public int firstBadVersion(int n) {
         int start = 1, end = n;
