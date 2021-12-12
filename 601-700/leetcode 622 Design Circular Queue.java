@@ -1,8 +1,8 @@
-//leetcode 622 Design Circular Queue
+// leetcode 622 Design Circular Queue
 
 /*
-time: O()
-space: O()
+time: O(1)
+space: O(n)
 */
 
 class MyCircularQueue {

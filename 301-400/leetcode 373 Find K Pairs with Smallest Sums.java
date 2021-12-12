@@ -1,4 +1,4 @@
-//leetcode 373 Find K Pairs with Smallest Sums
+// leetcode 373 Find K Pairs with Smallest Sums
 
 /*
 time: O(klogk)
@@ -7,7 +7,7 @@ space: O(k)
 
 class Solution {
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
-        PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) -> a[0] + a[1] - b[0] - b[1]);
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] + a[1] - b[0] - b[1]);
         List<int[]> res = new ArrayList<>();
         if (nums1.length == 0 || nums2.length == 0 || k == 0) return res;
         for (int i = 0; i < nums1.length && i < k; i++) {

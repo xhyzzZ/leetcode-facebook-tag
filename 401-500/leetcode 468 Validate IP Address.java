@@ -1,61 +1,49 @@
-//leetcode 468 Validate IP Address
+// leetcode 468 Validate IP Address
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(1)
 */
 
 class Solution {
-    public String validIPAddress(String IP) {
-		if(isValidIPv4(IP)) return "IPv4";
-		else if(isValidIPv6(IP)) return "IPv6";
-		else return "Neither";
+	public String validIPAddress(String queryIP) {
+	    if (queryIP.chars().filter(ch -> ch == '.').count() == 3) {
+	      	return validateIPv4(queryIP);
+	    } else if (queryIP.chars().filter(ch -> ch == ':').count() == 7) {
+	      	return validateIPv6(queryIP);
+	    } else return "Neither";
+  	}
+
+  	private String validateIPv4(String queryIP) {
+	    String[] nums = queryIP.split("\\.", -1);
+	    for (String x : nums) {
+	      	// Validate integer in range (0, 255):
+	      	// 1. length of chunk is between 1 and 3
+	      	if (x.length() == 0 || x.length() > 3) return "Neither";
+	      	// 2. no extra leading zeros
+	      	if (x.charAt(0) == '0' && x.length() != 1) return "Neither";
+	      	// 3. only digits are allowed
+	      	for (char ch : x.toCharArray()) {
+	        	if (!Character.isDigit(ch)) return "Neither";
+	      	}
+	      	// 4. less than 255
+	      	if (Integer.parseInt(x) > 255) return "Neither";
+	    }
+	    return "IPv4";
 	}
 
-	public boolean isValidIPv4(String ip) {
-		if(ip.length() < 7) return false;
-		if(ip.charAt(0) == '.') return false;
-		if(ip.charAt(ip.length() - 1) == '.') return false;
-		String[] tokens = ip.split("\\.");
-		if(tokens.length != 4) return false;
-		for(String token : tokens) {
-			if(!isValidIPv4Token(token)) return false;
-		}
-		return true;
-	}
-	public boolean isValidIPv4Token(String token) {
-		if(token.startsWith("0") && token.length() > 1) return false;
-		try {
-			int parsedInt = Integer.parseInt(token);
-			if(parsedInt < 0 || parsedInt > 255) return false;
-			if(parsedInt == 0 && token.charAt(0) != '0') return false;
-		} catch(NumberFormatException nfe) {
-			return false;
-		}
-		return true;
-	}
-		
-	public boolean isValidIPv6(String ip) {
-		if(ip.length() < 15) return false;
-		if(ip.charAt(0) == ':') return false;
-		if(ip.charAt(ip.length() - 1) == ':') return false;
-		String[] tokens = ip.split(":");
-		if(tokens.length != 8) return false;
-		for(String token : tokens) {
-			if(!isValidIPv6Token(token)) return false;
-		}
-		return true;
-	}
-	public boolean isValidIPv6Token(String token) {
-		if(token.length() > 4 || token.length() == 0) return false;
-		char[] chars = token.toCharArray();
-		for(char c : chars) {
-			boolean isDigit = c >= 48 && c <= 57;
-			boolean isUppercaseAF = c >= 65 && c <= 70;
-			boolean isLowerCaseAF = c >= 97 && c <= 102;
-			if(!(isDigit || isUppercaseAF || isLowerCaseAF)) 
-				return false;
-		}
-		return true;
-	}
+  	private String validateIPv6(String queryIP) {
+	    String[] nums = queryIP.split(":", -1);
+	    String hexdigits = "0123456789abcdefABCDEF";
+	    for (String x : nums) {
+	      	// Validate hexadecimal in range (0, 2**16):
+	      	// 1. at least one and not more than 4 hexdigits in one chunk
+	      	if (x.length() == 0 || x.length() > 4) return "Neither";
+	      	// 2. only hexdigits are allowed: 0-9, a-f, A-F
+	      	for (Character ch : x.toCharArray()) {
+	        	if (hexdigits.indexOf(ch) == -1) return "Neither";
+	      	}
+	    }
+	    return "IPv6";
+  	}
 }

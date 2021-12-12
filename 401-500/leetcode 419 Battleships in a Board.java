@@ -1,4 +1,4 @@
-//leetcode 419 Battleships in a Board
+// leetcode 419 Battleships in a Board
 
 /*
 time: O(mn)

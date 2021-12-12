@@ -1,29 +1,27 @@
-//leetcode 350 Intersection of Two Arrays II
+// leetcode 350 Intersection of Two Arrays II
 
 /*
-time: O(n)
-space: O(n)
+time: O(n + m)
+space: O(min(n, m))
 */
+
 public class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        List<Integer> res = new ArrayList<Integer>();
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-        for (int i = 0, j = 0; i < nums1.length && j < nums2.length; ) {
-        	if (nums1[i] < nums2[j]) {
-        		i++;
-        	} else if (nums1[i] == nums2[j]) {
-        		res.add(nums1[i]);
-        		i++;
-        		j++;
-        	} else {
-        		j++;
-        	}
+        if (nums1.length > nums2.length) {
+            return intersect(nums2, nums1);
         }
-        int[] result = new int[res.size()];
-        for (int i = 0; i < res.size(); i++) {
-        	result[i] = res.get(i);
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int n : nums1) {
+            map.put(n, map.getOrDefault(n, 0) + 1);
         }
-        return result;
+        int k = 0;
+        for (int n : nums2) {
+            int count = map.getOrDefault(n, 0);
+            if (count > 0) {
+                nums1[k++] = n;
+                map.put(n, count - 1);
+            }
+        }
+        return Arrays.copyOfRange(nums1, 0, k);
     }
 }

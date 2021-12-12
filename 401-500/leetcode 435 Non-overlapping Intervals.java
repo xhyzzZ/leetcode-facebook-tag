@@ -1,30 +1,28 @@
-//leetcode 435 Non-overlapping Intervals
+// leetcode 435 Non-overlapping Intervals
 
 /*
 time: O(nlogn)
-space: O()
+space: O(1)
 */
 
 class Solution {
-    public int eraseOverlapIntervals(Interval[] intervals) {
-        if (intervals.length == 0)  return 0;
+    class myComparator implements Comparator<int[]> {
+        public int compare(int[] a, int[] b) {
+            return a[1] - b[1];
+        }
+    }
 
+    public int eraseOverlapIntervals(int[][] intervals) {
+        if (intervals.length == 0) return 0;
         Arrays.sort(intervals, new myComparator());
-        int end = intervals[0].end;
-        int count = 1;        
-
+        int end = intervals[0][1];
+        int count = 1;
         for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i].start >= end) {
-                end = intervals[i].end;
+            if (intervals[i][0] >= end) {
+                end = intervals[i][1];
                 count++;
             }
         }
         return intervals.length - count;
-    }
-    
-    class myComparator implements Comparator<Interval> {
-        public int compare(Interval a, Interval b) {
-            return a.end - b.end;
-        }
     }
 }

@@ -1,4 +1,4 @@
-//leetcode 503 Next Greater Element II
+// leetcode 503 Next Greater Element II
 
 /*
 time: O(n)
@@ -11,6 +11,8 @@ class Solution {
         int[] next = new int[n];
         Arrays.fill(next, -1);
         Stack<Integer> stack = new Stack<>(); // index stack
+        // Loop once, we can get the Next Greater Number of a normal array.
+        // Loop twice, we can get the Next Greater Number of a circular array
         for (int i = 0; i < n * 2; i++) {
             int num = nums[i % n]; 
             while (!stack.isEmpty() && nums[stack.peek()] < num)
