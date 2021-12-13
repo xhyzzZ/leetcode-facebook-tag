@@ -1,8 +1,8 @@
-//leetcode 670 Maximum Swap
+// leetcode 670 Maximum Swap
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(n)
 */
 
 class Solution {
@@ -24,7 +24,6 @@ class Solution {
                 }
             }
         }
-        
         return num;
     }
 }
