@@ -6,17 +6,17 @@ space: O(n)
 */
 
 class Solution {
-    public Interval[] intervalIntersection(Interval[] A, Interval[] B) {
-        if (A == null || A.length == 0 || B == null || B.length == 0) {
+    public Interval[] intervalIntersection(Interval[] firstList, Interval[] secondList) {
+        if (firstList == null || firstList.length == 0 || secondList == null || secondList.length == 0) {
             return new Interval[] {};
         }
         
-        int m = A.length, n = B.length;
+        int m = firstList.length, n = secondList.length;
         int i = 0, j = 0;
         List<Interval> res = new ArrayList<>();
         while (i < m && j < n) {
-            Interval a = A[i];
-            Interval b = B[j];
+            Interval a = firstList[i];
+            Interval b = firstList[j];
 
             // find the overlap... if there is any...
             int startMax = Math.max(a.start, b.start);
@@ -26,7 +26,7 @@ class Solution {
                 res.add(new Interval(startMax, endMin));
             }
             
-            //update the pointer with smaller end value...
+            // update the pointer with smaller end value...
             if (a.end == endMin) { 
                 i++; 
             }

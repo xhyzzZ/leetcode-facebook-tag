@@ -1,4 +1,4 @@
-// leetcode 992 ubarrays with K Different Integers
+// leetcode 992 Subarrays with K Different Integers
 
 /*
 time: O(n)

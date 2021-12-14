@@ -1,41 +1,42 @@
-//leetcode 1091 Shortest Path in Binary Matrix
+// leetcode 1091 Shortest Path in Binary Matrix
 
 /*
-time: O()
-space: O()
+time: O(n)
+space: O(n)
 */
 
 class Solution {
 
-	private int dir[][] = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}, 
-									{1, -1}, {-1, 1}, {-1, -1}, {1, 1}};
+	private int dir[][] = new int[][] {{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, -1}, {-1, 1}, {-1, -1}, {1, 1}};
     public int shortestPathBinaryMatrix(int[][] grid) {
-        int n = grid.length;
-        if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1) {
-        	return -1;
-        }
+        int m = grid.length;
+        int n = grid[0].length;
+
+        if (grid[0][0] == 1 || grid[m - 1][n - 1]==1) return -1;
+    
+        boolean[][] visited = new boolean[m][n];
+        visited[0][0] = true;
         Queue<int[]> queue = new LinkedList<>();
-        queue.offer(new int[] {0, 0});
+        queue.add(new int[] {0, 0});
 
         int res = 0;
         while (!queue.isEmpty()) {
-        	for (int i = queue.size(); i > 0; i--) {
-        		int[] cur = queue.poll();
-        		if (cur[0] == n - 1 && cur[1] == n - 1) {
-        			return res + 1;
-        		}
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] pop = queue.remove();
+                if (pop[0] == m - 1 && pop[1] == n - 1) return res + 1;
+                for (int k = 0; k < 8; k++) {
+                    int nextX = dir[k][0] + pop[0];
+                    int nextY = dir[k][1] + pop[1];
 
-        		for (int k = 0; k < 8; k++) {
-        			int x0 = cur[0] + dir[k][0];
-        			int y0 = cur[1] + dir[k][1];
+                    if (nextX >= 0 && nextX < m && nextY >= 0 && nextY < n && !visited[nextX][nextY] && grid[nextX][nextY] == 0) {
+                        queue.add(new int[] {nextX,nextY});
+                        visited[nextX][nextY] = true;
+                    }
 
-        			if (x0 >= 0 && x0 < n && y0 >= 0 && y0 < n && grid[x0][y0] == 0) {
-        				queue.offer(new int[] {x0, y0});
-        				grid[x0][y0] = ~grid[x0][y0];
-        			} 
-        		}
-        	}
-        	res++;
+                }
+            }
+            res++;
         }
         return -1;
     }

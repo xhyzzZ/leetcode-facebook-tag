@@ -11,17 +11,17 @@ class Solution {
     	x = Math.abs(x);
         y = Math.abs(y);
 
-        Queue<int[]> q = new LinkedList<>();
-        q.offer(new int[] {0, 0});
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[] {0, 0});
 
         Set<String> visited = new HashSet<>();
         visited.add("0,0");
        
         int count = 0;
-        while (!q.isEmpty()) {
-            int size = q.size();
+        while (!queue.isEmpty()) {
+            int size = queue.size();
             for (int i = 0; i < size; i++) {
-                int[] cur = q.poll();
+                int[] cur = queue.poll();
                 int r = cur[0];
                 int c = cur[1];
                 if (r == x && c == y) return count;
@@ -30,7 +30,7 @@ class Solution {
                     int nc = c + dir[1];
                     
                     if (!visited.contains(nr + "," + nc) && nr >= -1 && nc >= -1) {
-                        q.add(new int[] {nr, nc});
+                        queue.add(new int[] {nr, nc});
                         visited.add(nr + "," + nc);
                     }
                 }

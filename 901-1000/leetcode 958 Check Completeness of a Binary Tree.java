@@ -1,21 +1,20 @@
-//leetcode 958 Check Completeness of a Binary Tree
+// leetcode 958 Check Completeness of a Binary Tree
 
 /*
 time: O(n)
-space: O(n)
+space: O(h)
 */
 
 class Solution {
     public boolean isCompleteTree(TreeNode root) {
-        Queue<TreeNode> bfs = new LinkedList<TreeNode>();
-        bfs.offer(root);
-        while (bfs.peek() != null) {
-            TreeNode node = bfs.poll();
-            bfs.offer(node.left);
-            bfs.offer(node.right);
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(root);
+        while (queue.peek() != null) {
+            TreeNode node = queue.poll();
+            queue.offer(node.left);
+            queue.offer(node.right);
         }
-        while (!bfs.isEmpty() && bfs.peek() == null)
-            bfs.poll();
-        return bfs.isEmpty();
+        while (!queue.isEmpty() && queue.peek() == null) queue.poll();
+        return queue.isEmpty();
     }
 }
