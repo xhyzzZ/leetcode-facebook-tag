@@ -1,5 +1,4 @@
-//leetcode 426 Convert Binary Search Tree to Sorted Doubly Linked List
-
+// leetcode 426 Convert Binary Search Tree to Sorted Doubly Linked List
 
 /*
 time: O(n)
@@ -13,11 +12,10 @@ Step 2: Conquer:
 Firstly, connect left circular doubly linked list with the root circular doubly linked list.
 Secondly, connect them with the right circular doubly linked list. Here we go!
 */
+
 public class Solution {
     public Node treeToDoublyList(Node root) {
-        if (root == null) {
-            return null;
-        }
+        if (root == null) return null;
         
         Node leftHead = treeToDoublyList(root.left);
         Node rightHead = treeToDoublyList(root.right);
@@ -28,12 +26,8 @@ public class Solution {
     
     // Used to connect two circular doubly linked lists. n1 is the head of circular DLL as well as n2.
     private Node connect(Node n1, Node n2) {
-        if (n1 == null) {
-            return n2;
-        }
-        if (n2 == null) {
-            return n1;
-        }
+        if (n1 == null) return n2;
+        if (n2 == null) return n1;
         
         Node tail1 = n1.left;
         Node tail2 = n2.left;

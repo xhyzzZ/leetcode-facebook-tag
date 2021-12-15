@@ -17,7 +17,7 @@ class Solution {
         return ans;
     }
     
-    public int dfs(int[][] grid, int i, int j, int sum) {
+    private int dfs(int[][] grid, int i, int j, int sum) {
         if (i >= grid.length || i < 0 || j >= grid[0].length || j < 0 || grid[i][j] == 0) return sum;
         int val = grid[i][j];
         

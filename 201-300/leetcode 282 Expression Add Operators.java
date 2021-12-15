@@ -1,8 +1,8 @@
-//leetcode 282 Expression Add Operators
+// leetcode 282 Expression Add Operators
 
 /*
-time: O()
-space: O()
+time: O(n * 4^n)
+space: O(n)
 
 This problem has a lot of edge cases to be considered:
 
@@ -25,9 +25,12 @@ class Solution {
 			return;
 		}
 		for (int i = pos; i < num.length(); i++) {
+			// corner case: if current position is 0, we can only use it as a single digit number, should be 0
+        	// if it is not a single digit number with leading 0, it should be considered as an invalid number 
 			if (num.charAt(pos) == '0' && i != pos) break;
 			long curr = Long.parseLong(num.substring(pos, i + 1));
 			int len = sb.length();
+			// position 0 should be considered individually, since it does not have any operand character before curNum
 			if (pos == 0) {
 				dfs(res, sb.append(curr), num, i + 1, target, curr, curr); 
 				sb.setLength(len);
@@ -36,6 +39,8 @@ class Solution {
 				sb.setLength(len);
 				dfs(res, sb.append("-").append(curr), num, i + 1, target, prev - curr, -curr); 
 				sb.setLength(len);
+				// trick part: to calculate multiplication, we should subtract previous number, and then add current
+            	// multiplication result to the subtraction result 
 				dfs(res, sb.append("*").append(curr), num, i + 1, target, prev - multi + multi * curr, multi * curr); 
 				sb.setLength(len);
 			}

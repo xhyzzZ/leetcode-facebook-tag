@@ -2,7 +2,7 @@
 
 /*
 time: O(V + E)
-space: O()
+space: O(1)
 1. dfs建图
 2. 用hashmap统计子节点入度
 3. bfs遍历
@@ -14,9 +14,7 @@ class Solution {
 	 * and then doing topological sort for the graph to get the result string.
 	 **/
 	public String alienOrder(String[] words) {
-	    if (words == null || words.length == 0) {
-	        return "";
-	    }
+	    if (words == null || words.length == 0) return "";
 
 	    Map<Character, Set<Character>> graph = new HashMap<>();
 	    Map<Character, Integer> inDegreeMap = new HashMap<>();
@@ -96,9 +94,7 @@ class Solution {
 	    }
 	    /* check if input order is valid */
 	    // 如果result和degree里面出现的节点数量相同，说明其中有矛盾的节点出现
-	    if (sb.length() != inDegreeMap.size()) {
-	        return "";
-	    }
+	    if (sb.length() != inDegreeMap.size()) return "";
 	    return sb.toString();
 	} 
 }
