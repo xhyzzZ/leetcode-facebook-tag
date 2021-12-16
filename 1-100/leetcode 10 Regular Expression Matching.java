@@ -1,5 +1,4 @@
-//leetcode 10 Regular Expression Matching
-
+// leetcode 10 Regular Expression Matching
 
 /*
 time: O(mn)
@@ -17,9 +16,7 @@ space: O(mn)
 */
 public class Solution {
     public boolean isMatch(String s, String p) {
-        if (s == null || p == null) {
-            return false;
-        }
+        if (s == null || p == null) return false;
         boolean[][] state = new boolean[s.length() + 1][p.length() + 1];
         state[0][0] = true;
         // no need to initialize state[i][0] as false

@@ -7,7 +7,7 @@
 */
 
 /*
-time: O(n) average
+time: O(n) average, O(n^2) in the worst case
 space: O(1)
 */
 
@@ -30,14 +30,16 @@ public class Solution {
             while (start <= end && nums[start] <= nums[pivot]) start++;
             while (start <= end && nums[end] > nums[pivot]) end--;
             if (start > end) break;
-            temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
+            swap(nums, start, end);
         }
-        temp = nums[end];
-        nums[end] = nums[pivot];
-        nums[pivot] = temp;
+        swap(nums, end, pivot);
         return end;
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
     }
 }
 

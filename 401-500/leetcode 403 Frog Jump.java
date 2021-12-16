@@ -1,39 +1,26 @@
-//leetcode 403 Frog Jump
+// leetcode 403 Frog Jump
 
 /*
 time: O(n^2)
-space: O(n)
+space: O(n^2)
 */
 
-class Solution {
+public class Solution {
     public boolean canCross(int[] stones) {
-        if (stones.length == 0) {
-        	return true;
+        HashMap<Integer, Set<Integer>> map = new HashMap<>();
+        for (int i = 0; i < stones.length; i++) {
+            map.put(stones[i], new HashSet<Integer>());
         }
-        
-        HashMap<Integer, HashSet<Integer>> map = new HashMap<Integer, HashSet<Integer>>(stones.length);
-        map.put(0, new HashSet<Integer>());
-        map.get(0).add(1);
-        for (int i = 1; i < stones.length; i++) {
-        	map.put(stones[i], new HashSet<Integer>() );
+        map.get(0).add(0);
+        for (int i = 0; i < stones.length; i++) {
+            for (int k : map.get(stones[i])) {
+                for (int step = k - 1; step <= k + 1; step++) {
+                    if (step > 0 && map.containsKey(stones[i] + step)) {
+                        map.get(stones[i] + step).add(step);
+                    }
+                }
+            }
         }
-        
-        for (int i = 0; i < stones.length - 1; i++) {
-        	int stone = stones[i];
-        	for (int step : map.get(stone)) {
-        		int reach = step + stone;
-        		if (reach == stones[stones.length - 1]) {
-        			return true;
-        		}
-        		HashSet<Integer> set = map.get(reach);
-        		if (set != null) {
-        		    set.add(step);
-        		    if (step - 1 > 0) set.add(step - 1);
-        		    set.add(step + 1);
-        		}
-        	}
-        }
-        
-        return false;
+        return map.get(stones[stones.length - 1]).size() > 0;
     }
 }

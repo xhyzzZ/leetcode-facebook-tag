@@ -1,11 +1,11 @@
-//leetcode 44 Wildcard Matching
-
-
+// leetcode 44 Wildcard Matching
 
 /*
-time: O(n)
-space: O(1)
+time: O(mn)
+space: O(mn)
 */
+
+// dp[i][j]: true if the first i char in String s matches the first j chars in String p
 
 public class Solution {
     public boolean isMatch(String s, String p) {
@@ -30,6 +30,11 @@ public class Solution {
         return dp[m][n];  
     }
 }
+
+/*
+time: O(min(s, p))
+space: O(1)
+*/
 
 public class Solution {
     public boolean isMatch(String s, String p) {
