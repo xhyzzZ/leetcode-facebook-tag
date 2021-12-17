@@ -30,25 +30,30 @@ class Solution {
 
 /*
 time: O(nlogn)
-space; O()
+space; O(n)
 */
 
-public class Solution {
+class Solution {
 	public int lengthOfLIS(int[] nums) {
-	    int[] tails = new int[nums.length];
-	    int size = 0;
-	    for (int x : nums) {
-	        int i = 0, j = size;
-	        while (i != j) {
-	            int m = (i + j) / 2;
-	            if (tails[m] < x)
-	                i = m + 1;
-	            else
-	                j = m;
-	        }
-	        tails[i] = x;
-	        if (i == size) ++size;
+	    List<Integer> sequence = new ArrayList<>();
+	    for (int n : nums) update(sequence, n);
+	    
+	    return sequence.size();
+	}
+
+	private void update(List<Integer> seq, int n) {
+	    if (seq.isEmpty() || seq.get(seq.size() - 1) < n) seq.add(n);
+	    else seq.set(findFirstLargeEqual(seq, n), n);
+	}
+
+	private int findFirstLargeEqual(List<Integer> seq, int target) {
+	    int lo = 0;
+	    int hi = seq.size() - 1;
+	    while (lo < hi) {
+	        int mid = lo + (hi - lo) / 2;
+	        if (seq.get(mid) < target) lo = mid + 1;
+	        else hi = mid;
 	    }
-	    return size;
+	    return lo;
 	}
 }
