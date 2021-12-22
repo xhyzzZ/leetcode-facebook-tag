@@ -52,9 +52,7 @@ class Solution {
 
     private int dfs(Set<String> words, Map<String, Integer> memo, String currentWord) {
         // If the word is encountered previously we just return its value present in the map (memoization).
-        if (memo.containsKey(currentWord)) {
-            return memo.get(currentWord);
-        }
+        if (memo.containsKey(currentWord)) return memo.get(currentWord);
         // This stores the maximum length of word sequence possible with the 'currentWord' as the
         int maxLength = 1;
         StringBuilder sb = new StringBuilder(currentWord);

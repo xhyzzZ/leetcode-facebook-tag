@@ -2,7 +2,7 @@
 
 /*
 time: O(logN) get, O(logK) set
-space: O()
+space: O(n)
 */
 
 treemap
@@ -20,20 +20,16 @@ public class TimeMap {
 
     public String get(String key, int timestamp) {
         TreeMap<Integer, String> treeMap = map.get(key);
-        if (treeMap == null) {
-            return "";
-        }
+        if (treeMap == null) return "";
         Integer floor = treeMap.floorKey(timestamp);
-        if (floor == null) {
-            return "";
-        }
+        if (floor == null) return "";
         return treeMap.get(floor);
     }
 }
 
 /*
 time: O(logN) get, O(1) set
-space: O()
+space: O(n)
 */
 
 binary search
