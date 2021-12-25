@@ -1,9 +1,10 @@
-//leetcode 41 First Missing Positive
+// leetcode 41 First Missing Positive
 
 /*
 time: O(n)
 space: O(1)
 */
+
 public class Solution {
 	public int firstMissingPositive(int[] nums) {
         for (int i = 0; i < nums.length; i++) {

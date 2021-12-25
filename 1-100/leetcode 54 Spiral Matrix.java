@@ -1,10 +1,10 @@
-//leetcode 54 Spiral Matrix
-
+// leetcode 54 Spiral Matrix
 
 /*
 time: O(m * n)
 space: O(m * n)
 */
+
 public class Solution {
 	public List<Integer> spiralOrder(int[][] matrix) {
 		List<Integer> res = new ArrayList<Integer>();

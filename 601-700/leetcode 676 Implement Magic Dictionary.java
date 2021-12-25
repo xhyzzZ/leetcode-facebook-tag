@@ -1,8 +1,8 @@
-//leetcode 676 Implement Magic Dictionary
+// leetcode 676 Implement Magic Dictionary
 
 /*
-time: O()
-space: O()
+time: O(mn)
+space: O(n)
 */
 
 class MagicDictionary {
@@ -17,9 +17,7 @@ class MagicDictionary {
     public void buildDict(String[] dict) {
         for (String s : dict) {
             int len = s.length();
-            if (!map.containsKey(len)) {
-                map.put(len, new HashSet<>());
-            }
+            if (!map.containsKey(len)) map.put(len, new HashSet<>());
             map.get(len).add(s);
         }
     }
@@ -27,9 +25,7 @@ class MagicDictionary {
     /** Returns if there is any word in the trie that equals to the given word after modifying exactly one character */
     public boolean search(String word) {
         int len = word.length();
-        if (!map.containsKey(len)) {
-            return false;
-        }
+        if (!map.containsKey(len)) return false;
         for (String s : map.get(len)) {
             int count = 0;
             for (int i = 0; i < len; i++) {
@@ -37,9 +33,7 @@ class MagicDictionary {
                     count++;
                 }
             }
-            if (count == 1) {
-                return true;
-            }
+            if (count == 1) return true;
         }
         return false;
     }
