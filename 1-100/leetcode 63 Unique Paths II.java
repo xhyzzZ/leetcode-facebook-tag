@@ -13,6 +13,12 @@ dp[i - 1][j]) and dp[j - 1] corresponding to the dp[i][j - 1] in the 2D array)
 
 dp[j]          = dp[j] + dp[j - 1]
 dp[i - 1][j]   =       + dp[i][j - 1]
+
+dp[j] += dp[j - 1];
+is
+dp[j] = dp[j] + dp[j - 1];
+which is new dp[j] = old dp[j] + dp[j-1]
+which is current cell = top cell + left cell
 */
 public class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {

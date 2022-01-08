@@ -1,8 +1,8 @@
 // leetcode 118 Pascal's Triangle
 
 /*
-time: O()
-space: O()
+time: O(numRows^2)
+space: O(numRows^2)
 */
 
 public class Solution {
