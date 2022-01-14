@@ -2,44 +2,32 @@
 
 /*
 time: O(n)
-space: O()
+space: O(n)
 */
 
 class Solution {
     public String rearrangeString(String s, int k) {
-        StringBuilder rearranged = new StringBuilder();
-        Map<Character, Integer> map = new HashMap<>();
-        for (char c : s.toCharArray()) {
-        	map.put(c, map.getOrDefault(c, 0) + 1);
+        if (k == 0) return s;
+        int[] freq = new int[26];
+        StringBuilder sb = new StringBuilder();
+        for (char c : s.toCharArray()) freq[c - 'a']++;
+
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[1] - a[1]);
+        for (int i = 0; i < 26; i++) {
+            if (freq[i] > 0) pq.add(new int[] {i, freq[i]});
         }
-        
-        //construct a max heap using self-defined comparator, which holds all Map entries, Java is quite verbose
-        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>(new Comparator<Map.Entry<Character, Integer>>() {
-            public int compare(Map.Entry<Character, Integer> entry1, Map.Entry<Character, Integer> entry2) {
-                return entry2.getValue() - entry1.getValue();
-            }
-        });
-        
-        Queue<Map.Entry<Character, Integer>> waitQueue = new LinkedList<>();
-        maxHeap.addAll(map.entrySet());
-        
-        while (!maxHeap.isEmpty()) {
-            
-            Map.Entry<Character, Integer> current = maxHeap.poll();
-            rearranged.append(current.getKey());
-            current.setValue(current.getValue() - 1);
-            waitQueue.offer(current);
-            
-            if (waitQueue.size() < k) { // intial k-1 chars, waitQueue not full yet
-                continue;
-            }
-            // release from waitQueue if char is already k apart
-            Map.Entry<Character, Integer> front = waitQueue.poll();
-            //note that char with 0 count still needs to be placed in waitQueue as a place holder
-            if (front.getValue() > 0) {
-                maxHeap.offer(front);
+
+        Queue<int[]> queue = new LinkedList<>();
+        while (!pq.isEmpty()) {
+            int[] cur = pq.poll();
+            sb.append((char) (cur[0] + 'a'));
+            cur[1]--;
+            queue.add(cur);
+            if (queue.size() >= k) { 
+                int[] front = queue.poll();
+                if (front[1] > 0) pq.add(front);
             }
         }
-        return rearranged.length() == s.length() ? rearranged.toString() : "";
+        return sb.length() == s.length() ? sb.toString() : "";
     }
 }
