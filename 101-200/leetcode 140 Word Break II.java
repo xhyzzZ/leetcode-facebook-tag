@@ -1,7 +1,7 @@
 // leetcode 140 Word Break II
 
 /*
-time: O(2^n)
+time: O(len(wordDict) ^ len(s / minWordLenInDict)) 
 space: O()
 */
 
@@ -16,6 +16,7 @@ public class Solution {
     	List<String> res = new ArrayList<>();
     	for (String word : wordDict) {
     		if (s.startsWith(word)) {
+                // s.substring() has a time complexity of O(n) should be o(avgWordLenInDict)
     			String next = s.substring(word.length());
     			if (next.length() == 0) res.add(word);
     			else for (String sub : backtrack(next, wordDict, memo)) res.add(word + " " + sub);

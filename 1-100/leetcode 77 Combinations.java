@@ -1,8 +1,8 @@
 // leetcode 77 Combinations
 
 /*
-time: O(n^min(k,n-k))
-space: O(n)
+time: O(C(n, k)*k)
+space: O(C(n, k))
 */
 
 public class Solution {

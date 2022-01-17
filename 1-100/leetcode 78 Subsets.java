@@ -1,8 +1,7 @@
 // leetcode 78 Subsets
 
-
 /*
-time: O(2^n)
+time: O(2^n * n)
 space: O(n)
 */
 
@@ -14,7 +13,7 @@ public class Solution {
         return res;
     }
 
-    public void helper(List<List<Integer>> res, List<Integer> list, int[] nums, int start) {
+    private void helper(List<List<Integer>> res, List<Integer> list, int[] nums, int start) {
     	res.add(new ArrayList<>(list));
     	for (int i = start; i < nums.length; i++) {
     		list.add(nums[i]);

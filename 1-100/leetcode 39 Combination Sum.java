@@ -1,9 +1,15 @@
 // leetcode 39 Combination Sum
 
-
 /*
-time: O(2^n)
-space: O(n)
+time: O(n^(t/m + 1)) 
+n be the number of candidates, t be the target value, and m be the minimal value among the candidates.
+
+the maximum possible height of the tree is the Target divided by the vale of the smallest Candidate 
+i.e. the longest possible combination.
+
+At each node, it takes a constant time to process, 
+except the leaf nodes which could take a linear time to make a copy of combination
+space: O(t/m)
 */
 
 public class Solution {
@@ -13,7 +19,8 @@ public class Solution {
         helper(res, new ArrayList<>(), candidates, target, 0);
         return res;
     }
-    public void helper(List<List<Integer>> res, List<Integer> list, int[] candidates, int target, int start) {
+
+    private void helper(List<List<Integer>> res, List<Integer> list, int[] candidates, int target, int start) {
     	if (target < 0) return;
     	if (target == 0) {
     		res.add(new ArrayList<>(list));
