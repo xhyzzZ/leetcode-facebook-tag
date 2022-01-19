@@ -1,9 +1,8 @@
-//leetcode 43 Multiply Strings
+// leetcode 43 Multiply Strings
 
 /*
 time: O(n * m)
 space: O(n + m)
-
 */
 
 public class Solution {

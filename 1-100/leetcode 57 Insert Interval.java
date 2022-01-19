@@ -1,4 +1,4 @@
-//leetcode 57 Insert Interval
+// leetcode 57 Insert Interval
 
 /*
 time: O(n)

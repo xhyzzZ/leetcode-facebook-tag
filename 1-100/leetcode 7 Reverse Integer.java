@@ -1,11 +1,12 @@
-//leetcode 7 Reverse Integer
+// leetcode 7 Reverse Integer
 
+/*
+time: O(n)
+space: O(1)
+*/
 
-//int 范围 -2^32 ~ 2^32 - 1
-//corner case: 越界
-
-//O(n)
-//space: O(1)
+// int 范围 -2^32 ~ 2^32 - 1
+// corner case: 越界
 
 public class Solution {
     public int reverse(int x) {
@@ -15,6 +16,6 @@ public class Solution {
         	x /= 10;
         	if (res > Integer.MAX_VALUE || res < Integer.MIN_VALIE) return 0;
         }
-        return (int)res;
+        return (int) res;
     }
 }

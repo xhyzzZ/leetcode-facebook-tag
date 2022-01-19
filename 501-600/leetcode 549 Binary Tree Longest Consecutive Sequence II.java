@@ -1,12 +1,12 @@
-//leetcode 549 Binary Tree Longest Consecutive Sequence II
+// leetcode 549 Binary Tree Longest Consecutive Sequence II
 
 /*
 time: O(n)
-space: O()
+space: O(n)
 */
 
 class Solution {
-	int max = 0;
+	private int max = 0;
     public int longestConsecutive(TreeNode root) {
         helper(root);
         return max;

@@ -1,9 +1,10 @@
-//leetcode 257 Binary Tree Paths
+// leetcode 257 Binary Tree Paths
 
 /*
 time: O(n)
 space: O(h)
 */
+
 recursion
 public class Solution {
 	//recursion
@@ -23,10 +24,12 @@ public class Solution {
         return res;
     }
 }
+
 /*
 time: O(n)
 space: O(h)
 */
+
 dfs
 public class Solution {
     public List<String> binaryTreePaths(TreeNode root) {

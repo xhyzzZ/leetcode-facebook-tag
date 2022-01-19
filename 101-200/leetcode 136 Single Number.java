@@ -1,9 +1,10 @@
-//leetcode 136 Single Number
+// leetcode 136 Single Number
 
 /*
 time: O(n)
 space: O(1)
 */
+
 public class Solution {
     public int singleNumber(int[] nums) {
         int ans = 0;

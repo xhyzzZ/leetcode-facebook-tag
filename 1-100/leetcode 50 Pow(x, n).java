@@ -1,12 +1,10 @@
-//leetcode 50 Pow(x, n)
-
+// leetcode 50 Pow(x, n)
 
 /*
 time: O(logn)
 space: O(n)
-
-
 */
+
 public class Solution {
     public double myPow(double x, int n) {
         if (n > 0) {
@@ -16,7 +14,7 @@ public class Solution {
         }
     }
 
-    public static double pow(double x, int n) {
+    private double pow(double x, int n) {
     	if (n == 0) return 1;
     	double y = pow(x, n / 2);
     	if (n % 2 == 0) { 

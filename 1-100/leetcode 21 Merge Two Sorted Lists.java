@@ -1,7 +1,9 @@
-//leetcode 21 Merge Two Sorted Lists
+// leetcode 21 Merge Two Sorted Lists
 
-//time: O(n)
-//space: O(1) / O(n)
+/*
+time: O(m + n)
+space: O(1)
+*/
 
 public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
@@ -27,6 +29,10 @@ public class Solution {
 
 }
 
+/*
+time: O(m + n)
+space: O(m + n)
+*/
 
 public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {

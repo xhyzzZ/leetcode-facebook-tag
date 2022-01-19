@@ -1,4 +1,4 @@
-//leetcode 2 Add Two Numbers
+// leetcode 2 Add Two Numbers
 
 /*
 time: O(n)
@@ -22,8 +22,8 @@ class Solution {
             cur.next = newNode;
             cur = newNode;
             
-            if(l1 != null) l1 = l1.next;
-            if(l2 != null) l2 = l2.next;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
         }
         
         return dummy.next;

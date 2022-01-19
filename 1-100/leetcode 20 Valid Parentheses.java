@@ -1,11 +1,12 @@
-//leetcode 20 Valid Parentheses
+// leetcode 20 Valid Parentheses
 
-//time:O(n) 
-//space: O(n)
+/*
+time: O(n)
+space: O(n)
+*/
 
 public class Solution {
 	public boolean isValid(String s) {
-
 		if (s == null || s.length() == 0) return true;
 		Stack<Character> stack = new Stack<Character>();
 		for (char c : s.toCharArray()) {

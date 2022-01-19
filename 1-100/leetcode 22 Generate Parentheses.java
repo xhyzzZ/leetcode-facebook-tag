@@ -1,29 +1,34 @@
-//leetcode 22 Generate Parentheses
+// leetcode 22 Generate Parentheses
 
+/*
+time: O(2 ^ 2n)
+space: O(n)
+n-th Catalan number
+*/
 
-//time: O(2 ^ 2n)
-//space: O(n)
-//卡特兰数
-
-public class Solution {
+class Solution {
     public List<String> generateParenthesis(int n) {
-        List<String> list = new ArrayList<String>();
-        backtrack(list, "", 0, 0, n);
-        return list;
+        List<String> res = new ArrayList<String>();
+        backtrack(res, new StringBuilder(), 0, 0, n);
+        return res;
     }
     
-    public void backtrack(List<String> list, String str, int open, int close, int max) {
-        if (str.length() == max * 2) {
-            list.add(str);
+    private void backtrack(List<String> res, StringBuilder cur, int open, int close, int max) {
+        if (cur.length() == max * 2) {
+            res.add(cur.toString());
             return;
         }
         // Stop printing out “(“ when the number of “(“ s hit n.
         if (open < max) {
-            backtrack(list, str + "(", open + 1, close, max);
+            cur.append("(");
+            backtrack(res, cur, open + 1, close, max);
+            cur.deleteCharAt(cur.length() - 1);
         }
         // print “)” only when there are more “(“s than “)”s
         if (close < open) {
-            backtrack(list, str + ")", open, close + 1, max);
+            cur.append(")");
+            backtrack(res, cur, open, close + 1, max);
+            cur.deleteCharAt(cur.length() - 1);
         }
     }
 }
