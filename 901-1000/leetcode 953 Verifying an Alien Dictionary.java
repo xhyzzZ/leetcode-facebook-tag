@@ -1,8 +1,8 @@
-//leetcode 953 Verifying an Alien Dictionary
+// leetcode 953 Verifying an Alien Dictionary
 
 /*
 time: O(NS)
-space: O()
+space: O(1)
 */
 
 class Solution {
