@@ -21,7 +21,7 @@ public class Solution {
             end = Math.max(end, intervals.get(i).end);
             i++;
         }
-        res.add(new Interval(start,end)); 
+        res.add(new Interval(start, end)); 
 
         while (i < intervals.size()) res.add(intervals.get(i++)); 
         return res;

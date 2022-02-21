@@ -1,12 +1,11 @@
 // leetcode 146 LRU Cache
 
-
 /*
 time: O(1)
 space: O(1)
-hashmap + double linkedlist
 */
 
+// hashmap + double linkedlist
 public class LRUCache {
     class DLinkedNode {
         int key;

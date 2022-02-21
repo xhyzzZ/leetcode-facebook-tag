@@ -12,7 +12,7 @@ space: O()
 便于查找，同时需要保证key是final无法被改变。
 */
 
-public class MyHashMap {
+class MyHashMap {
     class Node {
         final int key;
         int value;
@@ -22,7 +22,7 @@ public class MyHashMap {
             this.value = value;
         }
     }
-    
+
     final int SIZE = 10001;
     Node[] array;
     public MyHashMap() {

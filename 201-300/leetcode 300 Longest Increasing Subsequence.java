@@ -36,14 +36,14 @@ space; O(n)
 class Solution {
 	public int lengthOfLIS(int[] nums) {
 	    List<Integer> sequence = new ArrayList<>();
-	    for (int n : nums) update(sequence, n);
+	    for (int num : nums) update(sequence, num);
 	    
 	    return sequence.size();
 	}
 
-	private void update(List<Integer> seq, int n) {
-	    if (seq.isEmpty() || seq.get(seq.size() - 1) < n) seq.add(n);
-	    else seq.set(findFirstLargeEqual(seq, n), n);
+	private void update(List<Integer> seq, int num) {
+	    if (seq.isEmpty() || seq.get(seq.size() - 1) < num) seq.add(num);
+	    else seq.set(findFirstLargeEqual(seq, num), num);
 	}
 
 	private int findFirstLargeEqual(List<Integer> seq, int target) {

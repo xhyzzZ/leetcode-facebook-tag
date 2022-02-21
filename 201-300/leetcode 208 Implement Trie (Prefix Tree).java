@@ -1,9 +1,8 @@
-//leetcode 208 Implement Trie (Prefix Tree)
+// leetcode 208 Implement Trie (Prefix Tree)
 
 /*
-time: O(l)
-l单词长度
-space: O(n * l^2)
+time:
+space:
 */
 
 class TrieNode {
@@ -25,6 +24,8 @@ public class Trie {
     }
 
     // Inserts a word into the trie.
+    // Time complexity : O(m), where m is the key length.
+    // Space complexity : O(m).
     public void insert(String word) {
         TrieNode runner = root;
         for (char c : word.toCharArray()) {
@@ -37,6 +38,9 @@ public class Trie {
     }
 
     // Returns if the word is in the trie.
+    // Time complexity : O(m) In each step of the algorithm we search for the next key character. 
+    // In the worst case the algorithm performs mm operations.
+    // Space complexity : O(1)
     public boolean search(String word) {
         TrieNode runner = root;
         for (char c : word.toCharArray()) {
@@ -51,6 +55,8 @@ public class Trie {
 
     // Returns if there is any word in the trie
     // that starts with the given prefix.
+    // Time complexity : O(m)
+    // Space complexity : O(1)
     public boolean startsWith(String prefix) {
         TrieNode runner = root;
         for (char c : prefix.toCharArray()) {

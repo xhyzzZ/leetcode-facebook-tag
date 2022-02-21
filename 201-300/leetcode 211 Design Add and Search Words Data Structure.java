@@ -1,9 +1,10 @@
-// leetcode 211 Add and Search Word - Data structure design
+// leetcode 211 Design Add and Search Words Data Structure
 
 /*
 time: O(n)
 space: O(1)
 */
+
 public class WordDictionary {
 
 	class TrieNode {
@@ -17,6 +18,7 @@ public class WordDictionary {
         root = new TrieNode();
     }
 
+    // O(n), n = length of the new word
     public void addWord(String word) {
         TrieNode p = root;
         for (char c : word.toCharArray()) {
@@ -28,6 +30,7 @@ public class WordDictionary {
         p.isWord = true;
     }
 
+    // O(m), m = the total number of characters in the Trie
     public boolean search(String word) {
         return helper(word, 0, root);
     }
