@@ -1,4 +1,4 @@
-//leetcode 8 String to Integer (atoi)
+// leetcode 8 String to Integer (atoi)
 
 /*
 time: O(n)
@@ -6,10 +6,10 @@ space: O(n)
 */
 
 class Solution {
-    public int myAtoi(String str) {
+    public int myAtoi(String s) {
         int i = 0;
-	    str = str.trim();        
-	    char[] c = str.toCharArray();
+	    s = s.trim();        
+	    char[] c = s.toCharArray();
 	    
 	    int sign = 1;
 	    if (i < c.length && (c[i] == '-' || c[i] == '+')) {

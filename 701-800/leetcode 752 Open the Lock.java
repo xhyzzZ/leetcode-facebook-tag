@@ -1,8 +1,11 @@
 // leetcode 752 Open the Lock
 
 /*
-time: O()
-space: O()
+time: O(N^2 * A^N + D) 
+where, N is Number of dials (4 in our case)
+A is number of alphabets (10 in our case -> 0 to 9)
+D is the size of deadends.
+space: O(A^N + D)
 */
 
 class Solution {

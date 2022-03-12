@@ -12,6 +12,7 @@ class Solution {
             mapping[order.charAt(i) - 'a'] = i;
         }
         for (int i = 1; i < words.length; i++) {
+            // If any letter of former word is in higher order, return False
             if (compare(words[i - 1], words[i]) > 0) {
                 return false;
             }
@@ -24,6 +25,7 @@ class Solution {
         for (int i = 0, j = 0; i < n && j < m && cmp == 0; i++, j++) {
             cmp = mapping[s1.charAt(i) - 'a'] - mapping[s2.charAt(j) - 'a'];
         }
+        // If lenght of former word is longer and latter word is substring of former, return False (apple & app etc.)
         return cmp == 0 ? n - m : cmp;
     }
 }

@@ -36,21 +36,23 @@ space: O(n)
 class Solution {
     public int minMeetingRooms(int[][] intervals) {
         if (intervals == null || intervals.length == 0) return 0;
+        int max = 0;
         Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);
-        pq.add(intervals[0]);
-        for (int i = 1; i < intervals.length; i++) {
+        for (int i = 0; i < intervals.length; i++){
             // if the current meeting starts right after 
             // there's no need for a new room, merge the interval
             
             // So, every time we want to check if any room is free or not, 
             // simply check the topmost element of the min heap as that would be the room that would 
             // get free the earliest out of all the other rooms currently occupied.
-            if (intervals[i][0] >= pq.peek()[1]) {
+            // no overlap, then should update smallest end.
+            while (!pq.isEmpty() && intervals[i][0] >= pq.peek()[1])
                 pq.poll();
-            }
             pq.offer(intervals[i]);
+            max = Math.max(max, pq.size());
         }
-        return pq.size();
+        
+        return max;
     }
 }
