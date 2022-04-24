@@ -2,39 +2,28 @@
 
 /*
 time: O(m + n)
-space: O(n)
+space: O(m + n)
 */
 
 class Solution {
-    public Interval[] intervalIntersection(Interval[] firstList, Interval[] secondList) {
-        if (firstList == null || firstList.length == 0 || secondList == null || secondList.length == 0) {
-            return new Interval[] {};
-        }
-        
-        int m = firstList.length, n = secondList.length;
+    public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
+        List<int[]> ans = new ArrayList();
         int i = 0, j = 0;
-        List<Interval> res = new ArrayList<>();
-        while (i < m && j < n) {
-            Interval a = firstList[i];
-            Interval b = firstList[j];
 
-            // find the overlap... if there is any...
-            int startMax = Math.max(a.start, b.start);
-            int endMin = Math.min(a.end, b.end);
-            
-            if (endMin >= startMax) {
-                res.add(new Interval(startMax, endMin));
-            }
-            
-            // update the pointer with smaller end value...
-            if (a.end == endMin) { 
-                i++; 
-            }
-            if (b.end == endMin) { 
-                j++; 
-            }
+        while (i < firstList.length && j < secondList.length) {
+            // Let's check if firstList[i] intersects secondList[j].
+            // lo - the startpoint of the intersection
+            // hi - the endpoint of the intersection
+            int lo = Math.max(firstList[i][0], secondList[j][0]);
+            int hi = Math.min(firstList[i][1], secondList[j][1]);
+            if (lo <= hi) ans.add(new int[]{lo, hi});
+
+            // Remove the interval with the smallest endpoint
+            if (firstList[i][1] < secondList[j][1]) i++;
+            else j++;
         }
-        return res.toArray(new Interval[0]);
+
+        return ans.toArray(new int[ans.size()][]);
     }
 }
 
